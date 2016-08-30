@@ -1,2 +1,1 @@
-# mindmaps-examples
-Mindmaps Examples
+# Sample Java Projects for MindmapsDB

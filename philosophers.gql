@@ -1,0 +1,95 @@
+insert
+
+
+# Concept types
+
+id "person" isa mm-entity-type
+    plays-role has-resource-target
+    plays-role philosopher
+    plays-role teacher
+    plays-role student
+    plays-role thinker;
+
+id "school" isa mm-entity-type
+    plays-role philosophy;
+
+id "fact" isa mm-entity-type
+    plays-role thought;
+
+id "title" isa mm-resource-type
+    datatype string
+    plays-role has-resource-value;
+
+id "epithet" isa mm-resource-type
+    datatype string
+    plays-role has-resource-value;
+
+
+# Relation types
+
+id "has-resource" isa mm-relation-type
+    has-role has-resource-target
+    has-role has-resource-value;
+id "has-resource-target" isa mm-role-type;
+id "has-resource-value" isa mm-role-type;
+
+id "practice" isa mm-relation-type
+    has-role philosopher
+    has-role philosophy;
+id "philosopher" isa mm-role-type;
+id "philosophy" isa mm-role-type;
+
+id "education" isa mm-relation-type
+    has-role teacher
+    has-role student;
+id "teacher" isa mm-role-type;
+id "student" isa mm-role-type;
+
+id "knowledge" isa mm-relation-type
+    has-role thinker
+    has-role thought
+    plays-role thought;
+id "thinker" isa mm-role-type;
+id "thought" isa mm-role-type;
+
+
+# Instances
+
+id "Socrates" isa person;
+id "Plato" isa person;
+id "Aristotle" isa person;
+
+id "Alexander" isa person
+    has epithet "The Great"
+    has title "Hegeon"
+    has title "King of Macedon"
+    has title "Shah of Persia"
+    has title "Pharaoh of Egypt"
+    has title "Lord of Asia";
+
+id "Peripateticism" isa school;
+id "Platonism" isa school;
+id "Idealism" isa school;
+id "Cynicism" isa school;
+
+id "sun-fact" isa fact, value "The Sun is bigger than the Earth";
+id "cave-fact" isa fact, value "Caves are mostly pretty dark";
+id "nothing" isa fact;
+
+
+# Relations
+
+(philosopher Socrates, philosophy Platonism) isa practice;
+(philosopher Plato, philosophy Idealism) isa practice;
+(philosopher Plato, philosophy Platonism) isa practice;
+(philosopher Aristotle, philosophy Peripateticism) isa practice;
+
+(teacher Socrates, student Plato) isa education;
+(teacher Plato, student Aristotle) isa education;
+(teacher Aristotle, student Alexander) isa education;
+
+(thinker Aristotle, thought sun-fact) isa knowledge;
+(thinker Plato, thought cave-fact) isa knowledge;
+
+$socratesKnowsNothing (thinker Socrates, thought nothing) isa knowledge;
+(thinker Socrates, thought $socratesKnowsNothing) isa knowledge;
