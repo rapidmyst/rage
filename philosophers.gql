@@ -3,63 +3,55 @@ insert
 
 # Concept types
 
-id "person" isa mm-entity-type
-    plays-role has-resource-target
+person isa entity-type
     plays-role philosopher
     plays-role teacher
     plays-role student
-    plays-role thinker;
+    plays-role thinker
+    has-resource title
+    has-resource epithet;
 
-id "school" isa mm-entity-type
+school isa entity-type
     plays-role philosophy;
 
-id "fact" isa mm-entity-type
-    plays-role thought;
+fact isa entity-type
+    plays-role thought
+    has-resource description;
 
-id "title" isa mm-resource-type
-    datatype string
-    plays-role has-resource-value;
-
-id "epithet" isa mm-resource-type
-    datatype string
-    plays-role has-resource-value;
+title isa resource-type datatype string;
+epithet isa resource-type datatype string;
+description isa resource-type datatype string;
 
 
 # Relation types
 
-id "has-resource" isa mm-relation-type
-    has-role has-resource-target
-    has-role has-resource-value;
-id "has-resource-target" isa mm-role-type;
-id "has-resource-value" isa mm-role-type;
-
-id "practice" isa mm-relation-type
+practice isa relation-type
     has-role philosopher
     has-role philosophy;
-id "philosopher" isa mm-role-type;
-id "philosophy" isa mm-role-type;
+philosopher isa role-type;
+philosophy isa role-type;
 
-id "education" isa mm-relation-type
+education isa relation-type
     has-role teacher
     has-role student;
-id "teacher" isa mm-role-type;
-id "student" isa mm-role-type;
+teacher isa role-type;
+student isa role-type;
 
-id "knowledge" isa mm-relation-type
+knowledge isa relation-type
     has-role thinker
     has-role thought
     plays-role thought;
-id "thinker" isa mm-role-type;
-id "thought" isa mm-role-type;
+thinker isa role-type;
+thought isa role-type;
 
 
 # Instances
 
-id "Socrates" isa person;
-id "Plato" isa person;
-id "Aristotle" isa person;
+"Socrates" isa person;
+"Plato" isa person;
+"Aristotle" isa person;
 
-id "Alexander" isa person
+"Alexander" isa person
     has epithet "The Great"
     has title "Hegeon"
     has title "King of Macedon"
@@ -67,14 +59,14 @@ id "Alexander" isa person
     has title "Pharaoh of Egypt"
     has title "Lord of Asia";
 
-id "Peripateticism" isa school;
-id "Platonism" isa school;
-id "Idealism" isa school;
-id "Cynicism" isa school;
+"Peripateticism" isa school;
+"Platonism" isa school;
+"Idealism" isa school;
+"Cynicism" isa school;
 
-id "sun-fact" isa fact, value "The Sun is bigger than the Earth";
-id "cave-fact" isa fact, value "Caves are mostly pretty dark";
-id "nothing" isa fact;
+"sun-fact" isa fact, has description "The Sun is bigger than the Earth";
+"cave-fact" isa fact, has description "Caves are mostly pretty dark";
+"nothing" isa fact;
 
 
 # Relations
