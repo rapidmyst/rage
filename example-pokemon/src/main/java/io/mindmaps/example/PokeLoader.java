@@ -1,7 +1,13 @@
 package io.mindmaps.example;
 
-import io.mindmaps.MindmapsTransaction;
-import io.mindmaps.core.model.*;
+import io.mindmaps.MindmapsGraph;
+import io.mindmaps.concept.Entity;
+import io.mindmaps.concept.EntityType;
+import io.mindmaps.concept.Instance;
+import io.mindmaps.concept.RelationType;
+import io.mindmaps.concept.Resource;
+import io.mindmaps.concept.ResourceType;
+import io.mindmaps.concept.RoleType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,7 +16,10 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Loads the pokemons
@@ -18,10 +27,10 @@ import java.util.*;
  */
 public class PokeLoader {
     private String pokemonDir;
-    private MindmapsTransaction mindmapsGraph;
+    private MindmapsGraph mindmapsGraph;
 
 
-    public PokeLoader(MindmapsTransaction mindmapsGraph, String pokemonDir){
+    public PokeLoader(MindmapsGraph mindmapsGraph, String pokemonDir){
         this.mindmapsGraph = mindmapsGraph;
         this.pokemonDir = pokemonDir;
     }
@@ -102,10 +111,10 @@ public class PokeLoader {
 
         //Create all the instances of things relating to the pokemon
         Entity pokemon = mindmapsGraph.putEntity(name, pokemonType);
-        Resource<Long> pokemonPokeDex = mindmapsGraph.putResource(UUID.randomUUID().toString(), pokeDexNumberType).setValue(pokeDexId);
-        Resource<String> pokemonDesc = mindmapsGraph.putResource(UUID.randomUUID().toString(), descriptionType).setValue(desc);
-        Resource<Long> pokemonHeight = mindmapsGraph.putResource(UUID.randomUUID().toString(), heightType).setValue(height);
-        Resource<Long> pokemonWeight = mindmapsGraph.putResource(UUID.randomUUID().toString(), weightType).setValue(weight);
+        Resource<Long> pokemonPokeDex = mindmapsGraph.putResource(pokeDexId, pokeDexNumberType);
+        Resource<String> pokemonDesc = mindmapsGraph.putResource(desc, descriptionType);
+        Resource<Long> pokemonHeight = mindmapsGraph.putResource(height, heightType);
+        Resource<Long> pokemonWeight = mindmapsGraph.putResource(weight, weightType);
 
         Set<Instance> pokemonTypes = new HashSet<>();
         for(String type: types){
