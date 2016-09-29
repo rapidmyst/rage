@@ -2,12 +2,12 @@ package io.mindmaps.example;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import io.mindmaps.Mindmaps;
 import io.mindmaps.MindmapsGraph;
 import io.mindmaps.concept.ResourceType;
 import io.mindmaps.concept.RoleType;
 import io.mindmaps.concept.Type;
 import io.mindmaps.exception.MindmapsValidationException;
-import io.mindmaps.factory.MindmapsClient;
 
 /**
  * Loads some pokemon. This data is a sample drawn from https://pokeapi.co/. Big Thanks to them.
@@ -25,7 +25,7 @@ public class Main {
         System.out.println("=================================================================================================");
 
         //Initialise a new mindmaps graph
-        mindmapsGraph = MindmapsClient.getGraph(keyspace);
+        mindmapsGraph = Mindmaps.factory(Mindmaps.IN_MEMORY, keyspace).getGraph();
 
         System.out.println("Building Poketology (It's punny). . . ");
         buildPoketology();
@@ -37,7 +37,7 @@ public class Main {
 
         try{
             mindmapsGraph.commit();
-            System.out.println("Results committed. Why not use graql to make some queries ??");
+            System.out.println("Results committed.");
         } catch (MindmapsValidationException e){
             System.out.println("Validation errors have occurred during committing:" + e.getMessage());
         } finally {
