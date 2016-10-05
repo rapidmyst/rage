@@ -71,17 +71,17 @@ thought isa role-type;
 
 # Relations
 
-(philosopher Socrates, philosophy Platonism) isa practice;
-(philosopher Plato, philosophy Idealism) isa practice;
-(philosopher Plato, philosophy Platonism) isa practice;
-(philosopher Aristotle, philosophy Peripateticism) isa practice;
+(philosopher: Socrates, philosophy: Platonism) isa practice;
+(philosopher: Plato, philosophy: Idealism) isa practice;
+(philosopher: Plato, philosophy: Platonism) isa practice;
+(philosopher: Aristotle, philosophy: Peripateticism) isa practice;
 
-(teacher Socrates, student Plato) isa education;
-(teacher Plato, student Aristotle) isa education;
-(teacher Aristotle, student Alexander) isa education;
+(teacher: Socrates, student: Plato) isa education;
+(teacher: Plato, student: Aristotle) isa education;
+(teacher: Aristotle, student: Alexander) isa education;
 
-(thinker Aristotle, thought sun-fact) isa knowledge;
-(thinker Plato, thought cave-fact) isa knowledge;
+(thinker: Aristotle, thought: sun-fact) isa knowledge;
+(thinker: Plato, thought: cave-fact) isa knowledge;
 
-$socratesKnowsNothing (thinker Socrates, thought nothing) isa knowledge;
-(thinker Socrates, thought $socratesKnowsNothing) isa knowledge;
+$socratesKnowsNothing (thinker: Socrates, thought: nothing) isa knowledge;
+(thinker: Socrates, thought: $socratesKnowsNothing) isa knowledge;
