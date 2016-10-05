@@ -46,8 +46,8 @@ attacking-type isa role-type;
     has height 7
     has weight 69;
 
-(pokemon-with-type Bulbasaur, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Bulbasaur, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Bulbasaur, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Bulbasaur, type-of-pokemon: grass) isa has-type;
 
 
 
@@ -57,10 +57,10 @@ attacking-type isa role-type;
     has height 10
     has weight 130;
 
-(pokemon-with-type Ivysaur, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Ivysaur, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Ivysaur, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Ivysaur, type-of-pokemon: grass) isa has-type;
 
-(descendant Ivysaur, ancestor Bulbasaur) isa evolution;
+(descendant: Ivysaur, ancestor: Bulbasaur) isa evolution;
 
 
 'Venusaur' isa pokemon
@@ -69,10 +69,10 @@ attacking-type isa role-type;
     has height 20
     has weight 1000;
 
-(pokemon-with-type Venusaur, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Venusaur, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Venusaur, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Venusaur, type-of-pokemon: grass) isa has-type;
 
-(descendant Venusaur, ancestor Ivysaur) isa evolution;
+(descendant: Venusaur, ancestor: Ivysaur) isa evolution;
 
 
 'Charmander' isa pokemon
@@ -81,7 +81,7 @@ attacking-type isa role-type;
     has height 6
     has weight 85;
 
-(pokemon-with-type Charmander, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Charmander, type-of-pokemon: fire) isa has-type;
 
 
 
@@ -91,9 +91,9 @@ attacking-type isa role-type;
     has height 11
     has weight 190;
 
-(pokemon-with-type Charmeleon, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Charmeleon, type-of-pokemon: fire) isa has-type;
 
-(descendant Charmeleon, ancestor Charmander) isa evolution;
+(descendant: Charmeleon, ancestor: Charmander) isa evolution;
 
 
 'Charizard' isa pokemon
@@ -102,10 +102,10 @@ attacking-type isa role-type;
     has height 17
     has weight 905;
 
-(pokemon-with-type Charizard, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Charizard, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Charizard, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Charizard, type-of-pokemon: fire) isa has-type;
 
-(descendant Charizard, ancestor Charmeleon) isa evolution;
+(descendant: Charizard, ancestor: Charmeleon) isa evolution;
 
 
 'Squirtle' isa pokemon
@@ -114,7 +114,7 @@ attacking-type isa role-type;
     has height 5
     has weight 90;
 
-(pokemon-with-type Squirtle, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Squirtle, type-of-pokemon: water) isa has-type;
 
 
 
@@ -124,9 +124,9 @@ attacking-type isa role-type;
     has height 10
     has weight 225;
 
-(pokemon-with-type Wartortle, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Wartortle, type-of-pokemon: water) isa has-type;
 
-(descendant Wartortle, ancestor Squirtle) isa evolution;
+(descendant: Wartortle, ancestor: Squirtle) isa evolution;
 
 
 'Blastoise' isa pokemon
@@ -135,9 +135,9 @@ attacking-type isa role-type;
     has height 16
     has weight 855;
 
-(pokemon-with-type Blastoise, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Blastoise, type-of-pokemon: water) isa has-type;
 
-(descendant Blastoise, ancestor Wartortle) isa evolution;
+(descendant: Blastoise, ancestor: Wartortle) isa evolution;
 
 
 'Caterpie' isa pokemon
@@ -146,7 +146,7 @@ attacking-type isa role-type;
     has height 3
     has weight 29;
 
-(pokemon-with-type Caterpie, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Caterpie, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -156,9 +156,9 @@ attacking-type isa role-type;
     has height 7
     has weight 99;
 
-(pokemon-with-type Metapod, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Metapod, type-of-pokemon: bug) isa has-type;
 
-(descendant Metapod, ancestor Caterpie) isa evolution;
+(descendant: Metapod, ancestor: Caterpie) isa evolution;
 
 
 'Butterfree' isa pokemon
@@ -167,10 +167,10 @@ attacking-type isa role-type;
     has height 11
     has weight 320;
 
-(pokemon-with-type Butterfree, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Butterfree, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Butterfree, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Butterfree, type-of-pokemon: bug) isa has-type;
 
-(descendant Butterfree, ancestor Metapod) isa evolution;
+(descendant: Butterfree, ancestor: Metapod) isa evolution;
 
 
 'Weedle' isa pokemon
@@ -179,8 +179,8 @@ attacking-type isa role-type;
     has height 3
     has weight 32;
 
-(pokemon-with-type Weedle, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Weedle, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Weedle, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Weedle, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -190,10 +190,10 @@ attacking-type isa role-type;
     has height 6
     has weight 100;
 
-(pokemon-with-type Kakuna, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Kakuna, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Kakuna, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Kakuna, type-of-pokemon: bug) isa has-type;
 
-(descendant Kakuna, ancestor Weedle) isa evolution;
+(descendant: Kakuna, ancestor: Weedle) isa evolution;
 
 
 'Beedrill' isa pokemon
@@ -202,10 +202,10 @@ attacking-type isa role-type;
     has height 10
     has weight 295;
 
-(pokemon-with-type Beedrill, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Beedrill, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Beedrill, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Beedrill, type-of-pokemon: bug) isa has-type;
 
-(descendant Beedrill, ancestor Kakuna) isa evolution;
+(descendant: Beedrill, ancestor: Kakuna) isa evolution;
 
 
 'Pidgey' isa pokemon
@@ -214,8 +214,8 @@ attacking-type isa role-type;
     has height 3
     has weight 18;
 
-(pokemon-with-type Pidgey, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Pidgey, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Pidgey, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Pidgey, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -225,10 +225,10 @@ attacking-type isa role-type;
     has height 11
     has weight 300;
 
-(pokemon-with-type Pidgeotto, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Pidgeotto, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Pidgeotto, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Pidgeotto, type-of-pokemon: normal) isa has-type;
 
-(descendant Pidgeotto, ancestor Pidgey) isa evolution;
+(descendant: Pidgeotto, ancestor: Pidgey) isa evolution;
 
 
 'Pidgeot' isa pokemon
@@ -237,10 +237,10 @@ attacking-type isa role-type;
     has height 15
     has weight 395;
 
-(pokemon-with-type Pidgeot, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Pidgeot, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Pidgeot, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Pidgeot, type-of-pokemon: normal) isa has-type;
 
-(descendant Pidgeot, ancestor Pidgeotto) isa evolution;
+(descendant: Pidgeot, ancestor: Pidgeotto) isa evolution;
 
 
 'Rattata' isa pokemon
@@ -249,7 +249,7 @@ attacking-type isa role-type;
     has height 3
     has weight 35;
 
-(pokemon-with-type Rattata, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Rattata, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -259,9 +259,9 @@ attacking-type isa role-type;
     has height 7
     has weight 185;
 
-(pokemon-with-type Raticate, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Raticate, type-of-pokemon: normal) isa has-type;
 
-(descendant Raticate, ancestor Rattata) isa evolution;
+(descendant: Raticate, ancestor: Rattata) isa evolution;
 
 
 'Spearow' isa pokemon
@@ -270,8 +270,8 @@ attacking-type isa role-type;
     has height 3
     has weight 20;
 
-(pokemon-with-type Spearow, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Spearow, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Spearow, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Spearow, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -281,10 +281,10 @@ attacking-type isa role-type;
     has height 12
     has weight 380;
 
-(pokemon-with-type Fearow, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Fearow, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Fearow, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Fearow, type-of-pokemon: normal) isa has-type;
 
-(descendant Fearow, ancestor Spearow) isa evolution;
+(descendant: Fearow, ancestor: Spearow) isa evolution;
 
 
 'Ekans' isa pokemon
@@ -293,7 +293,7 @@ attacking-type isa role-type;
     has height 20
     has weight 69;
 
-(pokemon-with-type Ekans, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Ekans, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -303,9 +303,9 @@ attacking-type isa role-type;
     has height 35
     has weight 650;
 
-(pokemon-with-type Arbok, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Arbok, type-of-pokemon: poison) isa has-type;
 
-(descendant Arbok, ancestor Ekans) isa evolution;
+(descendant: Arbok, ancestor: Ekans) isa evolution;
 
 
 'Pikachu' isa pokemon
@@ -314,7 +314,7 @@ attacking-type isa role-type;
     has height 4
     has weight 60;
 
-(pokemon-with-type Pikachu, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Pikachu, type-of-pokemon: electric) isa has-type;
 
 
 'Raichu' isa pokemon
@@ -323,9 +323,9 @@ attacking-type isa role-type;
     has height 8
     has weight 300;
 
-(pokemon-with-type Raichu, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Raichu, type-of-pokemon: electric) isa has-type;
 
-(descendant Raichu, ancestor Pikachu) isa evolution;
+(descendant: Raichu, ancestor: Pikachu) isa evolution;
 
 
 'Sandshrew' isa pokemon
@@ -334,7 +334,7 @@ attacking-type isa role-type;
     has height 6
     has weight 120;
 
-(pokemon-with-type Sandshrew, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Sandshrew, type-of-pokemon: ground) isa has-type;
 
 
 
@@ -344,9 +344,9 @@ attacking-type isa role-type;
     has height 10
     has weight 295;
 
-(pokemon-with-type Sandslash, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Sandslash, type-of-pokemon: ground) isa has-type;
 
-(descendant Sandslash, ancestor Sandshrew) isa evolution;
+(descendant: Sandslash, ancestor: Sandshrew) isa evolution;
 
 
 'Nidoran-F' isa pokemon
@@ -355,7 +355,7 @@ attacking-type isa role-type;
     has height 4
     has weight 70;
 
-(pokemon-with-type Nidoran-F, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidoran-F, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -365,9 +365,9 @@ attacking-type isa role-type;
     has height 8
     has weight 200;
 
-(pokemon-with-type Nidorina, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidorina, type-of-pokemon: poison) isa has-type;
 
-(descendant Nidorina, ancestor Nidoran-F) isa evolution;
+(descendant: Nidorina, ancestor: Nidoran-F) isa evolution;
 
 
 'Nidoqueen' isa pokemon
@@ -376,10 +376,10 @@ attacking-type isa role-type;
     has height 13
     has weight 600;
 
-(pokemon-with-type Nidoqueen, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Nidoqueen, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidoqueen, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Nidoqueen, type-of-pokemon: poison) isa has-type;
 
-(descendant Nidoqueen, ancestor Nidorina) isa evolution;
+(descendant: Nidoqueen, ancestor: Nidorina) isa evolution;
 
 
 'Nidoran-M' isa pokemon
@@ -388,7 +388,7 @@ attacking-type isa role-type;
     has height 5
     has weight 90;
 
-(pokemon-with-type Nidoran-M, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidoran-M, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -398,9 +398,9 @@ attacking-type isa role-type;
     has height 9
     has weight 195;
 
-(pokemon-with-type Nidorino, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidorino, type-of-pokemon: poison) isa has-type;
 
-(descendant Nidorino, ancestor Nidoran-M) isa evolution;
+(descendant: Nidorino, ancestor: Nidoran-M) isa evolution;
 
 
 'Nidoking' isa pokemon
@@ -409,10 +409,10 @@ attacking-type isa role-type;
     has height 14
     has weight 620;
 
-(pokemon-with-type Nidoking, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Nidoking, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Nidoking, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Nidoking, type-of-pokemon: poison) isa has-type;
 
-(descendant Nidoking, ancestor Nidorino) isa evolution;
+(descendant: Nidoking, ancestor: Nidorino) isa evolution;
 
 
 'Clefairy' isa pokemon
@@ -421,7 +421,7 @@ attacking-type isa role-type;
     has height 6
     has weight 75;
 
-(pokemon-with-type Clefairy, type-of-pokemon fairy) isa has-type;
+(pokemon-with-type: Clefairy, type-of-pokemon: fairy) isa has-type;
 
 
 'Clefable' isa pokemon
@@ -430,9 +430,9 @@ attacking-type isa role-type;
     has height 13
     has weight 400;
 
-(pokemon-with-type Clefable, type-of-pokemon fairy) isa has-type;
+(pokemon-with-type: Clefable, type-of-pokemon: fairy) isa has-type;
 
-(descendant Clefable, ancestor Clefairy) isa evolution;
+(descendant: Clefable, ancestor: Clefairy) isa evolution;
 
 
 'Vulpix' isa pokemon
@@ -441,7 +441,7 @@ attacking-type isa role-type;
     has height 6
     has weight 99;
 
-(pokemon-with-type Vulpix, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Vulpix, type-of-pokemon: fire) isa has-type;
 
 
 
@@ -451,9 +451,9 @@ attacking-type isa role-type;
     has height 11
     has weight 199;
 
-(pokemon-with-type Ninetales, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Ninetales, type-of-pokemon: fire) isa has-type;
 
-(descendant Ninetales, ancestor Vulpix) isa evolution;
+(descendant: Ninetales, ancestor: Vulpix) isa evolution;
 
 
 'Jigglypuff' isa pokemon
@@ -462,8 +462,8 @@ attacking-type isa role-type;
     has height 5
     has weight 55;
 
-(pokemon-with-type Jigglypuff, type-of-pokemon fairy) isa has-type;
-(pokemon-with-type Jigglypuff, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Jigglypuff, type-of-pokemon: fairy) isa has-type;
+(pokemon-with-type: Jigglypuff, type-of-pokemon: normal) isa has-type;
 
 
 'Wigglytuff' isa pokemon
@@ -472,10 +472,10 @@ attacking-type isa role-type;
     has height 10
     has weight 120;
 
-(pokemon-with-type Wigglytuff, type-of-pokemon fairy) isa has-type;
-(pokemon-with-type Wigglytuff, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Wigglytuff, type-of-pokemon: fairy) isa has-type;
+(pokemon-with-type: Wigglytuff, type-of-pokemon: normal) isa has-type;
 
-(descendant Wigglytuff, ancestor Jigglypuff) isa evolution;
+(descendant: Wigglytuff, ancestor: Jigglypuff) isa evolution;
 
 
 'Zubat' isa pokemon
@@ -484,8 +484,8 @@ attacking-type isa role-type;
     has height 8
     has weight 75;
 
-(pokemon-with-type Zubat, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Zubat, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Zubat, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Zubat, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -495,10 +495,10 @@ attacking-type isa role-type;
     has height 16
     has weight 550;
 
-(pokemon-with-type Golbat, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Golbat, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Golbat, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Golbat, type-of-pokemon: poison) isa has-type;
 
-(descendant Golbat, ancestor Zubat) isa evolution;
+(descendant: Golbat, ancestor: Zubat) isa evolution;
 
 
 'Oddish' isa pokemon
@@ -507,8 +507,8 @@ attacking-type isa role-type;
     has height 5
     has weight 54;
 
-(pokemon-with-type Oddish, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Oddish, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Oddish, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Oddish, type-of-pokemon: grass) isa has-type;
 
 
 
@@ -518,10 +518,10 @@ attacking-type isa role-type;
     has height 8
     has weight 86;
 
-(pokemon-with-type Gloom, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Gloom, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Gloom, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Gloom, type-of-pokemon: grass) isa has-type;
 
-(descendant Gloom, ancestor Oddish) isa evolution;
+(descendant: Gloom, ancestor: Oddish) isa evolution;
 
 
 'Vileplume' isa pokemon
@@ -530,10 +530,10 @@ attacking-type isa role-type;
     has height 12
     has weight 186;
 
-(pokemon-with-type Vileplume, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Vileplume, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Vileplume, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Vileplume, type-of-pokemon: grass) isa has-type;
 
-(descendant Vileplume, ancestor Gloom) isa evolution;
+(descendant: Vileplume, ancestor: Gloom) isa evolution;
 
 
 'Paras' isa pokemon
@@ -542,8 +542,8 @@ attacking-type isa role-type;
     has height 3
     has weight 54;
 
-(pokemon-with-type Paras, type-of-pokemon grass) isa has-type;
-(pokemon-with-type Paras, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Paras, type-of-pokemon: grass) isa has-type;
+(pokemon-with-type: Paras, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -553,10 +553,10 @@ attacking-type isa role-type;
     has height 10
     has weight 295;
 
-(pokemon-with-type Parasect, type-of-pokemon grass) isa has-type;
-(pokemon-with-type Parasect, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Parasect, type-of-pokemon: grass) isa has-type;
+(pokemon-with-type: Parasect, type-of-pokemon: bug) isa has-type;
 
-(descendant Parasect, ancestor Paras) isa evolution;
+(descendant: Parasect, ancestor: Paras) isa evolution;
 
 
 'Venonat' isa pokemon
@@ -565,8 +565,8 @@ attacking-type isa role-type;
     has height 10
     has weight 300;
 
-(pokemon-with-type Venonat, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Venonat, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Venonat, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Venonat, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -576,10 +576,10 @@ attacking-type isa role-type;
     has height 15
     has weight 125;
 
-(pokemon-with-type Venomoth, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Venomoth, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Venomoth, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Venomoth, type-of-pokemon: bug) isa has-type;
 
-(descendant Venomoth, ancestor Venonat) isa evolution;
+(descendant: Venomoth, ancestor: Venonat) isa evolution;
 
 
 'Diglett' isa pokemon
@@ -588,7 +588,7 @@ attacking-type isa role-type;
     has height 2
     has weight 8;
 
-(pokemon-with-type Diglett, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Diglett, type-of-pokemon: ground) isa has-type;
 
 
 
@@ -598,9 +598,9 @@ attacking-type isa role-type;
     has height 7
     has weight 333;
 
-(pokemon-with-type Dugtrio, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Dugtrio, type-of-pokemon: ground) isa has-type;
 
-(descendant Dugtrio, ancestor Diglett) isa evolution;
+(descendant: Dugtrio, ancestor: Diglett) isa evolution;
 
 
 'Meowth' isa pokemon
@@ -609,7 +609,7 @@ attacking-type isa role-type;
     has height 4
     has weight 42;
 
-(pokemon-with-type Meowth, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Meowth, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -619,9 +619,9 @@ attacking-type isa role-type;
     has height 10
     has weight 320;
 
-(pokemon-with-type Persian, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Persian, type-of-pokemon: normal) isa has-type;
 
-(descendant Persian, ancestor Meowth) isa evolution;
+(descendant: Persian, ancestor: Meowth) isa evolution;
 
 
 'Psyduck' isa pokemon
@@ -630,7 +630,7 @@ attacking-type isa role-type;
     has height 8
     has weight 196;
 
-(pokemon-with-type Psyduck, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Psyduck, type-of-pokemon: water) isa has-type;
 
 
 
@@ -640,9 +640,9 @@ attacking-type isa role-type;
     has height 17
     has weight 766;
 
-(pokemon-with-type Golduck, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Golduck, type-of-pokemon: water) isa has-type;
 
-(descendant Golduck, ancestor Psyduck) isa evolution;
+(descendant: Golduck, ancestor: Psyduck) isa evolution;
 
 
 'Mankey' isa pokemon
@@ -651,7 +651,7 @@ attacking-type isa role-type;
     has height 5
     has weight 280;
 
-(pokemon-with-type Mankey, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Mankey, type-of-pokemon: fighting) isa has-type;
 
 
 
@@ -661,9 +661,9 @@ attacking-type isa role-type;
     has height 10
     has weight 320;
 
-(pokemon-with-type Primeape, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Primeape, type-of-pokemon: fighting) isa has-type;
 
-(descendant Primeape, ancestor Mankey) isa evolution;
+(descendant: Primeape, ancestor: Mankey) isa evolution;
 
 
 'Growlithe' isa pokemon
@@ -672,7 +672,7 @@ attacking-type isa role-type;
     has height 7
     has weight 190;
 
-(pokemon-with-type Growlithe, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Growlithe, type-of-pokemon: fire) isa has-type;
 
 
 
@@ -682,9 +682,9 @@ attacking-type isa role-type;
     has height 19
     has weight 1550;
 
-(pokemon-with-type Arcanine, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Arcanine, type-of-pokemon: fire) isa has-type;
 
-(descendant Arcanine, ancestor Growlithe) isa evolution;
+(descendant: Arcanine, ancestor: Growlithe) isa evolution;
 
 
 'Poliwag' isa pokemon
@@ -693,7 +693,7 @@ attacking-type isa role-type;
     has height 6
     has weight 124;
 
-(pokemon-with-type Poliwag, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Poliwag, type-of-pokemon: water) isa has-type;
 
 
 
@@ -703,9 +703,9 @@ attacking-type isa role-type;
     has height 10
     has weight 200;
 
-(pokemon-with-type Poliwhirl, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Poliwhirl, type-of-pokemon: water) isa has-type;
 
-(descendant Poliwhirl, ancestor Poliwag) isa evolution;
+(descendant: Poliwhirl, ancestor: Poliwag) isa evolution;
 
 
 'Poliwrath' isa pokemon
@@ -714,10 +714,10 @@ attacking-type isa role-type;
     has height 13
     has weight 540;
 
-(pokemon-with-type Poliwrath, type-of-pokemon fighting) isa has-type;
-(pokemon-with-type Poliwrath, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Poliwrath, type-of-pokemon: fighting) isa has-type;
+(pokemon-with-type: Poliwrath, type-of-pokemon: water) isa has-type;
 
-(descendant Poliwrath, ancestor Poliwhirl) isa evolution;
+(descendant: Poliwrath, ancestor: Poliwhirl) isa evolution;
 
 
 'Abra' isa pokemon
@@ -726,7 +726,7 @@ attacking-type isa role-type;
     has height 9
     has weight 195;
 
-(pokemon-with-type Abra, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Abra, type-of-pokemon: psychic) isa has-type;
 
 
 
@@ -736,9 +736,9 @@ attacking-type isa role-type;
     has height 13
     has weight 565;
 
-(pokemon-with-type Kadabra, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Kadabra, type-of-pokemon: psychic) isa has-type;
 
-(descendant Kadabra, ancestor Abra) isa evolution;
+(descendant: Kadabra, ancestor: Abra) isa evolution;
 
 
 'Alakazam' isa pokemon
@@ -747,9 +747,9 @@ attacking-type isa role-type;
     has height 15
     has weight 480;
 
-(pokemon-with-type Alakazam, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Alakazam, type-of-pokemon: psychic) isa has-type;
 
-(descendant Alakazam, ancestor Kadabra) isa evolution;
+(descendant: Alakazam, ancestor: Kadabra) isa evolution;
 
 
 'Machop' isa pokemon
@@ -758,7 +758,7 @@ attacking-type isa role-type;
     has height 8
     has weight 195;
 
-(pokemon-with-type Machop, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Machop, type-of-pokemon: fighting) isa has-type;
 
 
 
@@ -768,9 +768,9 @@ attacking-type isa role-type;
     has height 15
     has weight 705;
 
-(pokemon-with-type Machoke, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Machoke, type-of-pokemon: fighting) isa has-type;
 
-(descendant Machoke, ancestor Machop) isa evolution;
+(descendant: Machoke, ancestor: Machop) isa evolution;
 
 
 'Machamp' isa pokemon
@@ -779,9 +779,9 @@ attacking-type isa role-type;
     has height 16
     has weight 1300;
 
-(pokemon-with-type Machamp, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Machamp, type-of-pokemon: fighting) isa has-type;
 
-(descendant Machamp, ancestor Machoke) isa evolution;
+(descendant: Machamp, ancestor: Machoke) isa evolution;
 
 
 'Bellsprout' isa pokemon
@@ -790,8 +790,8 @@ attacking-type isa role-type;
     has height 7
     has weight 40;
 
-(pokemon-with-type Bellsprout, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Bellsprout, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Bellsprout, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Bellsprout, type-of-pokemon: grass) isa has-type;
 
 
 
@@ -801,10 +801,10 @@ attacking-type isa role-type;
     has height 10
     has weight 64;
 
-(pokemon-with-type Weepinbell, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Weepinbell, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Weepinbell, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Weepinbell, type-of-pokemon: grass) isa has-type;
 
-(descendant Weepinbell, ancestor Bellsprout) isa evolution;
+(descendant: Weepinbell, ancestor: Bellsprout) isa evolution;
 
 
 'Victreebel' isa pokemon
@@ -813,10 +813,10 @@ attacking-type isa role-type;
     has height 17
     has weight 155;
 
-(pokemon-with-type Victreebel, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Victreebel, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Victreebel, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Victreebel, type-of-pokemon: grass) isa has-type;
 
-(descendant Victreebel, ancestor Weepinbell) isa evolution;
+(descendant: Victreebel, ancestor: Weepinbell) isa evolution;
 
 
 'Tentacool' isa pokemon
@@ -825,8 +825,8 @@ attacking-type isa role-type;
     has height 9
     has weight 455;
 
-(pokemon-with-type Tentacool, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Tentacool, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Tentacool, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Tentacool, type-of-pokemon: water) isa has-type;
 
 
 
@@ -836,10 +836,10 @@ attacking-type isa role-type;
     has height 16
     has weight 550;
 
-(pokemon-with-type Tentacruel, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Tentacruel, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Tentacruel, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Tentacruel, type-of-pokemon: water) isa has-type;
 
-(descendant Tentacruel, ancestor Tentacool) isa evolution;
+(descendant: Tentacruel, ancestor: Tentacool) isa evolution;
 
 
 'Geodude' isa pokemon
@@ -848,8 +848,8 @@ attacking-type isa role-type;
     has height 4
     has weight 200;
 
-(pokemon-with-type Geodude, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Geodude, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Geodude, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Geodude, type-of-pokemon: rock) isa has-type;
 
 
 
@@ -859,10 +859,10 @@ attacking-type isa role-type;
     has height 10
     has weight 1050;
 
-(pokemon-with-type Graveler, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Graveler, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Graveler, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Graveler, type-of-pokemon: rock) isa has-type;
 
-(descendant Graveler, ancestor Geodude) isa evolution;
+(descendant: Graveler, ancestor: Geodude) isa evolution;
 
 
 'Golem' isa pokemon
@@ -871,10 +871,10 @@ attacking-type isa role-type;
     has height 14
     has weight 3000;
 
-(pokemon-with-type Golem, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Golem, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Golem, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Golem, type-of-pokemon: rock) isa has-type;
 
-(descendant Golem, ancestor Graveler) isa evolution;
+(descendant: Golem, ancestor: Graveler) isa evolution;
 
 
 'Ponyta' isa pokemon
@@ -883,7 +883,7 @@ attacking-type isa role-type;
     has height 10
     has weight 300;
 
-(pokemon-with-type Ponyta, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Ponyta, type-of-pokemon: fire) isa has-type;
 
 
 
@@ -893,9 +893,9 @@ attacking-type isa role-type;
     has height 17
     has weight 950;
 
-(pokemon-with-type Rapidash, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Rapidash, type-of-pokemon: fire) isa has-type;
 
-(descendant Rapidash, ancestor Ponyta) isa evolution;
+(descendant: Rapidash, ancestor: Ponyta) isa evolution;
 
 
 'Slowpoke' isa pokemon
@@ -904,8 +904,8 @@ attacking-type isa role-type;
     has height 12
     has weight 360;
 
-(pokemon-with-type Slowpoke, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Slowpoke, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Slowpoke, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Slowpoke, type-of-pokemon: water) isa has-type;
 
 
 
@@ -915,10 +915,10 @@ attacking-type isa role-type;
     has height 16
     has weight 785;
 
-(pokemon-with-type Slowbro, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Slowbro, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Slowbro, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Slowbro, type-of-pokemon: water) isa has-type;
 
-(descendant Slowbro, ancestor Slowpoke) isa evolution;
+(descendant: Slowbro, ancestor: Slowpoke) isa evolution;
 
 
 'Magnemite' isa pokemon
@@ -927,8 +927,8 @@ attacking-type isa role-type;
     has height 3
     has weight 60;
 
-(pokemon-with-type Magnemite, type-of-pokemon steel) isa has-type;
-(pokemon-with-type Magnemite, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Magnemite, type-of-pokemon: steel) isa has-type;
+(pokemon-with-type: Magnemite, type-of-pokemon: electric) isa has-type;
 
 
 
@@ -938,10 +938,10 @@ attacking-type isa role-type;
     has height 10
     has weight 600;
 
-(pokemon-with-type Magneton, type-of-pokemon steel) isa has-type;
-(pokemon-with-type Magneton, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Magneton, type-of-pokemon: steel) isa has-type;
+(pokemon-with-type: Magneton, type-of-pokemon: electric) isa has-type;
 
-(descendant Magneton, ancestor Magnemite) isa evolution;
+(descendant: Magneton, ancestor: Magnemite) isa evolution;
 
 
 'Farfetchd' isa pokemon
@@ -950,8 +950,8 @@ attacking-type isa role-type;
     has height 8
     has weight 150;
 
-(pokemon-with-type Farfetchd, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Farfetchd, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Farfetchd, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Farfetchd, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -961,8 +961,8 @@ attacking-type isa role-type;
     has height 14
     has weight 392;
 
-(pokemon-with-type Doduo, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Doduo, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Doduo, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Doduo, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -972,10 +972,10 @@ attacking-type isa role-type;
     has height 18
     has weight 852;
 
-(pokemon-with-type Dodrio, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Dodrio, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Dodrio, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Dodrio, type-of-pokemon: normal) isa has-type;
 
-(descendant Dodrio, ancestor Doduo) isa evolution;
+(descendant: Dodrio, ancestor: Doduo) isa evolution;
 
 
 'Seel' isa pokemon
@@ -984,7 +984,7 @@ attacking-type isa role-type;
     has height 11
     has weight 900;
 
-(pokemon-with-type Seel, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Seel, type-of-pokemon: water) isa has-type;
 
 
 
@@ -994,10 +994,10 @@ attacking-type isa role-type;
     has height 17
     has weight 1200;
 
-(pokemon-with-type Dewgong, type-of-pokemon ice) isa has-type;
-(pokemon-with-type Dewgong, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Dewgong, type-of-pokemon: ice) isa has-type;
+(pokemon-with-type: Dewgong, type-of-pokemon: water) isa has-type;
 
-(descendant Dewgong, ancestor Seel) isa evolution;
+(descendant: Dewgong, ancestor: Seel) isa evolution;
 
 
 'Grimer' isa pokemon
@@ -1006,7 +1006,7 @@ attacking-type isa role-type;
     has height 9
     has weight 300;
 
-(pokemon-with-type Grimer, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Grimer, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -1016,9 +1016,9 @@ attacking-type isa role-type;
     has height 12
     has weight 300;
 
-(pokemon-with-type Muk, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Muk, type-of-pokemon: poison) isa has-type;
 
-(descendant Muk, ancestor Grimer) isa evolution;
+(descendant: Muk, ancestor: Grimer) isa evolution;
 
 
 'Shellder' isa pokemon
@@ -1027,7 +1027,7 @@ attacking-type isa role-type;
     has height 3
     has weight 40;
 
-(pokemon-with-type Shellder, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Shellder, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1037,10 +1037,10 @@ attacking-type isa role-type;
     has height 15
     has weight 1325;
 
-(pokemon-with-type Cloyster, type-of-pokemon ice) isa has-type;
-(pokemon-with-type Cloyster, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Cloyster, type-of-pokemon: ice) isa has-type;
+(pokemon-with-type: Cloyster, type-of-pokemon: water) isa has-type;
 
-(descendant Cloyster, ancestor Shellder) isa evolution;
+(descendant: Cloyster, ancestor: Shellder) isa evolution;
 
 
 'Gastly' isa pokemon
@@ -1049,8 +1049,8 @@ attacking-type isa role-type;
     has height 13
     has weight 1;
 
-(pokemon-with-type Gastly, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Gastly, type-of-pokemon ghost) isa has-type;
+(pokemon-with-type: Gastly, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Gastly, type-of-pokemon: ghost) isa has-type;
 
 
 
@@ -1060,10 +1060,10 @@ attacking-type isa role-type;
     has height 16
     has weight 1;
 
-(pokemon-with-type Haunter, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Haunter, type-of-pokemon ghost) isa has-type;
+(pokemon-with-type: Haunter, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Haunter, type-of-pokemon: ghost) isa has-type;
 
-(descendant Haunter, ancestor Gastly) isa evolution;
+(descendant: Haunter, ancestor: Gastly) isa evolution;
 
 
 'Gengar' isa pokemon
@@ -1072,10 +1072,10 @@ attacking-type isa role-type;
     has height 15
     has weight 405;
 
-(pokemon-with-type Gengar, type-of-pokemon poison) isa has-type;
-(pokemon-with-type Gengar, type-of-pokemon ghost) isa has-type;
+(pokemon-with-type: Gengar, type-of-pokemon: poison) isa has-type;
+(pokemon-with-type: Gengar, type-of-pokemon: ghost) isa has-type;
 
-(descendant Gengar, ancestor Haunter) isa evolution;
+(descendant: Gengar, ancestor: Haunter) isa evolution;
 
 
 'Onix' isa pokemon
@@ -1084,8 +1084,8 @@ attacking-type isa role-type;
     has height 88
     has weight 2100;
 
-(pokemon-with-type Onix, type-of-pokemon ground) isa has-type;
-(pokemon-with-type Onix, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Onix, type-of-pokemon: ground) isa has-type;
+(pokemon-with-type: Onix, type-of-pokemon: rock) isa has-type;
 
 
 
@@ -1095,7 +1095,7 @@ attacking-type isa role-type;
     has height 10
     has weight 324;
 
-(pokemon-with-type Drowzee, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Drowzee, type-of-pokemon: psychic) isa has-type;
 
 
 
@@ -1105,9 +1105,9 @@ attacking-type isa role-type;
     has height 16
     has weight 756;
 
-(pokemon-with-type Hypno, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Hypno, type-of-pokemon: psychic) isa has-type;
 
-(descendant Hypno, ancestor Drowzee) isa evolution;
+(descendant: Hypno, ancestor: Drowzee) isa evolution;
 
 
 'Krabby' isa pokemon
@@ -1116,7 +1116,7 @@ attacking-type isa role-type;
     has height 4
     has weight 65;
 
-(pokemon-with-type Krabby, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Krabby, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1126,9 +1126,9 @@ attacking-type isa role-type;
     has height 13
     has weight 600;
 
-(pokemon-with-type Kingler, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Kingler, type-of-pokemon: water) isa has-type;
 
-(descendant Kingler, ancestor Krabby) isa evolution;
+(descendant: Kingler, ancestor: Krabby) isa evolution;
 
 
 'Voltorb' isa pokemon
@@ -1137,7 +1137,7 @@ attacking-type isa role-type;
     has height 5
     has weight 104;
 
-(pokemon-with-type Voltorb, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Voltorb, type-of-pokemon: electric) isa has-type;
 
 
 
@@ -1147,9 +1147,9 @@ attacking-type isa role-type;
     has height 12
     has weight 666;
 
-(pokemon-with-type Electrode, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Electrode, type-of-pokemon: electric) isa has-type;
 
-(descendant Electrode, ancestor Voltorb) isa evolution;
+(descendant: Electrode, ancestor: Voltorb) isa evolution;
 
 
 'Exeggcute' isa pokemon
@@ -1158,8 +1158,8 @@ attacking-type isa role-type;
     has height 4
     has weight 25;
 
-(pokemon-with-type Exeggcute, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Exeggcute, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Exeggcute, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Exeggcute, type-of-pokemon: grass) isa has-type;
 
 
 
@@ -1169,10 +1169,10 @@ attacking-type isa role-type;
     has height 20
     has weight 1200;
 
-(pokemon-with-type Exeggutor, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Exeggutor, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Exeggutor, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Exeggutor, type-of-pokemon: grass) isa has-type;
 
-(descendant Exeggutor, ancestor Exeggcute) isa evolution;
+(descendant: Exeggutor, ancestor: Exeggcute) isa evolution;
 
 
 'Cubone' isa pokemon
@@ -1181,7 +1181,7 @@ attacking-type isa role-type;
     has height 4
     has weight 65;
 
-(pokemon-with-type Cubone, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Cubone, type-of-pokemon: ground) isa has-type;
 
 
 
@@ -1191,9 +1191,9 @@ attacking-type isa role-type;
     has height 10
     has weight 450;
 
-(pokemon-with-type Marowak, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Marowak, type-of-pokemon: ground) isa has-type;
 
-(descendant Marowak, ancestor Cubone) isa evolution;
+(descendant: Marowak, ancestor: Cubone) isa evolution;
 
 
 'Hitmonlee' isa pokemon
@@ -1202,7 +1202,7 @@ attacking-type isa role-type;
     has height 15
     has weight 498;
 
-(pokemon-with-type Hitmonlee, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Hitmonlee, type-of-pokemon: fighting) isa has-type;
 
 
 'Hitmonchan' isa pokemon
@@ -1211,7 +1211,7 @@ attacking-type isa role-type;
     has height 14
     has weight 502;
 
-(pokemon-with-type Hitmonchan, type-of-pokemon fighting) isa has-type;
+(pokemon-with-type: Hitmonchan, type-of-pokemon: fighting) isa has-type;
 
 
 'Lickitung' isa pokemon
@@ -1220,7 +1220,7 @@ attacking-type isa role-type;
     has height 12
     has weight 655;
 
-(pokemon-with-type Lickitung, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Lickitung, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1230,7 +1230,7 @@ attacking-type isa role-type;
     has height 6
     has weight 10;
 
-(pokemon-with-type Koffing, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Koffing, type-of-pokemon: poison) isa has-type;
 
 
 
@@ -1240,9 +1240,9 @@ attacking-type isa role-type;
     has height 12
     has weight 95;
 
-(pokemon-with-type Weezing, type-of-pokemon poison) isa has-type;
+(pokemon-with-type: Weezing, type-of-pokemon: poison) isa has-type;
 
-(descendant Weezing, ancestor Koffing) isa evolution;
+(descendant: Weezing, ancestor: Koffing) isa evolution;
 
 
 'Rhyhorn' isa pokemon
@@ -1251,8 +1251,8 @@ attacking-type isa role-type;
     has height 10
     has weight 1150;
 
-(pokemon-with-type Rhyhorn, type-of-pokemon rock) isa has-type;
-(pokemon-with-type Rhyhorn, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Rhyhorn, type-of-pokemon: rock) isa has-type;
+(pokemon-with-type: Rhyhorn, type-of-pokemon: ground) isa has-type;
 
 
 
@@ -1262,10 +1262,10 @@ attacking-type isa role-type;
     has height 19
     has weight 1200;
 
-(pokemon-with-type Rhydon, type-of-pokemon rock) isa has-type;
-(pokemon-with-type Rhydon, type-of-pokemon ground) isa has-type;
+(pokemon-with-type: Rhydon, type-of-pokemon: rock) isa has-type;
+(pokemon-with-type: Rhydon, type-of-pokemon: ground) isa has-type;
 
-(descendant Rhydon, ancestor Rhyhorn) isa evolution;
+(descendant: Rhydon, ancestor: Rhyhorn) isa evolution;
 
 
 'Chansey' isa pokemon
@@ -1274,7 +1274,7 @@ attacking-type isa role-type;
     has height 11
     has weight 346;
 
-(pokemon-with-type Chansey, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Chansey, type-of-pokemon: normal) isa has-type;
 
 
 'Tangela' isa pokemon
@@ -1283,7 +1283,7 @@ attacking-type isa role-type;
     has height 10
     has weight 350;
 
-(pokemon-with-type Tangela, type-of-pokemon grass) isa has-type;
+(pokemon-with-type: Tangela, type-of-pokemon: grass) isa has-type;
 
 
 
@@ -1293,7 +1293,7 @@ attacking-type isa role-type;
     has height 22
     has weight 800;
 
-(pokemon-with-type Kangaskhan, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Kangaskhan, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1303,7 +1303,7 @@ attacking-type isa role-type;
     has height 4
     has weight 80;
 
-(pokemon-with-type Horsea, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Horsea, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1313,9 +1313,9 @@ attacking-type isa role-type;
     has height 12
     has weight 250;
 
-(pokemon-with-type Seadra, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Seadra, type-of-pokemon: water) isa has-type;
 
-(descendant Seadra, ancestor Horsea) isa evolution;
+(descendant: Seadra, ancestor: Horsea) isa evolution;
 
 
 'Goldeen' isa pokemon
@@ -1324,7 +1324,7 @@ attacking-type isa role-type;
     has height 6
     has weight 150;
 
-(pokemon-with-type Goldeen, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Goldeen, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1334,9 +1334,9 @@ attacking-type isa role-type;
     has height 13
     has weight 390;
 
-(pokemon-with-type Seaking, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Seaking, type-of-pokemon: water) isa has-type;
 
-(descendant Seaking, ancestor Goldeen) isa evolution;
+(descendant: Seaking, ancestor: Goldeen) isa evolution;
 
 
 'Staryu' isa pokemon
@@ -1345,7 +1345,7 @@ attacking-type isa role-type;
     has height 8
     has weight 345;
 
-(pokemon-with-type Staryu, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Staryu, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1355,10 +1355,10 @@ attacking-type isa role-type;
     has height 11
     has weight 800;
 
-(pokemon-with-type Starmie, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Starmie, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Starmie, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Starmie, type-of-pokemon: water) isa has-type;
 
-(descendant Starmie, ancestor Staryu) isa evolution;
+(descendant: Starmie, ancestor: Staryu) isa evolution;
 
 
 'Mr-Mime' isa pokemon
@@ -1367,8 +1367,8 @@ attacking-type isa role-type;
     has height 13
     has weight 545;
 
-(pokemon-with-type Mr-Mime, type-of-pokemon fairy) isa has-type;
-(pokemon-with-type Mr-Mime, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Mr-Mime, type-of-pokemon: fairy) isa has-type;
+(pokemon-with-type: Mr-Mime, type-of-pokemon: psychic) isa has-type;
 
 
 'Scyther' isa pokemon
@@ -1377,8 +1377,8 @@ attacking-type isa role-type;
     has height 15
     has weight 560;
 
-(pokemon-with-type Scyther, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Scyther, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Scyther, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Scyther, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -1388,8 +1388,8 @@ attacking-type isa role-type;
     has height 14
     has weight 406;
 
-(pokemon-with-type Jynx, type-of-pokemon psychic) isa has-type;
-(pokemon-with-type Jynx, type-of-pokemon ice) isa has-type;
+(pokemon-with-type: Jynx, type-of-pokemon: psychic) isa has-type;
+(pokemon-with-type: Jynx, type-of-pokemon: ice) isa has-type;
 
 
 'Electabuzz' isa pokemon
@@ -1398,7 +1398,7 @@ attacking-type isa role-type;
     has height 11
     has weight 300;
 
-(pokemon-with-type Electabuzz, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Electabuzz, type-of-pokemon: electric) isa has-type;
 
 
 'Magmar' isa pokemon
@@ -1407,7 +1407,7 @@ attacking-type isa role-type;
     has height 13
     has weight 445;
 
-(pokemon-with-type Magmar, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Magmar, type-of-pokemon: fire) isa has-type;
 
 
 'Pinsir' isa pokemon
@@ -1416,7 +1416,7 @@ attacking-type isa role-type;
     has height 15
     has weight 550;
 
-(pokemon-with-type Pinsir, type-of-pokemon bug) isa has-type;
+(pokemon-with-type: Pinsir, type-of-pokemon: bug) isa has-type;
 
 
 
@@ -1426,7 +1426,7 @@ attacking-type isa role-type;
     has height 14
     has weight 884;
 
-(pokemon-with-type Tauros, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Tauros, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1436,7 +1436,7 @@ attacking-type isa role-type;
     has height 9
     has weight 100;
 
-(pokemon-with-type Magikarp, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Magikarp, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1446,10 +1446,10 @@ attacking-type isa role-type;
     has height 65
     has weight 2350;
 
-(pokemon-with-type Gyarados, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Gyarados, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Gyarados, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Gyarados, type-of-pokemon: water) isa has-type;
 
-(descendant Gyarados, ancestor Magikarp) isa evolution;
+(descendant: Gyarados, ancestor: Magikarp) isa evolution;
 
 
 'Lapras' isa pokemon
@@ -1458,8 +1458,8 @@ attacking-type isa role-type;
     has height 25
     has weight 2200;
 
-(pokemon-with-type Lapras, type-of-pokemon ice) isa has-type;
-(pokemon-with-type Lapras, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Lapras, type-of-pokemon: ice) isa has-type;
+(pokemon-with-type: Lapras, type-of-pokemon: water) isa has-type;
 
 
 
@@ -1469,7 +1469,7 @@ attacking-type isa role-type;
     has height 3
     has weight 40;
 
-(pokemon-with-type Ditto, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Ditto, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1479,7 +1479,7 @@ attacking-type isa role-type;
     has height 3
     has weight 65;
 
-(pokemon-with-type Eevee, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Eevee, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1489,9 +1489,9 @@ attacking-type isa role-type;
     has height 10
     has weight 290;
 
-(pokemon-with-type Vaporeon, type-of-pokemon water) isa has-type;
+(pokemon-with-type: Vaporeon, type-of-pokemon: water) isa has-type;
 
-(descendant Vaporeon, ancestor Eevee) isa evolution;
+(descendant: Vaporeon, ancestor: Eevee) isa evolution;
 
 
 'Jolteon' isa pokemon
@@ -1500,9 +1500,9 @@ attacking-type isa role-type;
     has height 8
     has weight 245;
 
-(pokemon-with-type Jolteon, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Jolteon, type-of-pokemon: electric) isa has-type;
 
-(descendant Jolteon, ancestor Eevee) isa evolution;
+(descendant: Jolteon, ancestor: Eevee) isa evolution;
 
 
 'Flareon' isa pokemon
@@ -1511,9 +1511,9 @@ attacking-type isa role-type;
     has height 9
     has weight 250;
 
-(pokemon-with-type Flareon, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Flareon, type-of-pokemon: fire) isa has-type;
 
-(descendant Flareon, ancestor Eevee) isa evolution;
+(descendant: Flareon, ancestor: Eevee) isa evolution;
 
 
 'Porygon' isa pokemon
@@ -1522,7 +1522,7 @@ attacking-type isa role-type;
     has height 8
     has weight 365;
 
-(pokemon-with-type Porygon, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Porygon, type-of-pokemon: normal) isa has-type;
 
 
 
@@ -1532,8 +1532,8 @@ attacking-type isa role-type;
     has height 4
     has weight 75;
 
-(pokemon-with-type Omanyte, type-of-pokemon water) isa has-type;
-(pokemon-with-type Omanyte, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Omanyte, type-of-pokemon: water) isa has-type;
+(pokemon-with-type: Omanyte, type-of-pokemon: rock) isa has-type;
 
 
 
@@ -1543,10 +1543,10 @@ attacking-type isa role-type;
     has height 10
     has weight 350;
 
-(pokemon-with-type Omastar, type-of-pokemon water) isa has-type;
-(pokemon-with-type Omastar, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Omastar, type-of-pokemon: water) isa has-type;
+(pokemon-with-type: Omastar, type-of-pokemon: rock) isa has-type;
 
-(descendant Omastar, ancestor Omanyte) isa evolution;
+(descendant: Omastar, ancestor: Omanyte) isa evolution;
 
 
 'Kabuto' isa pokemon
@@ -1555,8 +1555,8 @@ attacking-type isa role-type;
     has height 5
     has weight 115;
 
-(pokemon-with-type Kabuto, type-of-pokemon water) isa has-type;
-(pokemon-with-type Kabuto, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Kabuto, type-of-pokemon: water) isa has-type;
+(pokemon-with-type: Kabuto, type-of-pokemon: rock) isa has-type;
 
 
 
@@ -1566,10 +1566,10 @@ attacking-type isa role-type;
     has height 13
     has weight 405;
 
-(pokemon-with-type Kabutops, type-of-pokemon water) isa has-type;
-(pokemon-with-type Kabutops, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Kabutops, type-of-pokemon: water) isa has-type;
+(pokemon-with-type: Kabutops, type-of-pokemon: rock) isa has-type;
 
-(descendant Kabutops, ancestor Kabuto) isa evolution;
+(descendant: Kabutops, ancestor: Kabuto) isa evolution;
 
 
 'Aerodactyl' isa pokemon
@@ -1578,8 +1578,8 @@ attacking-type isa role-type;
     has height 18
     has weight 590;
 
-(pokemon-with-type Aerodactyl, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Aerodactyl, type-of-pokemon rock) isa has-type;
+(pokemon-with-type: Aerodactyl, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Aerodactyl, type-of-pokemon: rock) isa has-type;
 
 
 
@@ -1589,7 +1589,7 @@ attacking-type isa role-type;
     has height 21
     has weight 4600;
 
-(pokemon-with-type Snorlax, type-of-pokemon normal) isa has-type;
+(pokemon-with-type: Snorlax, type-of-pokemon: normal) isa has-type;
 
 
 'Articuno' isa pokemon
@@ -1598,8 +1598,8 @@ attacking-type isa role-type;
     has height 17
     has weight 554;
 
-(pokemon-with-type Articuno, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Articuno, type-of-pokemon ice) isa has-type;
+(pokemon-with-type: Articuno, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Articuno, type-of-pokemon: ice) isa has-type;
 
 
 
@@ -1609,8 +1609,8 @@ attacking-type isa role-type;
     has height 16
     has weight 526;
 
-(pokemon-with-type Zapdos, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Zapdos, type-of-pokemon electric) isa has-type;
+(pokemon-with-type: Zapdos, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Zapdos, type-of-pokemon: electric) isa has-type;
 
 
 
@@ -1620,8 +1620,8 @@ attacking-type isa role-type;
     has height 20
     has weight 600;
 
-(pokemon-with-type Moltres, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Moltres, type-of-pokemon fire) isa has-type;
+(pokemon-with-type: Moltres, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Moltres, type-of-pokemon: fire) isa has-type;
 
 
 
@@ -1631,7 +1631,7 @@ attacking-type isa role-type;
     has height 18
     has weight 33;
 
-(pokemon-with-type Dratini, type-of-pokemon dragon) isa has-type;
+(pokemon-with-type: Dratini, type-of-pokemon: dragon) isa has-type;
 
 
 
@@ -1641,9 +1641,9 @@ attacking-type isa role-type;
     has height 40
     has weight 165;
 
-(pokemon-with-type Dragonair, type-of-pokemon dragon) isa has-type;
+(pokemon-with-type: Dragonair, type-of-pokemon: dragon) isa has-type;
 
-(descendant Dragonair, ancestor Dratini) isa evolution;
+(descendant: Dragonair, ancestor: Dratini) isa evolution;
 
 
 'Dragonite' isa pokemon
@@ -1652,10 +1652,10 @@ attacking-type isa role-type;
     has height 22
     has weight 2100;
 
-(pokemon-with-type Dragonite, type-of-pokemon flying) isa has-type;
-(pokemon-with-type Dragonite, type-of-pokemon dragon) isa has-type;
+(pokemon-with-type: Dragonite, type-of-pokemon: flying) isa has-type;
+(pokemon-with-type: Dragonite, type-of-pokemon: dragon) isa has-type;
 
-(descendant Dragonite, ancestor Dragonair) isa evolution;
+(descendant: Dragonite, ancestor: Dragonair) isa evolution;
 
 
 'Mewtwo' isa pokemon
@@ -1664,7 +1664,7 @@ attacking-type isa role-type;
     has height 20
     has weight 1220;
 
-(pokemon-with-type Mewtwo, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Mewtwo, type-of-pokemon: psychic) isa has-type;
 
 
 
@@ -1674,95 +1674,95 @@ attacking-type isa role-type;
     has height 4
     has weight 40;
 
-(pokemon-with-type Mew, type-of-pokemon psychic) isa has-type;
+(pokemon-with-type: Mew, type-of-pokemon: psychic) isa has-type;
 
 
 'normal' isa pokemon-type;
 
 'fighting' isa pokemon-type;
-(defending-type normal, attacking-type fighting) isa super-effective;
-(defending-type rock, attacking-type fighting) isa super-effective;
-(defending-type steel, attacking-type fighting) isa super-effective;
-(defending-type ice, attacking-type fighting) isa super-effective;
-(defending-type dark, attacking-type fighting) isa super-effective;
+(defending-type: normal, attacking-type: fighting) isa super-effective;
+(defending-type: rock, attacking-type: fighting) isa super-effective;
+(defending-type: steel, attacking-type: fighting) isa super-effective;
+(defending-type: ice, attacking-type: fighting) isa super-effective;
+(defending-type: dark, attacking-type: fighting) isa super-effective;
 
 'flying' isa pokemon-type;
-(defending-type fighting, attacking-type flying) isa super-effective;
-(defending-type bug, attacking-type flying) isa super-effective;
-(defending-type grass, attacking-type flying) isa super-effective;
+(defending-type: fighting, attacking-type: flying) isa super-effective;
+(defending-type: bug, attacking-type: flying) isa super-effective;
+(defending-type: grass, attacking-type: flying) isa super-effective;
 
 'poison' isa pokemon-type;
-(defending-type grass, attacking-type poison) isa super-effective;
-(defending-type fairy, attacking-type poison) isa super-effective;
+(defending-type: grass, attacking-type: poison) isa super-effective;
+(defending-type: fairy, attacking-type: poison) isa super-effective;
 
 'ground' isa pokemon-type;
-(defending-type poison, attacking-type ground) isa super-effective;
-(defending-type rock, attacking-type ground) isa super-effective;
-(defending-type steel, attacking-type ground) isa super-effective;
-(defending-type fire, attacking-type ground) isa super-effective;
-(defending-type electric, attacking-type ground) isa super-effective;
+(defending-type: poison, attacking-type: ground) isa super-effective;
+(defending-type: rock, attacking-type: ground) isa super-effective;
+(defending-type: steel, attacking-type: ground) isa super-effective;
+(defending-type: fire, attacking-type: ground) isa super-effective;
+(defending-type: electric, attacking-type: ground) isa super-effective;
 
 'rock' isa pokemon-type;
-(defending-type flying, attacking-type rock) isa super-effective;
-(defending-type bug, attacking-type rock) isa super-effective;
-(defending-type fire, attacking-type rock) isa super-effective;
-(defending-type ice, attacking-type rock) isa super-effective;
+(defending-type: flying, attacking-type: rock) isa super-effective;
+(defending-type: bug, attacking-type: rock) isa super-effective;
+(defending-type: fire, attacking-type: rock) isa super-effective;
+(defending-type: ice, attacking-type: rock) isa super-effective;
 
 'bug' isa pokemon-type;
-(defending-type grass, attacking-type bug) isa super-effective;
-(defending-type psychic, attacking-type bug) isa super-effective;
-(defending-type dark, attacking-type bug) isa super-effective;
+(defending-type: grass, attacking-type: bug) isa super-effective;
+(defending-type: psychic, attacking-type: bug) isa super-effective;
+(defending-type: dark, attacking-type: bug) isa super-effective;
 
 'ghost' isa pokemon-type;
-(defending-type ghost, attacking-type ghost) isa super-effective;
-(defending-type psychic, attacking-type ghost) isa super-effective;
+(defending-type: ghost, attacking-type: ghost) isa super-effective;
+(defending-type: psychic, attacking-type: ghost) isa super-effective;
 
 'steel' isa pokemon-type;
-(defending-type rock, attacking-type steel) isa super-effective;
-(defending-type ice, attacking-type steel) isa super-effective;
-(defending-type fairy, attacking-type steel) isa super-effective;
+(defending-type: rock, attacking-type: steel) isa super-effective;
+(defending-type: ice, attacking-type: steel) isa super-effective;
+(defending-type: fairy, attacking-type: steel) isa super-effective;
 
 'fire' isa pokemon-type;
-(defending-type bug, attacking-type fire) isa super-effective;
-(defending-type steel, attacking-type fire) isa super-effective;
-(defending-type grass, attacking-type fire) isa super-effective;
-(defending-type ice, attacking-type fire) isa super-effective;
+(defending-type: bug, attacking-type: fire) isa super-effective;
+(defending-type: steel, attacking-type: fire) isa super-effective;
+(defending-type: grass, attacking-type: fire) isa super-effective;
+(defending-type: ice, attacking-type: fire) isa super-effective;
 
 'water' isa pokemon-type;
-(defending-type ground, attacking-type water) isa super-effective;
-(defending-type rock, attacking-type water) isa super-effective;
-(defending-type fire, attacking-type water) isa super-effective;
+(defending-type: ground, attacking-type: water) isa super-effective;
+(defending-type: rock, attacking-type: water) isa super-effective;
+(defending-type: fire, attacking-type: water) isa super-effective;
 
 'grass' isa pokemon-type;
-(defending-type ground, attacking-type grass) isa super-effective;
-(defending-type rock, attacking-type grass) isa super-effective;
-(defending-type water, attacking-type grass) isa super-effective;
+(defending-type: ground, attacking-type: grass) isa super-effective;
+(defending-type: rock, attacking-type: grass) isa super-effective;
+(defending-type: water, attacking-type: grass) isa super-effective;
 
 'electric' isa pokemon-type;
-(defending-type flying, attacking-type electric) isa super-effective;
-(defending-type water, attacking-type electric) isa super-effective;
+(defending-type: flying, attacking-type: electric) isa super-effective;
+(defending-type: water, attacking-type: electric) isa super-effective;
 
 'psychic' isa pokemon-type;
-(defending-type fighting, attacking-type psychic) isa super-effective;
-(defending-type poison, attacking-type psychic) isa super-effective;
+(defending-type: fighting, attacking-type: psychic) isa super-effective;
+(defending-type: poison, attacking-type: psychic) isa super-effective;
 
 'ice' isa pokemon-type;
-(defending-type flying, attacking-type ice) isa super-effective;
-(defending-type ground, attacking-type ice) isa super-effective;
-(defending-type grass, attacking-type ice) isa super-effective;
-(defending-type dragon, attacking-type ice) isa super-effective;
+(defending-type: flying, attacking-type: ice) isa super-effective;
+(defending-type: ground, attacking-type: ice) isa super-effective;
+(defending-type: grass, attacking-type: ice) isa super-effective;
+(defending-type: dragon, attacking-type: ice) isa super-effective;
 
 'dragon' isa pokemon-type;
-(defending-type dragon, attacking-type dragon) isa super-effective;
+(defending-type: dragon, attacking-type: dragon) isa super-effective;
 
 'dark' isa pokemon-type;
-(defending-type ghost, attacking-type dark) isa super-effective;
-(defending-type psychic, attacking-type dark) isa super-effective;
+(defending-type: ghost, attacking-type: dark) isa super-effective;
+(defending-type: psychic, attacking-type: dark) isa super-effective;
 
 'fairy' isa pokemon-type;
-(defending-type fighting, attacking-type fairy) isa super-effective;
-(defending-type dragon, attacking-type fairy) isa super-effective;
-(defending-type dark, attacking-type fairy) isa super-effective;
+(defending-type: fighting, attacking-type: fairy) isa super-effective;
+(defending-type: dragon, attacking-type: fairy) isa super-effective;
+(defending-type: dark, attacking-type: fairy) isa super-effective;
 
 'unknown' isa pokemon-type;
 
