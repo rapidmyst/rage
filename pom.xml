@@ -7,14 +7,17 @@
     <groupId>io.mindmaps</groupId>
     <artifactId>mindmaps-examples</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <modules>
         <module>example-philosophers</module>
         <module>example-pokemon</module>
+        <module>example-sql-migration</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
+        <h2.version>1.4.192</h2.version>
+        <mysqlconnect.version>5.1.38</mysqlconnect.version>
     </properties>
 
     <dependencies>
