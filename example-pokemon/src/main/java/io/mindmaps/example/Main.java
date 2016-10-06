@@ -15,7 +15,7 @@ import io.mindmaps.exception.MindmapsValidationException;
 public class Main {
     private static final String keyspace = "ExamplePokemon";
     private static MindmapsGraph mindmapsGraph;
-    private static final String POKE_DIR = "src/main/resources/";
+    private static final String POKE_DIR = "example-pokemon/src/main/resources/";
 
     public static void main(String [] args){
         disableInternalLogs();
