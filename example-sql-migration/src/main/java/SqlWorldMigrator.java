@@ -69,11 +69,11 @@ public class SQLWorldMigrator {
         graph.getMetaEntityType().instances().forEach(System.out::println);
 
         // How many countries are in the world?
-        Long numberCountries = Graql.withGraph(graph).match(var().isa("country")).aggregate(count()).execute();
+        Long numberCountries = Graql.withGraph(graph).match(var("x").isa("country")).distinct().aggregate(count()).execute();
         System.out.println("\n" + numberCountries + " countries in our world");
 
         // How many cities in the world?
-        Long numberCities = Graql.withGraph(graph).match(var().isa("city")).aggregate(count()).execute();
+        Long numberCities = Graql.withGraph(graph).match(var("x").isa("city")).distinct().aggregate(count()).execute();
         System.out.println("\n" + numberCities + " cities in our world" + "\n");
 
         // What are the cities in Niger?
@@ -83,9 +83,5 @@ public class SQLWorldMigrator {
                 var("city").isa("city").has("city-Name-resource", var("niger-city")),
                 var().rel("country").rel("city")).select("niger-city").distinct()
         .stream().map(i -> i.get("niger-city").asResource().getValue()).forEach(System.out::println);
-
-        // What are the languages are spoken in Sweden?
-
-
     }
 }
