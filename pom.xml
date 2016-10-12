@@ -12,6 +12,7 @@
         <module>example-philosophers</module>
         <module>example-pokemon</module>
         <module>example-sql-migration</module>
+        <module>example-owl-migration</module>
     </modules>
 
     <properties>
