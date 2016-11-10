@@ -12,6 +12,7 @@ import io.mindmaps.concept.RelationType;
 import io.mindmaps.concept.Resource;
 import io.mindmaps.concept.ResourceType;
 import io.mindmaps.concept.RoleType;
+import io.mindmaps.concept.Rule;
 import io.mindmaps.concept.Type;
 import io.mindmaps.exception.MindmapsValidationException;
 
@@ -57,21 +58,27 @@ public class Main {
     }
 
     private static void createSomeConceptTypesAndInstances(){
+        //Create a name resource type to attach information to instances
+        ResourceType<String> name = mindmapsGraph.putResourceType("name", ResourceType.DataType.STRING);
         //Create a concept type to represent people
         EntityType person = mindmapsGraph.putEntityType("person");
+        person.hasResource(name);
         //Create a bunch of ancient greeks
-        addInstances(person, "Socrates", "Plato", "Aristotle", "Alexander");
+        addInstances(person, name, "Socrates", "Plato", "Aristotle", "Alexander");
         //Print that bunch of ancient greeks
-        printInstancesOf(person);
+        printEntitiesOf(person, name);
         //Create a concept type to represent schools of philosophy
         EntityType school = mindmapsGraph.putEntityType("school");
+        school.hasResource(name);
         //Create some schools
-        addInstances(school, "Peripateticism", "Platonism", "Idealism", "Cynicism");
+        addInstances(school, name, "Peripateticism", "Platonism", "Idealism", "Cynicism");
         //Print those schools
-        printInstancesOf(school);
+        printEntitiesOf(school, name);
     }
 
     private static void createSomeRelations(){
+        ResourceType<String> name = mindmapsGraph.getResourceType("name");
+
         //Start by defining the type of the roles of the relation ship
         RoleType philosopher = mindmapsGraph.putRoleType("philosopher");
         RoleType philosophy = mindmapsGraph.putRoleType("philosophy");
@@ -80,10 +87,13 @@ public class Main {
         RelationType practice = mindmapsGraph.putRelationType("practice").hasRole(philosopher).hasRole(philosophy);
 
         //Find the instances we need:
-        Instance socrates = mindmapsGraph.getEntity("Socrates");
-        Instance plato = mindmapsGraph.getEntity("Plato");
-        Instance aristotle = mindmapsGraph.getEntity("Aristotle");
-        Instance platonisim = mindmapsGraph.getEntity("Platonism");
+        Instance socrates = mindmapsGraph.getResource("Socrates", name).owner();
+        Instance plato = mindmapsGraph.getResource("Plato", name).owner();
+        Instance aristotle = mindmapsGraph.getResource("Aristotle", name).owner();
+        Instance platonisim = mindmapsGraph.getResource("Platonism", name).owner();
+
+        Instance idealism = mindmapsGraph.getResource("Idealism", name).owner();
+        Instance peripateticism = mindmapsGraph.getResource("Peripateticism", name).owner();
 
         //Oh wait we need to allow these guys to be philosophers. Luckily they are all of the type people.
         Type person = socrates.type();
@@ -94,16 +104,16 @@ public class Main {
 
         //Create the actual relationship instances
         mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, socrates).putRolePlayer(philosophy, platonisim);
-        mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, plato).putRolePlayer(philosophy, mindmapsGraph.getEntity("Idealism"));
+        mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, plato).putRolePlayer(philosophy, idealism);
         mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, plato).putRolePlayer(philosophy, platonisim);
-        mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, aristotle).putRolePlayer(philosophy, mindmapsGraph.getEntity("Peripateticism"));
+        mindmapsGraph.addRelation(practice).putRolePlayer(philosopher, aristotle).putRolePlayer(philosophy, peripateticism);
 
         //Who studies platonism?
         System.out.println("Who practices platonism?");
         platonisim.relations(philosophy).forEach(relation -> {
             relation.rolePlayers().values().forEach(rolePlayer -> {
                 if (!rolePlayer.equals(platonisim))
-                    System.out.println("    -> " + rolePlayer.getId());
+                    System.out.println("    -> " + resourceOf(rolePlayer, name));
             });
         }); //Pssssstttt Graql is much better at querying relationships!!
 
@@ -125,15 +135,21 @@ public class Main {
         plato.relations(teacher).forEach(relation -> {
             relation.rolePlayers().values().forEach(rolePlayer -> {
                 if (!rolePlayer.equals(plato))
-                    System.out.println("    -> " + rolePlayer.getId());
+                    System.out.println("    -> " + resourceOf(rolePlayer, name));
             });
         }); //Pssssstttt Graql is much better at querying relationships!!
     }
 
     private static void createSomeResources(){
         //Lets create some resources first. Lets start with their type
+        ResourceType<String> name = mindmapsGraph.putResourceType("name", ResourceType.DataType.STRING);
         ResourceType<String> title = mindmapsGraph.putResourceType("title", ResourceType.DataType.STRING);
         ResourceType<String> epithet = mindmapsGraph.putResourceType("epithet", ResourceType.DataType.STRING);
+
+        //Let a person have these resources
+        EntityType person = mindmapsGraph.getEntityType("person");
+        person.hasResource(title);
+        person.hasResource(epithet);
 
         //Now lets create the actual resource instances:
         Resource<String> theGreat = mindmapsGraph.putResource("The Great", epithet);
@@ -143,36 +159,27 @@ public class Main {
         Resource<String> pharaohOfEgypt = mindmapsGraph.putResource("Pharaoh of Egypt", title);
         Resource<String> lordOfAsia = mindmapsGraph.putResource("Lord of Asia", title);
 
-        //Lets Define a relation type
-        RoleType hasResourceTarget = mindmapsGraph.putRoleType("has-resource-target");
-        RoleType hasResourceValue = mindmapsGraph.putRoleType("has-resource-value");
-        RelationType hasResource = mindmapsGraph.putRelationType("has-resource").hasRole(hasResourceTarget).hasRole(hasResourceValue);
-
         //Lets Create the relationship instances involving resources.
-        Instance alexander = mindmapsGraph.getEntity("Alexander");
-
-        //REMEMBER: We have to give the types of the instances permission to play these roles !
-        alexander.type().playsRole(hasResourceTarget);
-        title.playsRole(hasResourceValue);
-        epithet.playsRole(hasResourceValue);
+        Instance alexander = mindmapsGraph.getResource("Alexander", name).owner();
 
         //Now lets create the actual relations
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, theGreat);
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, hegemon);
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, kingOfMacedon);
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, shahOfPersia);
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, pharaohOfEgypt);
-        mindmapsGraph.addRelation(hasResource).putRolePlayer(hasResourceTarget, alexander).putRolePlayer(hasResourceValue, lordOfAsia);
+        alexander.hasResource(theGreat);
+        alexander.hasResource(hegemon);
+        alexander.hasResource(kingOfMacedon);
+        alexander.hasResource(shahOfPersia);
+        alexander.hasResource(pharaohOfEgypt);
+        alexander.hasResource(lordOfAsia);
 
         //Who was the Pharaoh again?
         System.out.println("Who was the Pharaoh again ?");
         pharaohOfEgypt.ownerInstances().forEach(instance -> {
-            System.out.println("    ->" +   instance.getId());
+            System.out.println("    ->" +   resourceOf(instance, name));
         }); //Pssssstttt Graql is much better at querying relationships!!
     }
 
     private static void createSomeRelationsInsideRelations(){
         //Another relation type is needed
+        ResourceType<String> name = mindmapsGraph.getResourceType("name");
         RoleType thinker = mindmapsGraph.putRoleType("thinker");
         RoleType thought = mindmapsGraph.putRoleType("thought");
         RelationType knowledge = mindmapsGraph.putRelationType("knowledge").hasRole(thinker).hasRole(thought);
@@ -180,18 +187,25 @@ public class Main {
         //Lets create a new concept type and at the same time give it permission to play the role
         EntityType fact = mindmapsGraph.putEntityType("fact").playsRole(thought);
 
+        //Create a new resource type to hold information about the facts
+        ResourceType<String> factIsAbout = mindmapsGraph.putResourceType("factIsAbout", ResourceType.DataType.STRING);
+        fact.hasResource(factIsAbout);
+
         //We can't forget out thinker role:
         Type person = mindmapsGraph.getEntityType("person").playsRole(thinker); // Hey people can think now !
 
         //Let's get some facts for people to learn
-        Entity sunFact = mindmapsGraph.putEntity("sun-fact", fact);
-        Entity caveFact = mindmapsGraph.putEntity("cave-fact", fact);
-        Entity nothing = mindmapsGraph.putEntity("nothing", fact);
+        Entity sunFact = mindmapsGraph.addEntity(fact);
+        sunFact.hasResource(mindmapsGraph.putResource("sun-fact", factIsAbout));
+        Entity caveFact = mindmapsGraph.addEntity(fact);
+        sunFact.hasResource(mindmapsGraph.putResource("cave-fact", factIsAbout));
+        Entity nothing = mindmapsGraph.addEntity(fact);
+        sunFact.hasResource(mindmapsGraph.putResource("nothing", factIsAbout));
 
         //You must have thoughts in order to think so lets give our Philosophers some thoughts:
-        Entity socrates = mindmapsGraph.getEntity("Socrates");
-        Entity plato = mindmapsGraph.getEntity("Plato");
-        Entity aristotle = mindmapsGraph.getEntity("Aristotle");
+        Entity socrates = mindmapsGraph.getResource("Socrates", name).owner().asEntity();
+        Entity plato = mindmapsGraph.getResource("Plato", name).owner().asEntity();
+        Entity aristotle = mindmapsGraph.getResource("Aristotle", name).owner().asEntity();
 
         mindmapsGraph.addRelation(knowledge).putRolePlayer(thinker, aristotle).putRolePlayer(thought, sunFact);
         mindmapsGraph.addRelation(knowledge).putRolePlayer(thinker, plato).putRolePlayer(thought, caveFact);
@@ -202,7 +216,7 @@ public class Main {
         aristotle.relations(thinker).forEach(relation -> {
             relation.rolePlayers().values().forEach(instance -> {
                 if(!instance.equals(aristotle))
-                    System.out.println("    -> " + instance.getId() + ": " + instance);
+                    System.out.println("    -> " + resourceOf(instance, factIsAbout) + ": " + instance);
             });
         }); // Seriously, graql is so much better at querying our graph.
 
@@ -234,19 +248,36 @@ public class Main {
     /**
      * Prints the instances of a concept type
      * @param type The concept type whose instances we are retrieving
+     * @param resourceToPrint Resource containing information about the instance
      */
-    private static void printInstancesOf(Type type){
+    private static void printEntitiesOf(EntityType type, ResourceType resourceToPrint){
         System.out.println("Instances of Concept Type [" + type.getId() + "]:");
-        type.instances().forEach(instance -> System.out.println("    Instance: " + instance.getId()));
+        type.instances().forEach(instance -> System.out.println("    Instance: " + resourceOf(instance, resourceToPrint)));
+    }
+
+    private static Object resourceOf(Instance instance, ResourceType resourceToPrint){
+        if(instance instanceof Entity) {
+            return instance.asEntity().resources(resourceToPrint).iterator().next().getValue();
+        } else if(instance instanceof Relation){
+            return instance.asRelation().resources(resourceToPrint).iterator().next().getValue();
+        } else if(instance instanceof Rule){
+            return instance.asRule().resources(resourceToPrint).iterator().next().getValue();
+        }
+
+        return "";
     }
 
     /**
      * Creates instances of a specific concept type
-     * @param type The concept type which will get new instances
+     * @param instanceType The concept type which will get new instances
+     * @param resourceType The resource type which will be attached to new instances
      * @param instances A list of string ids which will be the ids of the new instances
      */
-    private static void addInstances(EntityType type, String ... instances){
-        Arrays.asList(instances).forEach(instanceId -> mindmapsGraph.putEntity(instanceId, type));
+    private static void addInstances(EntityType instanceType, ResourceType<String> resourceType, String ... instances){
+        Arrays.asList(instances).forEach(instanceId -> {
+            Resource<String> resource = mindmapsGraph.putResource(instanceId, resourceType);
+            mindmapsGraph.addEntity(instanceType).hasResource(resource);
+        });
     }
 
 }
