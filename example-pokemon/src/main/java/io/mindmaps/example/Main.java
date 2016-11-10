@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Building Poketology (It's punny). . . ");
         buildPoketology();
 
-        System.out.println("Loading Pokemons . . .");
+        System.out.println("Loading Pokemon . . .");
 
         PokeLoader pokeLoader = new PokeLoader(mindmapsGraph, POKE_DIR);
         pokeLoader.loadPokemon();
@@ -53,8 +53,6 @@ public class Main {
 
     private static void buildPoketology(){
         //Creating some PokeRoles
-        RoleType hasResourceTarget = mindmapsGraph.putRoleType(PokeConstants.HAS_RESOURCE_TARGET);
-        RoleType hasResourceValue = mindmapsGraph.putRoleType(PokeConstants.HAS_RESOURCE_VALUE);
         RoleType ancestor = mindmapsGraph.putRoleType(PokeConstants.ANCESTOR);
         RoleType descendant = mindmapsGraph.putRoleType(PokeConstants.DESCENDANT);
         RoleType pokemonWithType = mindmapsGraph.putRoleType(PokeConstants.POKEMON_WITH_TYPE);
@@ -62,7 +60,6 @@ public class Main {
 
         //Creating some PokeTypes
         Type pokemon = mindmapsGraph.putEntityType(PokeConstants.POKEMON).
-                playsRole(hasResourceTarget).
                 playsRole(ancestor).
                 playsRole(descendant).
                 playsRole(pokemonWithType);
@@ -70,13 +67,20 @@ public class Main {
         Type pokemonType = mindmapsGraph.putEntityType(PokeConstants.POKEMON_TYPE).playsRole(typeOfPokemon);
 
         //Creating some uh . . .Resource-PokeTypes
-        ResourceType<Long> pokedexNo = mindmapsGraph.putResourceType(PokeConstants.POKEDEX_NO, ResourceType.DataType.LONG).playsRole(hasResourceValue);
-        ResourceType<String> description = mindmapsGraph.putResourceType(PokeConstants.DESCRIPTION, ResourceType.DataType.STRING).playsRole(hasResourceValue);
-        ResourceType<Long> height = mindmapsGraph.putResourceType(PokeConstants.HEIGHT, ResourceType.DataType.LONG).playsRole(hasResourceValue);
-        ResourceType<Long> weight = mindmapsGraph.putResourceType(PokeConstants.WEIGHT, ResourceType.DataType.LONG).playsRole(hasResourceValue);
+        ResourceType<String> name = mindmapsGraph.putResourceType(PokeConstants.NAME, ResourceType.DataType.STRING);
+        ResourceType<Long> pokedexNo = mindmapsGraph.putResourceType(PokeConstants.POKEDEX_NO, ResourceType.DataType.LONG);
+        ResourceType<String> description = mindmapsGraph.putResourceType(PokeConstants.DESCRIPTION, ResourceType.DataType.STRING);
+        ResourceType<Long> height = mindmapsGraph.putResourceType(PokeConstants.HEIGHT, ResourceType.DataType.LONG);
+        ResourceType<Long> weight = mindmapsGraph.putResourceType(PokeConstants.WEIGHT, ResourceType.DataType.LONG);
+
+        pokemon.hasResource(name);
+        pokemon.hasResource(pokedexNo);
+        pokemon.hasResource(description);
+        pokemon.hasResource(height);
+        pokemon.hasResource(weight);
+        pokemonType.hasResource(name);
 
         //Creating some Relation-PokeTypes
-        mindmapsGraph.putRelationType(PokeConstants.HAS_RESOURCE).hasRole(hasResourceTarget).hasRole(hasResourceValue);
         mindmapsGraph.putRelationType(PokeConstants.EVOLUTION).hasRole(ancestor).hasRole(descendant);
         mindmapsGraph.putRelationType(PokeConstants.HAS_TYPE).hasRole(pokemonWithType).hasRole(typeOfPokemon);
     }
