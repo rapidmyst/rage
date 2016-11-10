@@ -1,0 +1,10 @@
+insert
+
+gif isa entity-type
+    has-resource keyword
+    has-resource bitly-url
+    has-resource rating;
+
+keyword isa resource-type datatype string;
+bitly-url isa resource-type datatype string;
+rating isa resource-type datatype string;

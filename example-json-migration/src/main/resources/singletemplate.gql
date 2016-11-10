@@ -1,0 +1,9 @@
+insert
+
+$x isa gif
+       has bitly-url <bitly_url>
+       has rating <rating>
+
+for ( value in @giphy(slug) ) do {
+       has keyword <value>
+};

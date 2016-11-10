@@ -13,6 +13,7 @@
         <module>example-pokemon</module>
         <module>example-sql-migration</module>
         <module>example-owl-migration</module>
+        <module>example-json-migration</module>
     </modules>
 
     <properties>
