@@ -61,11 +61,11 @@ public class OWLResourceMigrator {
         graph.getMetaEntityType().instances().forEach(System.out::println);
 
         // How many people are in the world?
-        Long numberCountries = Graql.withGraph(graph).match(var("x").isa("tPerson")).distinct().aggregate(count()).execute();
+        Long numberCountries = graph.graql().match(var("x").isa("tPerson")).distinct().aggregate(count()).execute();
         System.out.println("\n" + numberCountries + " people in the family tree.");
 
         Reasoner reasoner = new Reasoner(graph);
-        QueryBuilder qb = Graql.withGraph(graph);
+        QueryBuilder qb = graph.graql();
 
         // How many descendants does Eleanor Pringle (1741) have?
         MatchQuery descendantQuery = qb.match(
