@@ -1,0 +1,34 @@
+insert
+
+pet isa entity-type
+    has-resource name
+    has-resource sex
+    has-resource birth
+    has-resource death
+    plays-role owned
+    is-abstract;
+
+cat sub pet;
+dog sub pet;
+snake sub pet;
+hamster sub pet;
+bird sub pet;
+
+person isa entity-type
+    has-resource name
+    has-resource email
+    plays-role owner;
+
+owns isa relation-type 
+    has-role owner
+    has-role owned;
+
+owner isa role-type;
+owned isa role-type;
+
+email isa resource-type datatype string;
+name isa resource-type datatype string;
+sex isa resource-type datatype string;
+birth isa resource-type datatype string;
+death isa resource-type datatype string;
+

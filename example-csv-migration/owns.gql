@@ -1,0 +1,4 @@
+match 
+	$pet has name <pet_name>;
+	$person has name <owner_name>;
+insert (owner: $person, owned: $pet) isa owns;
