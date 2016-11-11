@@ -1,4 +1,4 @@
-package io.mindmaps.example;
+package ai.grakn.example;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;

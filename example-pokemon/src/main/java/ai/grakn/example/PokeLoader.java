@@ -1,4 +1,4 @@
-package io.mindmaps.example;
+package ai.grakn.example;
 
 import io.mindmaps.MindmapsGraph;
 import io.mindmaps.concept.Entity;

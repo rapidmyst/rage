@@ -1,4 +1,4 @@
-package io.mindmaps.example;/*
+package ai.grakn.example;/*
  * MindmapsDB - A Distributed Semantic Database
  * Copyright (C) 2016  Mindmaps Research Ltd
  *

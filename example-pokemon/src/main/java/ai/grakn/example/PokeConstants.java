@@ -1,4 +1,4 @@
-package io.mindmaps.example;
+package ai.grakn.example;
 
 public class PokeConstants {
     public static final String ANCESTOR = "ancestor";

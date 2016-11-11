@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with MindmapsDB. If not, see <http://www.gnu.org/licenses/gpl.txt>.
  */
-package io.mindmaps.example;
+package ai.grakn.example;
 
-import io.mindmaps.graql.internal.template.Value;
-import io.mindmaps.graql.internal.template.macro.Macro;
+import ai.grakn.graql.internal.template.Value;
+import ai.grakn.graql.internal.template.macro.Macro;
 
 import java.util.Arrays;
 import java.util.List;

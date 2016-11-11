@@ -21,8 +21,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>mindmaps-examples</artifactId>
-        <groupId>io.mindmaps</groupId>
+        <artifactId>grakn-examples</artifactId>
+        <groupId>ai.grakn</groupId>
         <version>0.6.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -31,8 +31,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.mindmaps</groupId>
-            <artifactId>mindmaps-titan-factory</artifactId>
+            <groupId>ai.grakn</groupId>
+            <artifactId>grakn-titan-factory</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>
@@ -46,17 +46,17 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>io.mindmaps</groupId>
-            <artifactId>mindmaps-graql</artifactId>
+            <groupId>ai.grakn</groupId>
+            <artifactId>grakn-graql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.mindmaps</groupId>
+            <groupId>ai.grakn</groupId>
             <artifactId>migration-json</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.mindmaps</groupId>
+            <groupId>ai.grakn</groupId>
             <artifactId>migration-csv</artifactId>
             <version>${project.version}</version>
         </dependency>

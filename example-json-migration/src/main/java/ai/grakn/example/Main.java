@@ -15,14 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with MindmapsDB. If not, see <http://www.gnu.org/licenses/gpl.txt>.
  */
-package io.mindmaps.example;
+package ai.grakn.example;
 
-import io.mindmaps.engine.loader.BlockingLoader;
-import io.mindmaps.engine.loader.Loader;
-import io.mindmaps.graql.Graql;
-import io.mindmaps.migration.base.Migrator;
-import io.mindmaps.migration.base.io.MigrationLoader;
-import io.mindmaps.migration.json.JsonMigrator;
+import ai.grakn.engine.loader.BlockingLoader;
+import ai.grakn.engine.loader.Loader;
+import ai.grakn.graql.Graql;
+import ai.grakn.migration.base.Migrator;
+import ai.grakn.migration.base.io.MigrationLoader;
+import ai.grakn.migration.json.JsonMigrator;
 
 import java.io.File;
 import java.io.IOException;
