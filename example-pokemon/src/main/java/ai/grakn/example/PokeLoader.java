@@ -1,13 +1,13 @@
 package ai.grakn.example;
 
-import io.mindmaps.MindmapsGraph;
-import io.mindmaps.concept.Entity;
-import io.mindmaps.concept.EntityType;
-import io.mindmaps.concept.Instance;
-import io.mindmaps.concept.RelationType;
-import io.mindmaps.concept.Resource;
-import io.mindmaps.concept.ResourceType;
-import io.mindmaps.concept.RoleType;
+import ai.grakn.GraknGraph;
+import ai.grakn.concept.Entity;
+import ai.grakn.concept.EntityType;
+import ai.grakn.concept.Instance;
+import ai.grakn.concept.RelationType;
+import ai.grakn.concept.Resource;
+import ai.grakn.concept.ResourceType;
+import ai.grakn.concept.RoleType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,11 +27,11 @@ import java.util.Set;
  */
 public class PokeLoader {
     private String pokemonDir;
-    private MindmapsGraph mindmapsGraph;
+    private GraknGraph graknGraph;
 
 
-    public PokeLoader(MindmapsGraph mindmapsGraph, String pokemonDir){
-        this.mindmapsGraph = mindmapsGraph;
+    public PokeLoader(GraknGraph graknGraph, String pokemonDir){
+        this.graknGraph = graknGraph;
         this.pokemonDir = pokemonDir;
     }
 
@@ -101,36 +101,36 @@ public class PokeLoader {
      */
     private void createPokemon(String name, Long pokeDexId, String evolvesFrom, String desc, Long height, Long weight, Set<String> types){
         //------------------------------- Creating the Instances of Things you need ------------------------------------
-        EntityType pokemonType = mindmapsGraph.getEntityType(PokeConstants.POKEMON);
-        EntityType pokemonTypeType = mindmapsGraph.getEntityType(PokeConstants.POKEMON_TYPE);
-        ResourceType<String> nameType = mindmapsGraph.getResourceType(PokeConstants.NAME);
+        EntityType pokemonType = graknGraph.getEntityType(PokeConstants.POKEMON);
+        EntityType pokemonTypeType = graknGraph.getEntityType(PokeConstants.POKEMON_TYPE);
+        ResourceType<String> nameType = graknGraph.getResourceType(PokeConstants.NAME);
 
-        ResourceType<Long> pokeDexNumberType = mindmapsGraph.getResourceType(PokeConstants.POKEDEX_NO);
-        ResourceType<String> descriptionType = mindmapsGraph.getResourceType(PokeConstants.DESCRIPTION);
-        ResourceType<Long> heightType = mindmapsGraph.getResourceType(PokeConstants.HEIGHT);
-        ResourceType<Long> weightType = mindmapsGraph.getResourceType(PokeConstants.WEIGHT);
+        ResourceType<Long> pokeDexNumberType = graknGraph.getResourceType(PokeConstants.POKEDEX_NO);
+        ResourceType<String> descriptionType = graknGraph.getResourceType(PokeConstants.DESCRIPTION);
+        ResourceType<Long> heightType = graknGraph.getResourceType(PokeConstants.HEIGHT);
+        ResourceType<Long> weightType = graknGraph.getResourceType(PokeConstants.WEIGHT);
 
         //Create all the instances of things relating to the pokemon
-        Entity pokemon = mindmapsGraph.addEntity(pokemonType);
-        Resource<String> pokemonName = mindmapsGraph.putResource(name, nameType);
-        Resource<Long> pokemonPokeDex = mindmapsGraph.putResource(pokeDexId, pokeDexNumberType);
-        Resource<String> pokemonDesc = mindmapsGraph.putResource(desc, descriptionType);
-        Resource<Long> pokemonHeight = mindmapsGraph.putResource(height, heightType);
-        Resource<Long> pokemonWeight = mindmapsGraph.putResource(weight, weightType);
+        Entity pokemon = graknGraph.addEntity(pokemonType);
+        Resource<String> pokemonName = graknGraph.putResource(name, nameType);
+        Resource<Long> pokemonPokeDex = graknGraph.putResource(pokeDexId, pokeDexNumberType);
+        Resource<String> pokemonDesc = graknGraph.putResource(desc, descriptionType);
+        Resource<Long> pokemonHeight = graknGraph.putResource(height, heightType);
+        Resource<Long> pokemonWeight = graknGraph.putResource(weight, weightType);
 
         Set<Instance> pokemonTypes = new HashSet<>();
         for(String type: types){
-            Instance pokemonTypeInstance = mindmapsGraph.addEntity(pokemonTypeType);
-            Resource<String> resourceName = mindmapsGraph.putResource(type, nameType);
+            Instance pokemonTypeInstance = graknGraph.addEntity(pokemonTypeType);
+            Resource<String> resourceName = graknGraph.putResource(type, nameType);
             pokemonTypeInstance.hasResource(resourceName);
 
             pokemonTypes.add(pokemonTypeInstance); // We use a put to make sure the type is already loaded
         }
 
         //------------------------------- Creating the Relations between everything ------------------------------------
-        RoleType pokemonWithType = mindmapsGraph.putRoleType(PokeConstants.POKEMON_WITH_TYPE);
-        RoleType typeOfPokemon = mindmapsGraph.putRoleType(PokeConstants.TYPE_OF_POKEMON);
-        RelationType hasType = mindmapsGraph.getRelationType(PokeConstants.HAS_TYPE);
+        RoleType pokemonWithType = graknGraph.putRoleType(PokeConstants.POKEMON_WITH_TYPE);
+        RoleType typeOfPokemon = graknGraph.putRoleType(PokeConstants.TYPE_OF_POKEMON);
+        RelationType hasType = graknGraph.getRelationType(PokeConstants.HAS_TYPE);
 
         // Resources
         pokemon.hasResource(pokemonName);
@@ -141,24 +141,24 @@ public class PokeLoader {
 
         // Relations
         pokemonTypes.forEach(typeInstance -> {
-            mindmapsGraph.addRelation(hasType).putRolePlayer(pokemonWithType, pokemon).putRolePlayer(typeOfPokemon, typeInstance);
+            graknGraph.addRelation(hasType).putRolePlayer(pokemonWithType, pokemon).putRolePlayer(typeOfPokemon, typeInstance);
         });
 
         if(evolvesFrom != null){
-            RoleType ancestor = mindmapsGraph.putRoleType(PokeConstants.ANCESTOR);
-            RoleType descendant = mindmapsGraph.putRoleType(PokeConstants.DESCENDANT);
-            RelationType evolution = mindmapsGraph.getRelationType(PokeConstants.EVOLUTION);
+            RoleType ancestor = graknGraph.putRoleType(PokeConstants.ANCESTOR);
+            RoleType descendant = graknGraph.putRoleType(PokeConstants.DESCENDANT);
+            RelationType evolution = graknGraph.getRelationType(PokeConstants.EVOLUTION);
 
-            Resource<String> otherPokemonName = mindmapsGraph.getResource(evolvesFrom, nameType);
+            Resource<String> otherPokemonName = graknGraph.getResource(evolvesFrom, nameType);
             Entity otherPokemon;
             if(otherPokemonName == null){
-                otherPokemon = mindmapsGraph.addEntity(pokemonType);
-                otherPokemon.hasResource(mindmapsGraph.putResource(evolvesFrom, nameType));
+                otherPokemon = graknGraph.addEntity(pokemonType);
+                otherPokemon.hasResource(graknGraph.putResource(evolvesFrom, nameType));
             } else {
                 otherPokemon = otherPokemonName.owner().asEntity();
             }
 
-            mindmapsGraph.addRelation(evolution).putRolePlayer(descendant, pokemon).putRolePlayer(ancestor, otherPokemon);
+            graknGraph.addRelation(evolution).putRolePlayer(descendant, pokemon).putRolePlayer(ancestor, otherPokemon);
         }
 
     }
