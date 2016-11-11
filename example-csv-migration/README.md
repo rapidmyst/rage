@@ -3,7 +3,7 @@ CSV Migration Example
 
 We will be loading this example into the `pets` graph. It contains 9 pets, 4 people and a variety of `owns` relationships.
 
-The first step is to make sure that you have `Mindmaps` running in the background. Then:
+The first step is to make sure that you have `Grakn.sh` running in the background. Then:
 
 ### Load the ontology
 
@@ -91,7 +91,7 @@ You can now open Graql and take a look at the data you have migrated.
 ```
 2016-11-10 15:19:14.972:INFO::main: Logging initialized @343ms
 
-MindmapsDB  Copyright (C) 2016  Mindmaps Research Ltd 
+GraknDB  Copyright (C) 2016  Grakn Research Ltd
 This is free software, and you are welcome to redistribute it
 under certain conditions; type 'license' for details.
 >>> match $x isa pet;
