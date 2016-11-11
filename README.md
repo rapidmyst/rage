@@ -1,3 +1,3 @@
-# Sample Projects for MindmapsDB
+# Sample Projects for Grakn
 
-This repo contains sample projects that are used to illustrate features of MindmapsDB.
+This repo contains sample projects that are used to illustrate features of Grakn.
