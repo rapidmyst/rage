@@ -44,7 +44,7 @@ public class Main {
         System.out.println("|||||||||||||||||||||||||||||||||   Grakn Philosopher's Example   ||||||||||||||||||||||||||||||||");
         System.out.println("=================================================================================================");
 
-        //Initialise a new mindmaps graph
+        //Initialise a new grakn graph
         graknGraph = Grakn.factory(Grakn.IN_MEMORY, keyspace).getGraph();
 
         createSomeConceptTypesAndInstances();
