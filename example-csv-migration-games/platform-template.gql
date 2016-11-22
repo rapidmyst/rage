@@ -1,0 +1,5 @@
+insert
+
+$x isa platform
+	has platform-name <platform>;
+	

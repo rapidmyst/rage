@@ -1,0 +1,40 @@
+insert
+
+platform isa entity-type
+	has-resource platform-name
+	plays-role supports;
+	
+platform-name isa resource-type datatype string;
+supports isa role-type;
+runs-on isa role-type;
+
+genre isa entity-type
+	has-resource genre-name
+	plays-role genre-of-game;
+	
+genre-name isa resource-type datatype string;
+game-with-genre isa role-type;
+genre-of-game isa role-type;
+
+game isa entity-type
+	has-resource title
+	has-resource score
+	has-resource score-phrase
+	has-resource release-year
+	plays-role game-with-genre
+	plays-role runs-on;
+	
+title isa resource-type datatype string;
+score isa resource-type datatype double;
+score-phrase isa resource-type datatype string;
+release-year isa resource-type datatype string;
+
+compatibility isa relation-type
+	has-role supports
+	has-role runs-on;
+
+has-genre isa relation-type
+	has-role game-with-genre
+	has-role genre-of-game;
+
+
