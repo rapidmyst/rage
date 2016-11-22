@@ -26,33 +26,19 @@
         <version>0.6.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>example-json-migration</artifactId>
+
+    <artifactId>example-sql-migration</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>ai.grakn</groupId>
-            <artifactId>grakn-titan-factory</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>ai.grakn</groupId>
-            <artifactId>grakn-graql</artifactId>
+            <artifactId>migration-sql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.grakn</groupId>
-            <artifactId>migration-json</artifactId>
-            <version>${project.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlconnect.version}</version>
         </dependency>
     </dependencies>
 </project>

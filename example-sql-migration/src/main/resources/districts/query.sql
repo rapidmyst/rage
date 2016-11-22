@@ -1,0 +1,1 @@
+SELECT DISTINCT district from city;

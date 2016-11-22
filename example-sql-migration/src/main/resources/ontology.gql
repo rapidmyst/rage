@@ -1,0 +1,98 @@
+insert
+
+continent isa entity-type
+    has-resource name
+    plays-role continent-of;
+
+region isa entity-type
+    has-resource name
+    plays-role region-of;
+
+district isa entity-type
+    has-resource name
+    plays-role district-of;
+
+country isa entity-type
+    has-resource countrycode
+    has-resource name
+    has-resource surfacearea
+    has-resource indepyear
+    has-resource population
+    has-resource lifeexpectancy
+    has-resource gnp
+    has-resource gnpold
+    has-resource localname
+    has-resource governmentform
+    has-resource headofstate
+    plays-role speaks-language
+    plays-role on-continent
+    plays-role in-region
+    plays-role contains-city;
+
+city isa entity-type
+    has-resource population
+    has-resource name
+    plays-role in-district
+    plays-role in-country;
+
+language isa entity-type
+    has-resource name
+    plays-role language-spoken;
+
+name isa resource-type datatype string;
+countrycode isa resource-type datatype string;
+surfacearea isa resource-type datatype double; #TODO - add surfacearea to template
+indepyear isa resource-type datatype long; #can be NULL
+population isa resource-type datatype long;
+lifeexpectancy isa resource-type datatype double;
+gnp isa resource-type datatype double;
+gnpold isa resource-type datatype double;
+localname isa resource-type datatype string;
+governmentform isa resource-type datatype string;
+headofstate isa resource-type datatype string;
+iscapital isa resource-type datatype boolean;
+isofficial isa resource-type datatype boolean;
+percentage isa resource-type datatype double;
+
+speaks isa relation-type
+    has-role speaks-language
+    has-role language-spoken
+    has-resource percentage
+    has-resource isofficial;
+
+has-city isa relation-type
+    has-role contains-city
+    has-role in-country
+    has-resource iscapital;
+
+has-continent isa relation-type
+    has-role on-continent
+    has-role continent-of;
+
+has-region isa relation-type
+    has-role in-region
+    has-role region-of;
+
+has-district isa relation-type
+    has-role in-district
+    has-role district-of;
+
+speaks-language isa role-type;
+language-spoken isa role-type;
+contains-city isa role-type;
+in-country isa role-type;
+on-continent isa role-type;
+continent-of isa role-type;
+in-region isa role-type;
+region-of isa role-type;
+in-district isa role-type;
+district-of isa role-type;
+
+# Insert continents
+# Insert regions
+# Insert countries and their relations to continents and regions
+# Insert districts
+# Insert cities and their relations to districts
+# Mark the capitals relations
+# Insert languages
+# Insert relations between countries and languages
