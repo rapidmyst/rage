@@ -1,0 +1,4 @@
+insert
+
+$x isa genre
+	has genre-name <genre>;
