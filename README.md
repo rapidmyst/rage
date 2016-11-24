@@ -1,3 +1,3 @@
-# Sample Projects for Grakn
+# Sample Projects for GRAKN.AI
 
 This repo contains sample projects that are used to illustrate features of Grakn.
