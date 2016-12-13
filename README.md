@@ -11,11 +11,11 @@ CSV migration is also covered in a [blog post](https://blog.grakn.ai/twenty-year
 
 CSV migration using the Graql migration script is covered in the [Grakn documentation portal](https://grakn.ai/pages/documentation/migration/CSV-migration.html).
 
-### (JSON Migration](https://github.com/graknlabs/sample-projects/tree/master/example-json-migration)
+### [JSON Migration](https://github.com/graknlabs/sample-projects/tree/master/example-json-migration)
 
 An example of JSON migration using the Java API. JSON migration using the migration script is covered further in the [Grakn documentation portal](https://grakn.ai/pages/documentation/migration/JSON-migration.html).
 
-### (OWL Migration)[https://github.com/graknlabs/sample-projects/tree/master/example-owl-migration]
+### [OWL Migration](https://github.com/graknlabs/sample-projects/tree/master/example-owl-migration)
 
 For more information about migrating OWL to Grakn, please see the [OWL migration example](https://grakn.ai/pages/documentation/examples/OWL-migration.html) and [Grakn documentation portal](https://grakn.ai/pages/documentation/migration/OWL-migration.html).
 
