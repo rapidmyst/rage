@@ -20,8 +20,8 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
-import ai.grakn.engine.loader.BlockingLoader;
 import ai.grakn.engine.loader.Loader;
+import ai.grakn.engine.loader.LoaderImpl;
 import ai.grakn.exception.GraknValidationException;
 import ai.grakn.graql.Graql;
 import ai.grakn.migration.base.io.MigrationLoader;
@@ -46,7 +46,7 @@ public class SQLWorldMigrator {
     public static void migrateWorld(Connection connection, String keyspace){
         load("ontology.gql", keyspace);
 
-        Loader loader = new BlockingLoader(keyspace);
+        Loader loader = new LoaderImpl(keyspace);
         migrate(connection, loader, "continents");
         migrate(connection, loader, "regions");
         migrate(connection, loader, "countries");
@@ -75,7 +75,7 @@ public class SQLWorldMigrator {
 
         // What are the types that were migrated?
         System.out.println("Migrated Types:");
-        graph.getMetaEntityType().instances().forEach(System.out::println);
+        graph.admin().getMetaEntityType().instances().forEach(System.out::println);
 
         // How many countries are in the world?
         Long numberCountries = graph.graql().match(var("x").isa("country")).distinct().aggregate(Graql.count()).execute();

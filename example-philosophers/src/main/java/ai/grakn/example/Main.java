@@ -101,13 +101,13 @@ public class Main {
         RelationType practice = graknGraph.putRelationType("practice").hasRole(philosopher).hasRole(philosophy);
 
         //Find the instances we need:
-        Instance socrates = graknGraph.getResource("Socrates", name).owner();
-        Instance plato = graknGraph.getResource("Plato", name).owner();
-        Instance aristotle = graknGraph.getResource("Aristotle", name).owner();
-        Instance platonisim = graknGraph.getResource("Platonism", name).owner();
+        Instance socrates = name.getResource("Socrates").owner();
+        Instance plato = name.getResource("Plato").owner();
+        Instance aristotle = name.getResource("Aristotle").owner();
+        Instance platonisim = name.getResource("Platonism").owner();
 
-        Instance idealism = graknGraph.getResource("Idealism", name).owner();
-        Instance peripateticism = graknGraph.getResource("Peripateticism", name).owner();
+        Instance idealism = name.getResource("Idealism").owner();
+        Instance peripateticism = name.getResource("Peripateticism").owner();
 
         //Oh wait we need to allow these guys to be philosophers. Luckily they are all of the type people.
         Type person = socrates.type();
@@ -117,10 +117,10 @@ public class Main {
         school.playsRole(philosophy);
 
         //Create the actual relationship instances
-        graknGraph.addRelation(practice).putRolePlayer(philosopher, socrates).putRolePlayer(philosophy, platonisim);
-        graknGraph.addRelation(practice).putRolePlayer(philosopher, plato).putRolePlayer(philosophy, idealism);
-        graknGraph.addRelation(practice).putRolePlayer(philosopher, plato).putRolePlayer(philosophy, platonisim);
-        graknGraph.addRelation(practice).putRolePlayer(philosopher, aristotle).putRolePlayer(philosophy, peripateticism);
+        practice.addRelation().putRolePlayer(philosopher, socrates).putRolePlayer(philosophy, platonisim);
+        practice.addRelation().putRolePlayer(philosopher, plato).putRolePlayer(philosophy, idealism);
+        practice.addRelation().putRolePlayer(philosopher, plato).putRolePlayer(philosophy, platonisim);
+        practice.addRelation().putRolePlayer(philosopher, aristotle).putRolePlayer(philosophy, peripateticism);
 
         //Who studies platonism?
         System.out.println("Who practices platonism?");
@@ -140,9 +140,9 @@ public class Main {
         person.playsRole(teacher).playsRole(student);
 
         //Create the actual relationship instances of the new Relation Type
-        graknGraph.addRelation(education).putRolePlayer(teacher, socrates).putRolePlayer(student, plato);
-        graknGraph.addRelation(education).putRolePlayer(teacher, plato).putRolePlayer(student, aristotle);
-        graknGraph.addRelation(education).putRolePlayer(teacher, aristotle).putRolePlayer(student, graknGraph.getEntity("Alexander"));
+        education.addRelation().putRolePlayer(teacher, socrates).putRolePlayer(student, plato);
+        education.addRelation().putRolePlayer(teacher, plato).putRolePlayer(student, aristotle);
+        education.addRelation().putRolePlayer(teacher, aristotle).putRolePlayer(student, name.getResource("Alexander").owner());
 
         //Who did Plato teach?
         System.out.println("Who did plato teach ?");
@@ -166,15 +166,15 @@ public class Main {
         person.hasResource(epithet);
 
         //Now lets create the actual resource instances:
-        Resource<String> theGreat = graknGraph.putResource("The Great", epithet);
-        Resource<String> hegemon = graknGraph.putResource("Hegemon", title);
-        Resource<String> kingOfMacedon = graknGraph.putResource("King of Macedon", title);
-        Resource<String> shahOfPersia = graknGraph.putResource("Shah of Persia", title);
-        Resource<String> pharaohOfEgypt = graknGraph.putResource("Pharaoh of Egypt", title);
-        Resource<String> lordOfAsia = graknGraph.putResource("Lord of Asia", title);
+        Resource<String> theGreat = epithet.putResource("The Great");
+        Resource<String> hegemon = title.putResource("Hegemon");
+        Resource<String> kingOfMacedon = title.putResource("King of Macedon");
+        Resource<String> shahOfPersia = title.putResource("Shah of Persia");
+        Resource<String> pharaohOfEgypt = title.putResource("Pharaoh of Egypt");
+        Resource<String> lordOfAsia = title.putResource("Lord of Asia");
 
         //Lets Create the relationship instances involving resources.
-        Instance alexander = graknGraph.getResource("Alexander", name).owner();
+        Instance alexander = name.getResource("Alexander").owner();
 
         //Now lets create the actual relations
         alexander.hasResource(theGreat);
@@ -209,21 +209,21 @@ public class Main {
         Type person = graknGraph.getEntityType("person").playsRole(thinker); // Hey people can think now !
 
         //Let's get some facts for people to learn
-        Entity sunFact = graknGraph.addEntity(fact);
-        sunFact.hasResource(graknGraph.putResource("sun-fact", factIsAbout));
-        Entity caveFact = graknGraph.addEntity(fact);
-        sunFact.hasResource(graknGraph.putResource("cave-fact", factIsAbout));
-        Entity nothing = graknGraph.addEntity(fact);
-        sunFact.hasResource(graknGraph.putResource("nothing", factIsAbout));
+        Entity sunFact = fact.addEntity();
+        sunFact.hasResource(factIsAbout.putResource("sun-fact"));
+        Entity caveFact = fact.addEntity();
+        sunFact.hasResource(factIsAbout.putResource("cave-fact"));
+        Entity nothing = fact.addEntity();
+        sunFact.hasResource(factIsAbout.putResource("nothing"));
 
         //You must have thoughts in order to think so lets give our Philosophers some thoughts:
-        Entity socrates = graknGraph.getResource("Socrates", name).owner().asEntity();
-        Entity plato = graknGraph.getResource("Plato", name).owner().asEntity();
-        Entity aristotle = graknGraph.getResource("Aristotle", name).owner().asEntity();
+        Entity socrates = name.getResource("Socrates").owner().asEntity();
+        Entity plato = name.getResource("Plato").owner().asEntity();
+        Entity aristotle = name.getResource("Aristotle").owner().asEntity();
 
-        graknGraph.addRelation(knowledge).putRolePlayer(thinker, aristotle).putRolePlayer(thought, sunFact);
-        graknGraph.addRelation(knowledge).putRolePlayer(thinker, plato).putRolePlayer(thought, caveFact);
-        Relation socratesKnowsNothing = graknGraph.addRelation(knowledge).putRolePlayer(thinker, socrates).putRolePlayer(thought, nothing);
+        knowledge.addRelation().putRolePlayer(thinker, aristotle).putRolePlayer(thought, sunFact);
+        knowledge.addRelation().putRolePlayer(thinker, plato).putRolePlayer(thought, caveFact);
+        Relation socratesKnowsNothing = knowledge.addRelation().putRolePlayer(thinker, socrates).putRolePlayer(thought, nothing);
 
         //So what's Aristotle thinking ?
         System.out.println("What is Aristotle thinking ?");
@@ -239,7 +239,7 @@ public class Main {
         knowledge.playsRole(thought);
 
         //Now lets actually make Socrates know he knew nothing. . .
-        graknGraph.addRelation(knowledge).putRolePlayer(thinker, socrates).putRolePlayer(thought, socratesKnowsNothing);
+        knowledge.addRelation().putRolePlayer(thinker, socrates).putRolePlayer(thought, socratesKnowsNothing);
 
         //So what does Socrates know ?
         System.out.println("What is Socrates thinking ?");
@@ -281,8 +281,8 @@ public class Main {
      */
     private static void addInstances(EntityType instanceType, ResourceType<String> resourceType, String ... instances){
         Arrays.asList(instances).forEach(instanceId -> {
-            Resource<String> resource = graknGraph.putResource(instanceId, resourceType);
-            graknGraph.addEntity(instanceType).hasResource(resource);
+            Resource<String> resource = resourceType.putResource(instanceId);
+            instanceType.addEntity().hasResource(resource);
         });
     }
 

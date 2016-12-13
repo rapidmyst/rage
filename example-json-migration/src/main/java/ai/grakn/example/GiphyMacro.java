@@ -17,8 +17,7 @@
  */
 package ai.grakn.example;
 
-import ai.grakn.graql.internal.template.Value;
-import ai.grakn.graql.internal.template.macro.Macro;
+import ai.grakn.graql.macro.Macro;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,9 +28,9 @@ import java.util.List;
  */
 public class GiphyMacro implements Macro<List<String>> {
 
-    public List<String> apply(List<Value> values) {
+    public List<String> apply(List<Object> values) {
         // get first value as string
-        String slug = values.get(0).asString();
+        String slug = values.get(0).toString();
 
         // split
         String[] keywords = slug.split("-");

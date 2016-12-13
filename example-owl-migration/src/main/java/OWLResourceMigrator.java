@@ -57,7 +57,7 @@ public class OWLResourceMigrator {
 
         // What are the types that were migrated?
         System.out.println("Migrated Types:");
-        graph.getMetaEntityType().instances().forEach(System.out::println);
+        graph.admin().getMetaEntityType().instances().forEach(System.out::println);
 
         // How many people are in the world?
         Long numberCountries = graph.graql().match(var("x").isa("tPerson")).distinct().aggregate(count()).execute();

@@ -129,17 +129,17 @@ public class PokeLoader {
         ResourceType<Long> weightType = graknGraph.getResourceType(PokeConstants.WEIGHT);
 
         //Create all the instances of things relating to the pokemon
-        Entity pokemon = graknGraph.addEntity(pokemonType);
-        Resource<String> pokemonName = graknGraph.putResource(name, nameType);
-        Resource<Long> pokemonPokeDex = graknGraph.putResource(pokeDexId, pokeDexNumberType);
-        Resource<String> pokemonDesc = graknGraph.putResource(desc, descriptionType);
-        Resource<Long> pokemonHeight = graknGraph.putResource(height, heightType);
-        Resource<Long> pokemonWeight = graknGraph.putResource(weight, weightType);
+        Entity pokemon = pokemonType.addEntity();
+        Resource<String> pokemonName = nameType.putResource(name);
+        Resource<Long> pokemonPokeDex = pokeDexNumberType.putResource(pokeDexId);
+        Resource<String> pokemonDesc = descriptionType.putResource(desc);
+        Resource<Long> pokemonHeight = heightType.putResource(height);
+        Resource<Long> pokemonWeight = weightType.putResource(weight);
 
         Set<Instance> pokemonTypes = new HashSet<>();
         for(String type: types){
-            Instance pokemonTypeInstance = graknGraph.addEntity(pokemonTypeType);
-            Resource<String> resourceName = graknGraph.putResource(type, nameType);
+            Instance pokemonTypeInstance = pokemonTypeType.addEntity();
+            Resource<String> resourceName = nameType.putResource(type);
             pokemonTypeInstance.hasResource(resourceName);
 
             pokemonTypes.add(pokemonTypeInstance); // We use a put to make sure the type is already loaded
@@ -159,7 +159,7 @@ public class PokeLoader {
 
         // Relations
         pokemonTypes.forEach(typeInstance -> {
-            graknGraph.addRelation(hasType).putRolePlayer(pokemonWithType, pokemon).putRolePlayer(typeOfPokemon, typeInstance);
+            hasType.addRelation().putRolePlayer(pokemonWithType, pokemon).putRolePlayer(typeOfPokemon, typeInstance);
         });
 
         if(evolvesFrom != null){
@@ -167,16 +167,16 @@ public class PokeLoader {
             RoleType descendant = graknGraph.putRoleType(PokeConstants.DESCENDANT);
             RelationType evolution = graknGraph.getRelationType(PokeConstants.EVOLUTION);
 
-            Resource<String> otherPokemonName = graknGraph.getResource(evolvesFrom, nameType);
+            Resource<String> otherPokemonName = nameType.getResource(evolvesFrom);
             Entity otherPokemon;
             if(otherPokemonName == null){
-                otherPokemon = graknGraph.addEntity(pokemonType);
-                otherPokemon.hasResource(graknGraph.putResource(evolvesFrom, nameType));
+                otherPokemon = pokemonType.addEntity();
+                otherPokemon.hasResource(nameType.putResource(evolvesFrom));
             } else {
                 otherPokemon = otherPokemonName.owner().asEntity();
             }
 
-            graknGraph.addRelation(evolution).putRolePlayer(descendant, pokemon).putRolePlayer(ancestor, otherPokemon);
+            evolution.addRelation().putRolePlayer(descendant, pokemon).putRolePlayer(ancestor, otherPokemon);
         }
 
     }

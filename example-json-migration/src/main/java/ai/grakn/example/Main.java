@@ -17,8 +17,8 @@
  */
 package ai.grakn.example;
 
-import ai.grakn.engine.loader.BlockingLoader;
 import ai.grakn.engine.loader.Loader;
+import ai.grakn.engine.loader.LoaderImpl;
 import ai.grakn.graql.Graql;
 import ai.grakn.migration.base.Migrator;
 import ai.grakn.migration.base.io.MigrationLoader;
@@ -39,7 +39,7 @@ public class Main {
     private static final String TEMPLATE = "template.gql";
     private static final String ONTOLOGY = "ontology.gql";
 
-    private static final Loader loader = new BlockingLoader(GRAPH_NAME);
+    private static final Loader loader = new LoaderImpl(GRAPH_NAME);
 
     public static void main(String[] args){
 
