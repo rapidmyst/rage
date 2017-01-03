@@ -4,13 +4,13 @@ match
 insert $country isa country
     has name <Name>
     has countrycode <Code>
-    if(ne IndepYear null) do { has indepyear <IndepYear> }
-    if(ne Population null) do { has population <Population> }
-    if(ne LifeExpectancy null) do { has lifeexpectancy <LifeExpectancy> }
-    if(ne GNP null) do { has gnp <GNP> }
-    if(ne GNPold null) do { has gnpold <GNPold> }
-    if(ne LocalName null) do { has localname <LocalName> }
-    if(ne GovernmentForm null) do { has governmentform <GovernmentForm> }
-    if(ne HeadOfState null) do { has headofstate <HeadOfState> };
+    if(<IndepYear> != null) do { has indepyear <IndepYear> }
+    if(<Population> != null) do { has population <Population> }
+    if(<LifeExpectancy> != null) do { has lifeexpectancy <LifeExpectancy> }
+    if(<GNP> != null) do { has gnp <GNP> }
+    if(<GNPold> != null) do { has gnpold <GNPold> }
+    if(<LocalName> != null) do { has localname <LocalName> }
+    if(<GovernmentForm> != null) do { has governmentform <GovernmentForm> }
+    if(<HeadOfState> != null) do { has headofstate <HeadOfState> };
     (on-continent: $country, continent-of: $continent) isa has-continent;
     (in-region: $country, region-of: $region) isa has-region;

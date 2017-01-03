@@ -3,5 +3,5 @@ match
     $country isa country has countrycode <CountryCode>;
 insert
     $relation (speaks-language: $country, language-spoken: $language) isa speaks
-        has isofficial if(eq IsOfficial "F") do { false } else { true }
+        has isofficial if(<IsOfficial> = "F") do { false } else { true }
         has percentage <Percentage>;

@@ -5,7 +5,7 @@ match
 insert $x isa game 
 	has title <title>
 	has score-phrase <score_phrase>
-	has score @double(score)
+	has score @double(<score>)
 	has release-year <release_year>;
 	(game-with-genre: $x, genre-of-game: $genre) isa has-genre;
 	(supports: $platform, runs-on: $x) isa compatibility;

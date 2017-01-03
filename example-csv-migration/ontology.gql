@@ -1,6 +1,6 @@
 insert
 
-pet isa entity-type
+pet sub entity
     has-resource name
     has-resource sex
     has-resource birth
@@ -14,21 +14,21 @@ snake sub pet;
 hamster sub pet;
 bird sub pet;
 
-person isa entity-type
+person sub entity
     has-resource name
     has-resource email
     plays-role owner;
 
-owns isa relation-type 
+owns sub relation
     has-role owner
     has-role owned;
 
-owner isa role-type;
-owned isa role-type;
+owner sub role;
+owned sub role;
 
-email isa resource-type datatype string;
-name isa resource-type datatype string;
-sex isa resource-type datatype string;
-birth isa resource-type datatype string;
-death isa resource-type datatype string;
+email sub resource datatype string;
+name sub resource datatype string;
+sex sub resource datatype string;
+birth sub resource datatype string;
+death sub resource datatype string;
 

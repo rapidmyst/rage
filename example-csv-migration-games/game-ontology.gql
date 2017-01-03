@@ -1,22 +1,22 @@
 insert
 
-platform isa entity-type
+platform sub entity
 	has-resource platform-name
 	plays-role supports;
 	
-platform-name isa resource-type datatype string;
-supports isa role-type;
-runs-on isa role-type;
+platform-name sub resource datatype string;
+supports sub role;
+runs-on sub role;
 
-genre isa entity-type
+genre sub entity
 	has-resource genre-name
 	plays-role genre-of-game;
 	
-genre-name isa resource-type datatype string;
-game-with-genre isa role-type;
-genre-of-game isa role-type;
+genre-name sub resource datatype string;
+game-with-genre sub role;
+genre-of-game sub role;
 
-game isa entity-type
+game sub entity
 	has-resource title
 	has-resource score
 	has-resource score-phrase
@@ -24,16 +24,16 @@ game isa entity-type
 	plays-role game-with-genre
 	plays-role runs-on;
 	
-title isa resource-type datatype string;
-score isa resource-type datatype double;
-score-phrase isa resource-type datatype string;
-release-year isa resource-type datatype string;
+title sub resource datatype string;
+score sub resource datatype double;
+score-phrase sub resource datatype string;
+release-year sub resource datatype string;
 
-compatibility isa relation-type
+compatibility sub relation
 	has-role supports
 	has-role runs-on;
 
-has-genre isa relation-type
+has-genre sub relation
 	has-role game-with-genre
 	has-role genre-of-game;
 
