@@ -1,10 +1,10 @@
 insert
 
-gif isa entity-type
+gif sub entity
     has-resource keyword
     has-resource bitly-url
     has-resource rating;
 
-keyword isa resource-type datatype string;
-bitly-url isa resource-type datatype string;
-rating isa resource-type datatype string;
+keyword sub resource datatype string;
+bitly-url sub resource datatype string;
+rating sub resource datatype string;

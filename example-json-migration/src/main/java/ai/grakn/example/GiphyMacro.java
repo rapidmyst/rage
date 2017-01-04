@@ -22,6 +22,8 @@ import ai.grakn.graql.macro.Macro;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Collections.singletonList;
+
 /**
  * Macro that will take the value from the "slug" field, split it by -
  * and return all but the last value of the split.
@@ -36,7 +38,8 @@ public class GiphyMacro implements Macro<List<String>> {
         String[] keywords = slug.split("-");
 
         // return all except last
-        return Arrays.asList(Arrays.copyOf(keywords, keywords.length-1));
+
+        return keywords.length > 1 ? Arrays.asList(Arrays.copyOf(keywords, keywords.length-1)) : singletonList("gif");
     }
 
     public String name() {

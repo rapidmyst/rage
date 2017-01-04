@@ -17,8 +17,12 @@
  */
 package ai.grakn.example;
 
+import ai.grakn.Grakn;
+import ai.grakn.GraknGraph;
+import ai.grakn.engine.GraknEngineServer;
 import ai.grakn.engine.loader.Loader;
 import ai.grakn.engine.loader.LoaderImpl;
+import ai.grakn.exception.GraknValidationException;
 import ai.grakn.graql.Graql;
 import ai.grakn.migration.base.Migrator;
 import ai.grakn.migration.base.io.MigrationLoader;
@@ -39,13 +43,23 @@ public class Main {
     private static final String TEMPLATE = "template.gql";
     private static final String ONTOLOGY = "ontology.gql";
 
-    private static final Loader loader = new LoaderImpl(GRAPH_NAME);
-
     public static void main(String[] args){
+        if(!GraknEngineServer.isRunning()){
+            System.out.println("Please start Mindmaps Engine");
+            System.out.println("You can get more information on how to do so using our setup guide: https://mindmaps.io/pages/documentation/get-started/setup-guide.html");
+            return;
+        } else {
+            System.out.println("=================================================================================================");
+            System.out.println("|||||||||||||||||||||||||||||||   Mindmaps JSON Migration Example   |||||||||||||||||||||||||||||");
+            System.out.println("=================================================================================================");
+        }
+
 
         try {
+            GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, GRAPH_NAME).getGraph();
+
             // load your ontology
-            loadOntology();
+            loadOntology(graph);
 
             // get resources
             String template = getResourceAsString(TEMPLATE);
@@ -58,22 +72,23 @@ public class Main {
             System.out.println("Beginning migration");
 
             // load data in directory
-            MigrationLoader.load(loader, migrator);
+            MigrationLoader.load(graph, migrator);
+
+            graph.commit();
+            graph.close();
 
             System.out.println("Migration complete");
-        } catch (IOException e){
+        } catch (IOException|GraknValidationException e){
             throw new RuntimeException(e);
         }
 
         System.exit(0);
     }
 
-    public static void loadOntology() throws IOException {
+    public static void loadOntology(GraknGraph graph) throws IOException, GraknValidationException {
         String ontology = getResourceAsString(ONTOLOGY);
-
-        loader.add(Graql.parse(ontology));
-        loader.flush();
-        loader.waitToFinish();
+        graph.graql().parse(ontology).execute();
+        graph.commit();
     }
 
     public static Path getResource(String resourceName){
