@@ -1,0 +1,6 @@
+match
+    $country isa country has countrycode <CountryCode>;
+insert $city isa city
+    has name <Name>
+    has population <Population>;
+    (contains-city: $country, in-country: $city) isa has-city;

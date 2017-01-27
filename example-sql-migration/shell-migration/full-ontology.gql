@@ -1,0 +1,90 @@
+insert
+
+continent sub entity
+    has-resource name
+    plays-role continent-of;
+
+region sub entity
+    has-resource name
+    plays-role region-of;
+
+district sub entity
+    has-resource name
+    plays-role district-of;
+
+country sub entity
+    has-resource countrycode
+    has-resource name
+    has-resource surfacearea
+    has-resource indepyear
+    has-resource population
+    has-resource lifeexpectancy
+    has-resource gnp
+    has-resource gnpold
+    has-resource localname
+    has-resource governmentform
+    has-resource headofstate
+    plays-role speaks-language
+    plays-role on-continent
+    plays-role in-region
+    plays-role contains-city;
+
+city sub entity
+    has-resource population
+    has-resource name
+    plays-role in-district
+    plays-role in-country;
+
+language sub entity
+    has-resource name
+    plays-role language-spoken;
+
+name sub resource datatype string;
+countrycode sub resource datatype string;
+surfacearea sub resource datatype double; #TODO - add surfacearea to template
+indepyear sub resource datatype long; #can be NULL
+population sub resource datatype long;
+lifeexpectancy sub resource datatype double;
+gnp sub resource datatype double;
+gnpold sub resource datatype double;
+localname sub resource datatype string;
+governmentform sub resource datatype string;
+headofstate sub resource datatype string;
+iscapital sub resource datatype boolean;
+isofficial sub resource datatype boolean;
+percentage sub resource datatype double;
+
+speaks sub relation
+    has-role speaks-language
+    has-role language-spoken
+    has-resource percentage
+    has-resource isofficial;
+
+has-city sub relation
+    has-role contains-city
+    has-role in-country
+    has-resource iscapital;
+
+has-continent sub relation
+    has-role on-continent
+    has-role continent-of;
+
+has-region sub relation
+    has-role in-region
+    has-role region-of;
+
+has-district sub relation
+    has-role in-district
+    has-role district-of;
+
+speaks-language sub role;
+language-spoken sub role;
+contains-city sub role;
+in-country sub role;
+on-continent sub role;
+continent-of sub role;
+in-region sub role;
+region-of sub role;
+in-district sub role;
+district-of sub role;
+

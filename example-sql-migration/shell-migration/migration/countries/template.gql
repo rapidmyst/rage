@@ -1,0 +1,11 @@
+insert $country isa country
+    has name <Name>
+    has countrycode <Code>
+    if(<IndepYear> != null) do { has indepyear <IndepYear> }
+    if(<Population> != null) do { has population <Population> }
+    if(<LifeExpectancy> != null) do { has lifeexpectancy <LifeExpectancy> }
+    if(<GNP> != null) do { has gnp <GNP> }
+    if(<GNPold> != null) do { has gnpold <GNPold> }
+    if(<LocalName> != null) do { has localname <LocalName> }
+    if(<GovernmentForm> != null) do { has governmentform <GovernmentForm> }
+    if(<HeadOfState> != null) do { has headofstate <HeadOfState> };

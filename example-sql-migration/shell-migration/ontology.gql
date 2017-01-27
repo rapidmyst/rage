@@ -1,0 +1,56 @@
+insert
+
+country sub entity    
+  has-resource countrycode    
+  has-resource name    
+  has-resource surfacearea    
+  has-resource indepyear    
+  has-resource population    
+  has-resource lifeexpectancy    
+  has-resource gnp    
+  has-resource gnpold    
+  has-resource localname    
+  has-resource governmentform    
+  has-resource headofstate    
+  plays-role speaks-language     
+  plays-role contains-city; 
+
+city sub entity    
+  has-resource population    
+  has-resource name    
+  plays-role in-country; 
+
+language sub entity    
+  has-resource name    
+  plays-role language-spoken; 
+
+name sub resource datatype string;
+countrycode sub resource datatype string;
+surfacearea sub resource datatype double; 
+indepyear sub resource datatype long; 
+population sub resource datatype long;
+lifeexpectancy sub resource datatype double;
+gnp sub resource datatype double;
+gnpold sub resource datatype double;
+localname sub resource datatype string;
+governmentform sub resource datatype string;
+headofstate sub resource datatype string;
+iscapital sub resource datatype boolean;
+isofficial sub resource datatype boolean;
+percentage sub resource datatype double; 
+
+speaks sub relation    
+  has-role speaks-language    
+  has-role language-spoken    
+  has-resource percentage    
+  has-resource isofficial; 
+ 
+has-city sub relation    
+  has-role contains-city    
+  has-role in-country    
+  has-resource iscapital; 
+
+speaks-language sub role;
+language-spoken sub role;
+contains-city sub role;
+in-country sub role;

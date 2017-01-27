@@ -1,0 +1,8 @@
+if(<capital> != null) do {
+match
+    $country isa country has countrycode <code>;
+    $city isa city has name <capital>;
+    $rel (in-country: $country, contains-city: $city) isa has-city;
+insert
+    $rel has iscapital true;
+} 
