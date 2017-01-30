@@ -11,8 +11,6 @@ then
 	echo "Migrating weddings"
 	$1/migration.sh csv -i $PWD/weddings.csv -t $PWD/migrators/weddings-migrator.gql
 	echo "Done migrating data"
-	echo "Importing Rules"
-	$1/graql.sh -f $PWD/../rules.gql
 
 else
 	echo "Usage: ./loader.sh <Grakn-bin-directory>"
