@@ -1,0 +1,10 @@
+match
+	$x has identifier <spouse1>;
+	$y has identifier <spouse2>;
+insert
+	(spouse1: $x, spouse2: $y) isa marriage
+
+	if (<picture> != "") do 
+		{
+		has picture <picture>
+		};

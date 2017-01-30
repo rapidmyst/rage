@@ -1,0 +1,5 @@
+match
+	$c isa person has identifier <child>;
+	$p isa person has identifier <parent>;
+insert
+	(child: $c, parent: $p) isa parentship;
