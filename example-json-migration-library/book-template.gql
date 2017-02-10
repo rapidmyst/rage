@@ -1,0 +1,10 @@
+insert
+
+for(<books>) do {
+    $book isa book
+        has bookId <id>
+        has title <title>;
+}
+
+
+

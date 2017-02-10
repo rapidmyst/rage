@@ -1,0 +1,6 @@
+insert
+
+for(<books>) do {
+    $author isa author
+        has authorName <author>;
+}

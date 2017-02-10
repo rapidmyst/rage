@@ -1,0 +1,38 @@
+insert
+
+# Entities
+
+book sub entity
+	has-resource bookId
+	has-resource title
+	plays-role publication-item;
+
+author sub entity
+	has-resource authorName
+	plays-role publication-author;
+
+subject sub entity
+	has-resource subjectName
+	plays-role publication-subject; 
+
+
+# Resources
+
+bookId sub resource datatype string;
+title sub resource datatype string;
+authorName sub resource datatype string;
+subjectName sub resource datatype string;
+
+# Relations and Roles
+
+publication sub relation
+	has-role publication-item
+	has-role publication-author
+	has-role publication-subject;
+
+publication-item sub role;
+publication-author sub role;
+publication-subject sub role;
+
+
+
