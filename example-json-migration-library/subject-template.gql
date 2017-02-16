@@ -1,6 +1,0 @@
-insert
-
-for(<books>) do {
-    $subject isa subject
-        has subjectName <subject>;
-}
