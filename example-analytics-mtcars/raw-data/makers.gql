@@ -1,0 +1,14 @@
+
+	if (<region> = "Japanese") do 
+		{
+		insert $c1 isa japanese-maker has maker-name <carmaker>;
+		}
+	elseif (<region> = "American") do 
+		{		
+		insert $c2 isa american-maker has maker-name <carmaker>;
+		}
+	else 
+		{		
+		insert $c3 isa european-maker has maker-name <carmaker>;
+		}
+		

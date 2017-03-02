@@ -1,0 +1,53 @@
+insert
+
+# Entities
+
+vehicle sub entity
+	is-abstract;
+
+car sub vehicle
+	is-abstract
+
+	has-resource model
+	has-resource mpg
+	has-resource cyl
+	has-resource disp
+	has-resource hp
+	has-resource wt
+	has-resource gear
+	has-resource carb
+	plays-role made;
+
+automatic-car sub car;
+manual-car sub car;
+
+carmaker sub entity
+	is-abstract
+	has-resource maker-name
+	plays-role maker;
+
+japanese-maker sub carmaker;
+american-maker sub carmaker;
+european-maker sub carmaker;
+
+# Resources
+
+model sub resource datatype string;
+maker-name sub resource datatype string;
+mpg sub resource datatype double;
+cyl sub resource datatype long;
+disp sub resource datatype double;
+hp sub resource datatype long;
+wt sub resource datatype double;
+gear sub resource datatype long;
+carb sub resource datatype long;
+
+# Roles and Relations
+
+manufactured sub relation
+	has-role maker
+	has-role made;
+
+maker sub role;
+made sub role;
+

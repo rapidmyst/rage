@@ -1,0 +1,30 @@
+match
+	$m has maker-name <carmaker>; 
+
+	if (@long(<am>) < 1) do 
+		{
+		insert $c1 isa automatic-car 
+		has model <model>
+		has mpg @double(<mpg>)
+		has cyl @long(<cyl>)
+		has disp @double(<disp>)
+		has hp @long(<hp>)
+		has wt @double(<wt>)
+		has gear @long(<gear>)
+		has carb @long(<carb>);
+		(made: $c1, maker: $m) isa manufactured;
+		}
+	else
+		{		
+		insert $c2 isa manual-car 
+		has model <model>
+		has mpg @double(<mpg>)
+		has cyl @long(<cyl>)
+		has disp @double(<disp>)
+		has hp @long(<hp>)
+		has wt @double(<wt>)
+		has gear @long(<gear>)
+		has carb @long(<carb>);
+		(made: $c2, maker: $m) isa manufactured;
+		}
+		
