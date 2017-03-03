@@ -62,13 +62,13 @@ powerful sub resource datatype string;
 
 $car-economy-true isa inference-rule
 lhs
-{$c isa car has mpg >= 20;}
+{$c isa car has mpg >= 19.0;}
 rhs
 {$c has economical "TRUE";};
 
 $car-economy-false isa inference-rule
 lhs
-{$c isa car has mpg < 20;}
+{$c isa car has mpg < 19.0;}
 rhs
 {$c has economical "FALSE";};
 
