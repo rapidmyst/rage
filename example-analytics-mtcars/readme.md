@@ -6,7 +6,7 @@ See the [example documentation](https://grakn.ai/pages/documentation/examples/an
 <relative-path-to-Grakn>/bin/grakn.sh clean
 <relative-path-to-Grakn>/bin/grakn.sh start
 <relative-path-to-Grakn>/bin/graql.sh -f ./ontology.gql
-<relative-path-to-Grakn>/bin/graql.sh -f ./data.gql
+<relative-path-to-Grakn>/bin/graql.sh -b ./data.gql
 ```
 
 
