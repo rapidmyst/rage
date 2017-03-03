@@ -51,3 +51,37 @@ manufactured sub relation
 maker sub role;
 made sub role;
 
+# Reasoning
+car
+	has-resource economical
+	has-resource powerful;
+	
+economical sub resource datatype string;
+powerful sub resource datatype string;
+
+
+$car-economy-true isa inference-rule
+lhs
+{$c isa car has mpg >= 20;}
+rhs
+{$c has economical "TRUE";};
+
+$car-economy-false isa inference-rule
+lhs
+{$c isa car has mpg < 20;}
+rhs
+{$c has economical "FALSE";};
+
+$car-powerful-true isa inference-rule
+lhs
+{$c isa car has hp >= 147;}
+rhs
+{$c has powerful "TRUE";};
+
+$car-powerful-false isa inference-rule
+lhs
+{$c isa car has hp < 147;}
+rhs
+{$c has powerful "FALSE";};
+
+
