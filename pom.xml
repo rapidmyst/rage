@@ -30,6 +30,7 @@
         <module>example-owl-migration</module>
         <module>example-sql-migration</module>
         <module>example-json-migration-giphy</module>
+        <module>example-graph-api-genealogy</module>
     </modules>
 
     <properties>
