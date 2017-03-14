@@ -20,11 +20,9 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
-import ai.grakn.engine.loader.Loader;
-import ai.grakn.engine.loader.LoaderImpl;
+import ai.grakn.client.LoaderClient;
 import ai.grakn.exception.GraknValidationException;
 import ai.grakn.graql.Graql;
-import ai.grakn.migration.base.io.MigrationLoader;
 import ai.grakn.migration.sql.SQLMigrator;
 
 import java.io.IOException;
@@ -33,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 
+import static ai.grakn.example.Main.SERVER_ADDRESS;
 import static ai.grakn.graql.Graql.var;
 import static java.util.stream.Collectors.joining;
 
@@ -46,7 +45,7 @@ public class SQLWorldMigrator {
     public static void migrateWorld(Connection connection, String keyspace){
         load("ontology.gql", keyspace);
 
-        Loader loader = new LoaderImpl(keyspace);
+        LoaderClient loader = new LoaderClient(keyspace, SERVER_ADDRESS);
         migrate(connection, loader, "continents");
         migrate(connection, loader, "regions");
         migrate(connection, loader, "countries");
@@ -57,13 +56,14 @@ public class SQLWorldMigrator {
         migrate(connection, loader, "languagesspoken");
     }
 
-    private static void migrate(Connection connection, Loader loader, String toMigrateDir){
+    private static void migrate(Connection connection, LoaderClient loader, String toMigrateDir){
         String query = get(toMigrateDir + "/query.sql");
         String template = get(toMigrateDir + "/template.gql");
 
         System.out.println("Migrating " + toMigrateDir);
         try(SQLMigrator migrator = new SQLMigrator(query, template, connection)){
-            MigrationLoader.load(loader, migrator);
+            //TODO: Migration Loader to be exchanged for what is being used from 0.11 onwards
+            //MigrationLoader.load(loader, migrator);
         }
     }
 

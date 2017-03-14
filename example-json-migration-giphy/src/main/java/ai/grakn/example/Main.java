@@ -19,13 +19,9 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
-import ai.grakn.engine.GraknEngineServer;
-import ai.grakn.engine.loader.Loader;
-import ai.grakn.engine.loader.LoaderImpl;
+import ai.grakn.client.Client;
 import ai.grakn.exception.GraknValidationException;
-import ai.grakn.graql.Graql;
 import ai.grakn.migration.base.Migrator;
-import ai.grakn.migration.base.io.MigrationLoader;
 import ai.grakn.migration.json.JsonMigrator;
 
 import java.io.File;
@@ -44,7 +40,7 @@ public class Main {
     private static final String ONTOLOGY = "ontology.gql";
 
     public static void main(String[] args){
-        if(!GraknEngineServer.isRunning()){
+        if(!Client.serverIsRunning("127.0.0.1")){
             System.out.println("Please start Mindmaps Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://mindmaps.io/pages/documentation/get-started/setup-guide.html");
             return;
@@ -72,7 +68,8 @@ public class Main {
             System.out.println("Beginning migration");
 
             // load data in directory
-            MigrationLoader.load(graph, migrator);
+            //TODO: Migration Loader to be exchanged for what is being used from 0.11 onwards
+            //MigrationLoader.load(graph, migrator);
 
             graph.commit();
             graph.close();

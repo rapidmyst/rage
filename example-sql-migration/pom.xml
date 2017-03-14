@@ -23,13 +23,18 @@
     <parent>
         <artifactId>grakn-examples</artifactId>
         <groupId>ai.grakn</groupId>
-        <version>0.9.0</version>
+        <version>0.11.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>example-sql-migration</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>ai.grakn</groupId>
+            <artifactId>grakn-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>ai.grakn</groupId>
             <artifactId>migration-sql</artifactId>
