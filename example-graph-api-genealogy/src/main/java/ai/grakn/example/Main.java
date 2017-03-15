@@ -2,8 +2,11 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
+import ai.grakn.concept.Entity;
 import ai.grakn.concept.EntityType;
+import ai.grakn.concept.Instance;
 import ai.grakn.concept.RelationType;
+import ai.grakn.concept.Resource;
 import ai.grakn.concept.ResourceType;
 import ai.grakn.concept.RoleType;
 import ai.grakn.exception.GraknValidationException;
@@ -65,8 +68,13 @@ public class Main {
         try(GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, keyspace).getGraph()){
             System.out.println("Writing ontology . . .");
             writeOntology(graph);
-            System.out.println("Writing data . . .");
-            writeData(graph);
+            System.out.println("Writing sample marriage . . .");
+            writeSampleMarriage();
+            System.out.println("Writing sample parentship . . .");
+            writeSamplePartnership();
+
+            //TODO: Your turn use the ontology to write more data.
+
             graph.commit();
         } catch (GraknValidationException e) {
             e.printStackTrace();
@@ -74,6 +82,9 @@ public class Main {
         System.out.println("Done");
     }
 
+    /**
+     * Writes the genealogy ontology
+     */
     private static void writeOntology(GraknGraph graph){
         //Roles
         spouse = graph.putRoleType("spouse").setAbstract(true);
@@ -119,7 +130,10 @@ public class Main {
 
         //Entity Types
         person = graph.putEntityType("person");
-        person.playsRole(spouse).playsRole(parent).playsRole(child);
+        person.playsRole(spouse).playsRole(parent).
+                playsRole(child).playsRole(mother).
+                playsRole(father).playsRole(son).
+                playsRole(husband).playsRole(wife);
         person.hasResource(gender);
         person.hasResource(birthDate);
         person.hasResource(deathDate);
@@ -154,6 +168,65 @@ public class Main {
         death.hasResource(deathDate);
     }
 
-    private static void writeData(GraknGraph graph){
+    /**
+     * Writes an example of a marriage relationship including all the entities and resources needed
+     */
+    private static void writeSampleMarriage(){
+        //Adding a sample marriage
+        //Lets create a husband
+        //But first we need to define some resource which describe the husband
+        Resource<String> homerFirstName = firstname.putResource("Homer");
+        Resource<String> jMiddleName = middlename.putResource("J");
+        Resource<String> simpsonSurname = surname.putResource("Simpson");
+        Resource<String> male = gender.putResource("Male");
+
+        //Now we can create the actual husband entity
+        Entity homer = person.addEntity();
+        homer.hasResource(homerFirstName);
+        homer.hasResource(jMiddleName);
+        homer.hasResource(simpsonSurname);
+        homer.hasResource(male);
+
+        //Now lets create the wife.
+        //Again we need to define a few extra resources exclusive to the wife
+        Resource<String> margeFirstName = firstname.putResource("Marge");
+        Resource<String> female = gender.putResource("Female");
+
+        //Turns out we can use some of our existing resources to create the wife
+        Entity marge = person.addEntity();
+        marge.hasResource(margeFirstName);
+        marge.hasResource(jMiddleName);
+        marge.hasResource(simpsonSurname);
+        marge.hasResource(female);
+
+        //I now pronounce you husband and wife:
+        marriage.addRelation().putRolePlayer(husband, homer).putRolePlayer(wife, marge);
+    }
+
+    /**
+     * Writes an example of a parentship relationship including all the entities and resources needed
+     */
+    private static void writeSamplePartnership(){
+        //Now lets say our couple had a child.
+        //Lets first create that child
+        Resource<String> bartFirstName = firstname.putResource("Bart");
+        Resource<String> jMiddleName = middlename.putResource("J"); //This resource already exists so we just getting it back
+        Resource<String> simpsonSurname = surname.putResource("Simpson"); //Same for this one
+        Resource<String> male = gender.putResource("Male"); //and this one
+
+        //Let's create the child:
+        Entity bart = person.addEntity();
+        bart.hasResource(bartFirstName);
+        bart.hasResource(jMiddleName);
+        bart.hasResource(simpsonSurname);
+        bart.hasResource(male);
+
+        //Lets get the parents back
+        //We know they have unique first name so we will be lazy and use those to get back the husband and wife
+        Instance homer = firstname.putResource("Homer").owner();
+        Instance marge = firstname.putResource("Marge").owner();
+
+        //Congrats you guys have a son
+        parentship.addRelation().putRolePlayer(mother, marge).putRolePlayer(father, homer).putRolePlayer(son, bart);
     }
 }
