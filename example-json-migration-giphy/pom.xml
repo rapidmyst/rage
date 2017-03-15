@@ -23,27 +23,12 @@
     <parent>
         <artifactId>grakn-examples</artifactId>
         <groupId>ai.grakn</groupId>
-        <version>0.9.0</version>
+        <version>0.11.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>example-json-migration</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>ai.grakn</groupId>
-            <artifactId>grakn-titan-factory</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <dependency>
             <groupId>ai.grakn</groupId>
             <artifactId>grakn-graql</artifactId>

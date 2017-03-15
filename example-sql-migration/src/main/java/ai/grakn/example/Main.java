@@ -18,7 +18,7 @@
 
 package ai.grakn.example;
 
-import ai.grakn.engine.GraknEngineServer;
+import ai.grakn.client.Client;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,14 +26,15 @@ import java.sql.SQLException;
 
 public class Main {
 
-    private static final String keyspace = "grakn";
+    static final String SERVER_ADDRESS = "127.0.0.1:4567";
+    private static final String keyspace = "world";
     private static final String user = "mindmaps";
     private static final String pass = "mindmaps";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/world";
 
     public static void main(String[] args) {
-        if(!GraknEngineServer.isRunning()){
+        if(!Client.serverIsRunning(SERVER_ADDRESS)){
             System.out.println("Please start Mindmaps Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://mindmaps.io/pages/documentation/get-started/setup-guide.html");
             return;

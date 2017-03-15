@@ -19,13 +19,9 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
-import ai.grakn.engine.GraknEngineServer;
-import ai.grakn.engine.loader.Loader;
-import ai.grakn.engine.loader.LoaderImpl;
+import ai.grakn.client.Client;
 import ai.grakn.exception.GraknValidationException;
-import ai.grakn.graql.Graql;
 import ai.grakn.migration.base.Migrator;
-import ai.grakn.migration.base.io.MigrationLoader;
 import ai.grakn.migration.json.JsonMigrator;
 
 import java.io.File;
@@ -38,13 +34,14 @@ import static java.util.stream.Collectors.joining;
 
 public class Main {
 
-    private static final String GRAPH_NAME = "giphy";
+    private static final String SERVER = "127.0.0.1:4567";
+    private static final String KEYSPACE = "giphy";
     private static final String DATA_DIR = "trending";
     private static final String TEMPLATE = "template.gql";
     private static final String ONTOLOGY = "ontology.gql";
 
     public static void main(String[] args){
-        if(!GraknEngineServer.isRunning()){
+        if(!Client.serverIsRunning(SERVER)){
             System.out.println("Please start Mindmaps Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://mindmaps.io/pages/documentation/get-started/setup-guide.html");
             return;
@@ -56,7 +53,7 @@ public class Main {
 
 
         try {
-            GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, GRAPH_NAME).getGraph();
+            GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, KEYSPACE).getGraph();
 
             // load your ontology
             loadOntology(graph);
@@ -65,20 +62,22 @@ public class Main {
             String template = getResourceAsString(TEMPLATE);
             File jsonData = new File(getResource(DATA_DIR).toString());
 
+            System.out.println("Beginning migration");
+
             // create a migrator with your macro
             Migrator migrator = new JsonMigrator(template, jsonData)
                     .registerMacro(new GiphyMacro());
 
-            System.out.println("Beginning migration");
-
             // load data in directory
-            MigrationLoader.load(graph, migrator);
+            migrator.load(SERVER, KEYSPACE);
 
             graph.commit();
             graph.close();
 
+            migrator.close();
+
             System.out.println("Migration complete");
-        } catch (IOException|GraknValidationException e){
+        } catch (Exception e){
             throw new RuntimeException(e);
         }
 
