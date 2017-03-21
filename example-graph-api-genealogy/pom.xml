@@ -11,5 +11,13 @@
 
     <artifactId>example-graph-api-genealogy</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>ai.grakn</groupId>
+            <artifactId>grakn-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

@@ -2,6 +2,9 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
+import ai.grakn.GraknGraphFactory;
+import ai.grakn.client.Client;
+import ai.grakn.concept.Concept;
 import ai.grakn.concept.Entity;
 import ai.grakn.concept.EntityType;
 import ai.grakn.concept.Instance;
@@ -10,6 +13,18 @@ import ai.grakn.concept.Resource;
 import ai.grakn.concept.ResourceType;
 import ai.grakn.concept.RoleType;
 import ai.grakn.exception.GraknValidationException;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import static ai.grakn.graql.Graql.var;
 
 /**
  * The purpose of this class is to show you how to build the genealogy graph outlined in:
@@ -60,30 +75,53 @@ public class Main {
     private static EntityType death;
 
     public static void main(String [] args){
+        //Disable internal logging
+        ((Logger) org.slf4j.LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)).setLevel(Level.OFF);
+
+        if(!Client.serverIsRunning("127.0.0.1")) {
+            System.out.println("Please start Grakn Engine");
+            System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
+            return;
+        }
+
         System.out.println("=================================================================================================");
         System.out.println("|||||||||||||||||||||||||||||||||   Grakn Graph API  Example   ||||||||||||||||||||||||||||||||||");
         System.out.println("=================================================================================================");
 
         System.out.println("Creating graph . . .");
-        try(GraknGraph graph = Grakn.factory(Grakn.IN_MEMORY, keyspace).getGraph()){
+        GraknGraphFactory factory = Grakn.factory(Grakn.DEFAULT_URI, keyspace);
+
+        //Simple example of working with a graph in a single thread.
+        System.out.println("\n-------------------- Running Simple Example --------------------");
+        try(GraknGraph graph = factory.getGraph()){
             System.out.println("Writing ontology . . .");
             writeOntology(graph);
             System.out.println("Writing sample marriage . . .");
-            writeSampleMarriage();
+            writeSampleRelation_Marriage();
             System.out.println("Writing sample parentship . . .");
-            writeSamplePartnership();
-
-            //TODO: Your turn use the ontology to write more data.
-
+            writeSampleRelation_Partnership();
+            System.out.println("Running sample queries . . .");
+            runSampleQueries(graph);
             graph.commit();
         } catch (GraknValidationException e) {
             e.printStackTrace();
         }
+
+        System.out.println("\n-------------------- Running Multithreaded Example --------------------");
+        //This section demonstrates simple how to work with multiple transactions
+        //Lets say we want to add 100 people each with their own name
+        transactionHandlingSample_WritingManyPeople(factory);
+
+        try(GraknGraph graph = factory.getGraph()){
+            runSampleQuery_People(graph);
+        }
+
+
         System.out.println("Done");
     }
 
     /**
-     * Writes the genealogy ontology
+     * Writes the genealogy ontology in a simple manner
      */
     private static void writeOntology(GraknGraph graph){
         //Roles
@@ -171,7 +209,7 @@ public class Main {
     /**
      * Writes an example of a marriage relationship including all the entities and resources needed
      */
-    private static void writeSampleMarriage(){
+    private static void writeSampleRelation_Marriage(){
         //Adding a sample marriage
         //Lets create a husband
         //But first we need to define some resource which describe the husband
@@ -206,7 +244,7 @@ public class Main {
     /**
      * Writes an example of a parentship relationship including all the entities and resources needed
      */
-    private static void writeSamplePartnership(){
+    private static void writeSampleRelation_Partnership(){
         //Now lets say our couple had a child.
         //Lets first create that child
         Resource<String> bartFirstName = firstname.putResource("Bart");
@@ -228,5 +266,68 @@ public class Main {
 
         //Congrats you guys have a son
         parentship.addRelation().putRolePlayer(mother, marge).putRolePlayer(father, homer).putRolePlayer(son, bart);
+    }
+
+    /**
+     * This execute some sample queries and lookups using the Graph API and a Graql query
+     */
+    private static void runSampleQueries(GraknGraph graph){
+        System.out.println("What are the instances of the type person?");
+        System.out.println("    Using Graph API: ");
+        graph.getEntityType("person").instances().forEach(p-> System.out.println("    " + p));
+        System.out.println("    Using Graql Query: ");
+        graph.graql().match(var("x").isa("person")).execute().stream().
+                map(Map::entrySet).forEach(p-> System.out.println("    " + p));
+        System.out.println();
+
+        System.out.println("Who is married to homer?");
+        //This query is too complex to be solved via a simple lookup. In this case we must query with graql
+        System.out.println("    Using Graql Query: ");
+        List<Map<String, Concept>> results = graph.graql().match(
+                var("x").has("firstname", "Homer").isa("person"),
+                var("y").has("firstname", var("y_name")).isa("person"),
+                var().isa("marriage").
+                        rel("husband", "x").
+                        rel("wife", "y")).execute();
+        for (Map<String, Concept> result : results) {
+            System.out.println("    " + result.get("y_name"));
+        }
+    }
+
+    /**
+     *
+     * @param factory The factory bound to a specific keyspace
+     */
+    private static void transactionHandlingSample_WritingManyPeople(GraknGraphFactory factory){
+        ExecutorService pool = Executors.newCachedThreadPool();
+        HashSet<Future> futures = new HashSet<>();
+
+        for(int i = 0; i < 10; i ++) {
+            int finalI = i;
+            futures.add(pool.submit(() -> writeRandomPerson(factory, finalI)));
+        }
+
+        for (Future future : futures) {
+            try {
+                future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private static void writeRandomPerson(GraknGraphFactory factory, int personNumber){
+        try(GraknGraph graph = factory.getGraph()) {//Each thread gets it's own thread bound transaction
+            Entity randomPerson = graph.getEntityType("person").addEntity();
+            Resource<Object> randomPersonName = graph.getResourceType("firstname").putResource("Name " + personNumber);
+            randomPerson.hasResource(randomPersonName);
+            graph.commit();
+        } catch (GraknValidationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void runSampleQuery_People(GraknGraph graph){
+        System.out.println("Which people do we have now ?");
+        graph.getEntityType("person").instances().forEach(p-> System.out.println("    " + p));
     }
 }
