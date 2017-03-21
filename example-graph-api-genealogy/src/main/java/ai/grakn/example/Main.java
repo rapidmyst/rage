@@ -56,34 +56,25 @@ public class Main {
     private static ResourceType<String> middlename;
     private static ResourceType<String> surname;
     private static ResourceType<String> identifier;
-    private static ResourceType<String> notes;
-    private static ResourceType<Long> degree;
-    private static ResourceType<Long> confidence;
+
 
     //Relation Types
-    private static RelationType relatives;
     private static RelationType marriage;
     private static RelationType parentship;
 
     //Entity Types
     private static EntityType person;
-    private static EntityType event;
-    private static EntityType wedding;
-    private static EntityType funeral;
-    private static EntityType christening;
-    private static EntityType birth;
-    private static EntityType death;
 
     public static void main(String [] args){
         //Disable internal logging
         ((Logger) org.slf4j.LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)).setLevel(Level.OFF);
 
-        if(!Client.serverIsRunning("127.0.0.1")) {
+    /*    if(!Client.serverIsRunning("127.0.0.1")) {
             System.out.println("Please start Grakn Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
             return;
         }
-
+    */
         System.out.println("=================================================================================================");
         System.out.println("|||||||||||||||||||||||||||||||||   Grakn Graph API  Example   ||||||||||||||||||||||||||||||||||");
         System.out.println("=================================================================================================");
@@ -124,54 +115,34 @@ public class Main {
      * Writes the genealogy ontology in a simple manner
      */
     private static void writeOntology(GraknGraph graph){
+        //Resource Types
+        identifier = graph.putResourceType("identifier", ResourceType.DataType.STRING);
+        name = graph.putResourceType("name", ResourceType.DataType.STRING);
+        firstname = graph.putResourceType("firstname", ResourceType.DataType.STRING).superType(name);
+        surname = graph.putResourceType("surname", ResourceType.DataType.STRING).superType(name);
+        middlename = graph.putResourceType("middlename", ResourceType.DataType.STRING).superType(name);
+        date = graph.putResourceType("date", ResourceType.DataType.STRING);
+        birthDate = graph.putResourceType("birth-date", ResourceType.DataType.STRING).superType(date);
+        deathDate = graph.putResourceType("death-date", ResourceType.DataType.STRING).superType(date);
+        gender = graph.putResourceType("gender", ResourceType.DataType.STRING);
+
         //Roles
         spouse = graph.putRoleType("spouse").setAbstract(true);
         spouse1 = graph.putRoleType("spouse1").superType(spouse);
         spouse2 = graph.putRoleType("spouse2").superType(spouse);
-        husband = graph.putRoleType("husband").superType(spouse);
-        wife = graph.putRoleType("wife").superType(spouse);
-
         parent = graph.putRoleType("parent");
-        mother = graph.putRoleType("mother").superType(parent);
-        father = graph.putRoleType("father").superType(parent);
-
         child = graph.putRoleType("child");
-        son = graph.putRoleType("son").superType(child);
-        daughter = graph.putRoleType("daughter").superType(child);
-
-        //Resource Types
-        gender = graph.putResourceType("gender", ResourceType.DataType.STRING);
-
-        date = graph.putResourceType("date", ResourceType.DataType.STRING);
-        birthDate = graph.putResourceType("birth-date", ResourceType.DataType.STRING).superType(date);
-        deathDate = graph.putResourceType("death-date", ResourceType.DataType.STRING).superType(date);
-
-        name = graph.putResourceType("name", ResourceType.DataType.STRING);
-        firstname = graph.putResourceType("firstname", ResourceType.DataType.STRING).superType(name);
-        middlename = graph.putResourceType("middlename", ResourceType.DataType.STRING).superType(name);
-        surname = graph.putResourceType("surname", ResourceType.DataType.STRING).superType(name);
-
-        identifier = graph.putResourceType("identifier", ResourceType.DataType.STRING);
-        notes = graph.putResourceType("notes", ResourceType.DataType.STRING);
-        degree = graph.putResourceType("degree", ResourceType.DataType.LONG);
-        confidence = graph.putResourceType("confidence", ResourceType.DataType.LONG);
 
         //Relation Types
-        relatives = graph.putRelationType("relatives").setAbstract(true);
-
-        marriage = graph.putRelationType("marriage").superType(relatives);
-        marriage.hasRole(spouse1).hasRole(spouse2).hasRole(husband).hasRole(wife);
+        marriage = graph.putRelationType("marriage");
+        marriage.hasRole(spouse1).hasRole(spouse2);
         marriage.hasResource(date);
-
-        parentship = graph.putRelationType("parentship").superType(relatives);
-        parentship.hasRole(parent).hasRole(mother).hasRole(father).hasRole(child).hasRole(son).hasRole(daughter);
+        parentship = graph.putRelationType("parentship");
+        parentship.hasRole(parent).hasRole(child);
 
         //Entity Types
         person = graph.putEntityType("person");
-        person.playsRole(spouse).playsRole(parent).
-                playsRole(child).playsRole(mother).
-                playsRole(father).playsRole(son).
-                playsRole(husband).playsRole(wife);
+        person.playsRole(spouse1).playsRole(spouse2).playsRole(parent).playsRole(child);
         person.hasResource(gender);
         person.hasResource(birthDate);
         person.hasResource(deathDate);
@@ -179,31 +150,6 @@ public class Main {
         person.hasResource(firstname);
         person.hasResource(middlename);
         person.hasResource(surname);
-
-        event = graph.putEntityType("event");
-        event.hasResource(degree);
-        event.hasResource(confidence);
-        event.hasResource(notes);
-        event.hasResource(date);
-        event.hasResource(identifier);
-
-        wedding = graph.putEntityType("wedding").superType(event);
-
-        funeral = graph.putEntityType("funeral").superType(event);
-        funeral.hasResource(deathDate);
-
-        christening = graph.putEntityType("christening").superType(event);
-        christening.hasResource(deathDate);
-
-        birth = graph.putEntityType("birth").superType(event);
-        birth.hasResource(birthDate);
-        birth.hasResource(firstname);
-        birth.hasResource(middlename);
-        birth.hasResource(surname);
-        birth.hasResource(gender);
-
-        death = graph.putEntityType("death").superType(event);
-        death.hasResource(deathDate);
     }
 
     /**
@@ -238,7 +184,7 @@ public class Main {
         marge.hasResource(female);
 
         //I now pronounce you husband and wife:
-        marriage.addRelation().putRolePlayer(husband, homer).putRolePlayer(wife, marge);
+        marriage.addRelation().putRolePlayer(spouse1, homer).putRolePlayer(spouse2, marge);
     }
 
     /**
@@ -265,7 +211,8 @@ public class Main {
         Instance marge = firstname.putResource("Marge").owner();
 
         //Congrats you guys have a son
-        parentship.addRelation().putRolePlayer(mother, marge).putRolePlayer(father, homer).putRolePlayer(son, bart);
+        parentship.addRelation().putRolePlayer(parent, homer).putRolePlayer(child, bart);
+        parentship.addRelation().putRolePlayer(parent, marge).putRolePlayer(child, bart);
     }
 
     /**
@@ -287,8 +234,8 @@ public class Main {
                 var("x").has("firstname", "Homer").isa("person"),
                 var("y").has("firstname", var("y_name")).isa("person"),
                 var().isa("marriage").
-                        rel("husband", "x").
-                        rel("wife", "y")).execute();
+                        rel("spouse1", "x").
+                        rel("spouse2", "y")).execute();
         for (Map<String, Concept> result : results) {
             System.out.println("    " + result.get("y_name"));
         }
