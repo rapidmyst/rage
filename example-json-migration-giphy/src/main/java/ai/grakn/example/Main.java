@@ -34,14 +34,14 @@ import static java.util.stream.Collectors.joining;
 
 public class Main {
 
-    private static final String SERVER = "127.0.0.1:4567";
+    private static final String SERVER_ADDRESS = "127.0.0.1:4567";
     private static final String KEYSPACE = "giphy";
     private static final String DATA_DIR = "trending";
     private static final String TEMPLATE = "template.gql";
     private static final String ONTOLOGY = "ontology.gql";
 
     public static void main(String[] args){
-        if(!Client.serverIsRunning(SERVER)){
+        if(!Client.serverIsRunning(SERVER_ADDRESS)){
             System.out.println("Please start Mindmaps Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://mindmaps.io/pages/documentation/get-started/setup-guide.html");
             return;
@@ -69,7 +69,7 @@ public class Main {
                     .registerMacro(new GiphyMacro());
 
             // load data in directory
-            migrator.load(SERVER, KEYSPACE);
+            migrator.load(SERVER_ADDRESS, KEYSPACE);
 
             graph.commit();
             graph.close();

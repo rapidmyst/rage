@@ -21,11 +21,12 @@ import ai.grakn.GraknGraph;
 import ai.grakn.client.Client;
 
 public class Main {
+    private static final String SERVER_ADDRESS = "127.0.0.1:4567";
     private static final String keyspace = "FAMILY";
     private static String filePath = "family.owl";
 
     public static void main(String[] args) {
-        if(!Client.serverIsRunning("127.0.0.1")){
+        if(!Client.serverIsRunning(SERVER_ADDRESS)){
             System.out.println("Please start Grakn Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
             return;

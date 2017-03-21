@@ -26,7 +26,7 @@ import java.sql.SQLException;
 
 public class Main {
 
-    static final String SERVER_ADDRESS = "127.0.0.1:4567";
+    private static final String SERVER_ADDRESS = "127.0.0.1:4567";
     private static final String keyspace = "world";
     private static final String user = "mindmaps";
     private static final String pass = "mindmaps";

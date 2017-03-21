@@ -31,6 +31,7 @@ import static ai.grakn.graql.Graql.var;
  * https://grakn.ai/pages/documentation/developing-with-java/graph-api.html
  */
 public class Main {
+    private static final String SERVER_ADDRESS = "127.0.0.1:4567";
     private static final String keyspace = "genealogy";
 
     //Roles
@@ -69,12 +70,12 @@ public class Main {
         //Disable internal logging
         ((Logger) org.slf4j.LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)).setLevel(Level.OFF);
 
-    /*    if(!Client.serverIsRunning("127.0.0.1")) {
+        if(!Client.serverIsRunning(SERVER_ADDRESS)) {
             System.out.println("Please start Grakn Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
             return;
         }
-    */
+
         System.out.println("=================================================================================================");
         System.out.println("|||||||||||||||||||||||||||||||||   Grakn Graph API  Example   ||||||||||||||||||||||||||||||||||");
         System.out.println("=================================================================================================");
