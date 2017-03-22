@@ -17,6 +17,11 @@
             <artifactId>grakn-client</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+  			<groupId>ai.grakn</groupId>
+  			<artifactId>grakn-graql</artifactId>
+  			<version>${project.version}</version>
+		</dependency>
     </dependencies>
 
 

@@ -9,9 +9,11 @@ import ai.grakn.concept.Entity;
 import ai.grakn.concept.EntityType;
 import ai.grakn.concept.Instance;
 import ai.grakn.concept.RelationType;
+import ai.grakn.concept.Relation;
 import ai.grakn.concept.Resource;
 import ai.grakn.concept.ResourceType;
 import ai.grakn.concept.RoleType;
+import ai.grakn.graql.QueryBuilder;
 import ai.grakn.exception.GraknValidationException;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -27,9 +29,12 @@ import java.util.concurrent.Future;
 import static ai.grakn.graql.Graql.var;
 
 /**
- * The purpose of this class is to show you how to build the genealogy graph outlined in:
+ * The purpose of this class is to show you how to build the ontology outlined in:
  * https://grakn.ai/pages/documentation/developing-with-java/graph-api.html
+ * The example can be used as a basic template for your own projects that create
+ * a graph by building an ontology and adding data.
  */
+
 public class Main {
     private static final String SERVER_ADDRESS = "127.0.0.1:4567";
     private static final String keyspace = "genealogy";
@@ -38,14 +43,8 @@ public class Main {
     private static RoleType spouse;
     private static RoleType spouse1;
     private static RoleType spouse2;
-    private static RoleType wife;
-    private static RoleType husband;
     private static RoleType parent;
-    private static RoleType mother;
-    private static RoleType father;
     private static RoleType child;
-    private static RoleType son;
-    private static RoleType daughter;
 
     //Resource Types
     private static ResourceType<String> gender;
@@ -75,7 +74,7 @@ public class Main {
             System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
             return;
         }
-
+    
         System.out.println("=================================================================================================");
         System.out.println("|||||||||||||||||||||||||||||||||   Grakn Graph API  Example   ||||||||||||||||||||||||||||||||||");
         System.out.println("=================================================================================================");
@@ -91,7 +90,7 @@ public class Main {
             System.out.println("Writing sample marriage . . .");
             writeSampleRelation_Marriage();
             System.out.println("Writing sample parentship . . .");
-            writeSampleRelation_Partnership();
+            writeSampleRelation_Parentship();
             System.out.println("Running sample queries . . .");
             runSampleQueries(graph);
             graph.commit();
@@ -99,6 +98,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        /*
         System.out.println("\n-------------------- Running Multithreaded Example --------------------");
         //This section demonstrates simple how to work with multiple transactions
         //Lets say we want to add 100 people each with their own name
@@ -107,7 +107,7 @@ public class Main {
         try(GraknGraph graph = factory.getGraph()){
             runSampleQuery_People(graph);
         }
-
+*/
 
         System.out.println("Done");
     }
@@ -172,7 +172,7 @@ public class Main {
         homer.hasResource(simpsonSurname);
         homer.hasResource(male);
 
-        //Now lets create the wife.
+        //Now lets create the wife
         //Again we need to define a few extra resources exclusive to the wife
         Resource<String> margeFirstName = firstname.putResource("Marge");
         Resource<String> female = gender.putResource("Female");
@@ -185,13 +185,16 @@ public class Main {
         marge.hasResource(female);
 
         //I now pronounce you husband and wife:
-        marriage.addRelation().putRolePlayer(spouse1, homer).putRolePlayer(spouse2, marge);
+        Relation homerAndMargeMarriage = marriage.addRelation().putRolePlayer(spouse1, homer).putRolePlayer(spouse2, marge);
+
+        Resource marriageDate = date.putResource("12/08/1980");
+        homerAndMargeMarriage.hasResource(marriageDate);
     }
 
     /**
      * Writes an example of a parentship relationship including all the entities and resources needed
      */
-    private static void writeSampleRelation_Partnership(){
+    private static void writeSampleRelation_Parentship(){
         //Now lets say our couple had a child.
         //Lets first create that child
         Resource<String> bartFirstName = firstname.putResource("Bart");
@@ -207,7 +210,7 @@ public class Main {
         bart.hasResource(male);
 
         //Lets get the parents back
-        //We know they have unique first name so we will be lazy and use those to get back the husband and wife
+        //We know they have unique first name so we will use those to get them
         Instance homer = firstname.putResource("Homer").owner();
         Instance marge = firstname.putResource("Marge").owner();
 
@@ -217,21 +220,25 @@ public class Main {
     }
 
     /**
-     * This execute some sample queries and lookups using the Graph API and a Graql query
+     * This execute some sample queries and lookups using the Graph API and a Graql query using QueryBuilder
      */
     private static void runSampleQueries(GraknGraph graph){
         System.out.println("What are the instances of the type person?");
         System.out.println("    Using Graph API: ");
         graph.getEntityType("person").instances().forEach(p-> System.out.println("    " + p));
-        System.out.println("    Using Graql Query: ");
-        graph.graql().match(var("x").isa("person")).execute().stream().
+
+
+        System.out.println("    Using Graql QueryBuilder: ");
+        QueryBuilder qb = graph.graql();
+        qb.match(var("x").isa("person")).execute().stream().
                 map(Map::entrySet).forEach(p-> System.out.println("    " + p));
         System.out.println();
 
-        System.out.println("Who is married to homer?");
+        System.out.println("Who is married to Homer?");
         //This query is too complex to be solved via a simple lookup. In this case we must query with graql
-        System.out.println("    Using Graql Query: ");
-        List<Map<String, Concept>> results = graph.graql().match(
+        System.out.println("    Using Graql QueryBuilder: ");
+
+        List<Map<String, Concept>> results = qb.match(
                 var("x").has("firstname", "Homer").isa("person"),
                 var("y").has("firstname", var("y_name")).isa("person"),
                 var().isa("marriage").
@@ -240,6 +247,9 @@ public class Main {
         for (Map<String, Concept> result : results) {
             System.out.println("    " + result.get("y_name"));
         }
+
+        
+
     }
 
     /**
