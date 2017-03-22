@@ -248,7 +248,10 @@ public class Main {
             System.out.println("    " + result.get("y_name"));
         }
 
-        
+        // Some more queries. All the Simpsons.
+        qb.match(var("x").value(contains("person"))).execute().stream().
+                map(Map::entrySet).forEach(p-> System.out.println("    " + p));
+        System.out.println();
 
     }
 
