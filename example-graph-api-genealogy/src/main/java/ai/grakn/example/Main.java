@@ -18,6 +18,7 @@ import ai.grakn.exception.GraknValidationException;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import static ai.grakn.graql.Graql.var;
+
 
 /**
  * The purpose of this class is to show you how to build the ontology outlined in:
@@ -248,11 +250,11 @@ public class Main {
             System.out.println("    " + result.get("y_name"));
         }
 
-        // Some more queries. All the Simpsons.
-        qb.match(var("x").value(contains("person"))).execute().stream().
+/*        // Some more queries. All the Simpsons.
+        qb.match(var("x").has("surname", contains("Simpson"))).execute().stream().
                 map(Map::entrySet).forEach(p-> System.out.println("    " + p));
         System.out.println();
-
+*/
     }
 
     /**
