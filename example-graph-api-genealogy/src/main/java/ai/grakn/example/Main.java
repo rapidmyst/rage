@@ -18,7 +18,6 @@ import ai.grakn.exception.GraknValidationException;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +27,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import static ai.grakn.graql.Graql.var;
-
+import static ai.grakn.graql.Graql.*;
 
 /**
- * The purpose of this class is to show you how to build the ontology outlined in:
+ * The purpose of this example is to show you how to build the ontology outlined in:
  * https://grakn.ai/pages/documentation/developing-with-java/graph-api.html
  * The example can be used as a basic template for your own projects that create
  * a graph by building an ontology and adding data.
+ *
  */
 
 public class Main {
@@ -198,37 +198,36 @@ public class Main {
      */
     private static void writeSampleRelation_Parentship(){
         //Now lets say our couple had a child.
-        //Lets first create that child
+        //Lets first create that child: Bart
         Resource<String> bartFirstName = firstname.putResource("Bart");
         Resource<String> jMiddleName = middlename.putResource("J"); //This resource already exists so we just getting it back
         Resource<String> simpsonSurname = surname.putResource("Simpson"); //Same for this one
         Resource<String> male = gender.putResource("Male"); //and this one
 
-        //Let's create the child:
+        //Let's create Bart
         Entity bart = person.addEntity();
         bart.hasResource(bartFirstName);
         bart.hasResource(jMiddleName);
         bart.hasResource(simpsonSurname);
         bart.hasResource(male);
 
-        //Lets get the parents back
+        //Let's get the parents back
         //We know they have unique first name so we will use those to get them
         Instance homer = firstname.putResource("Homer").owner();
         Instance marge = firstname.putResource("Marge").owner();
 
-        //Congrats you guys have a son
+        //Congratulations! You have a son
         parentship.addRelation().putRolePlayer(parent, homer).putRolePlayer(child, bart);
         parentship.addRelation().putRolePlayer(parent, marge).putRolePlayer(child, bart);
     }
 
     /**
-     * This execute some sample queries and lookups using the Graph API and a Graql query using QueryBuilder
+     * This execute some sample queries and lookups using the Graph API and Graql queries using QueryBuilder
      */
     private static void runSampleQueries(GraknGraph graph){
         System.out.println("What are the instances of the type person?");
         System.out.println("    Using Graph API: ");
         graph.getEntityType("person").instances().forEach(p-> System.out.println("    " + p));
-
 
         System.out.println("    Using Graql QueryBuilder: ");
         QueryBuilder qb = graph.graql();
@@ -237,7 +236,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Who is married to Homer?");
-        //This query is too complex to be solved via a simple lookup. In this case we must query with graql
+        //This query is too complex to be solved via a simple lookup. In this case we must query with Graql.
         System.out.println("    Using Graql QueryBuilder: ");
 
         List<Map<String, Concept>> results = qb.match(
@@ -250,11 +249,13 @@ public class Main {
             System.out.println("    " + result.get("y_name"));
         }
 
-/*        // Some more queries. All the Simpsons.
-        qb.match(var("x").has("surname", contains("Simpson"))).execute().stream().
+        // Some more queries using QueryBuilder.
+        // All the Simpsons.
+        System.out.println("The Simpsons");
+        qb.match(var("x").has("surname", contains("Simp"))).execute().stream().
                 map(Map::entrySet).forEach(p-> System.out.println("    " + p));
         System.out.println();
-*/
+
     }
 
     /**
