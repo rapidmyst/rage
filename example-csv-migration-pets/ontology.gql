@@ -1,11 +1,11 @@
 insert
 
 pet sub entity
-    has-resource name
-    has-resource sex
-    has-resource birth
-    has-resource death
-    plays-role owned
+    has name
+    has sex
+    has birth
+    has death
+    plays owned
     is-abstract;
 
 cat sub pet;
@@ -15,13 +15,13 @@ hamster sub pet;
 bird sub pet;
 
 person sub entity
-    has-resource name
-    has-resource email
-    plays-role owner;
+    has name
+    has email
+    plays owner;
 
 owns sub relation
-    has-role owner
-    has-role owned;
+    relates owner
+    relates owned;
 
 owner sub role;
 owned sub role;

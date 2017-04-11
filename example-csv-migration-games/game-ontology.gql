@@ -1,28 +1,28 @@
 insert
 
 platform sub entity
-	has-resource platform-name
-	plays-role supports;
+	has platform-name
+	plays supports;
 	
 platform-name sub resource datatype string;
 supports sub role;
 runs-on sub role;
 
 genre sub entity
-	has-resource genre-name
-	plays-role genre-of-game;
+	has genre-name
+	plays genre-of-game;
 	
 genre-name sub resource datatype string;
 game-with-genre sub role;
 genre-of-game sub role;
 
 game sub entity
-	has-resource title
-	has-resource score
-	has-resource score-phrase
-	has-resource release-year
-	plays-role game-with-genre
-	plays-role runs-on;
+	has title
+	has score
+	has score-phrase
+	has release-year
+	plays game-with-genre
+	plays runs-on;
 	
 title sub resource datatype string;
 score sub resource datatype double;
@@ -30,11 +30,11 @@ score-phrase sub resource datatype string;
 release-year sub resource datatype string;
 
 compatibility sub relation
-	has-role supports
-	has-role runs-on;
+	relates supports
+	relates runs-on;
 
 has-genre sub relation
-	has-role game-with-genre
-	has-role genre-of-game;
+	relates game-with-genre
+	relates genre-of-game;
 
 
