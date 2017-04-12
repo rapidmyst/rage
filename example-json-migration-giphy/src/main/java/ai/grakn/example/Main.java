@@ -19,6 +19,7 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
+import ai.grakn.GraknTxType;
 import ai.grakn.client.Client;
 import ai.grakn.exception.GraknValidationException;
 import ai.grakn.migration.base.Migrator;
@@ -53,7 +54,7 @@ public class Main {
 
 
         try {
-            GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, KEYSPACE).getGraph();
+            GraknGraph graph = Grakn.session(Grakn.DEFAULT_URI, KEYSPACE).open(GraknTxType.WRITE);
 
             // load your ontology
             loadOntology(graph);

@@ -18,6 +18,7 @@
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
+import ai.grakn.GraknTxType;
 import ai.grakn.client.Client;
 
 public class Main {
@@ -36,7 +37,7 @@ public class Main {
             System.out.println("=================================================================================================");
         }
         // get connection to the graph
-        GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, keyspace).getGraph();
+        GraknGraph graph = Grakn.session(Grakn.DEFAULT_URI, keyspace).open(GraknTxType.WRITE);
 
         OWLResourceMigrator.migrate(filePath, graph);
         OWLResourceMigrator.printInformationAboutWorld(graph);

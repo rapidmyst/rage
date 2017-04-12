@@ -25,7 +25,7 @@
     <groupId>ai.grakn</groupId>
     <artifactId>grakn-examples</artifactId>
     <packaging>pom</packaging>
-    <version>0.11.0</version>
+    <version>0.12.0</version>
     <modules>
         <module>example-owl-migration</module>
         <module>example-sql-migration</module>
