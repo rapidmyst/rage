@@ -11,4 +11,4 @@ To load the ontology, make sure you have downloaded Grakn and started the Grakn 
 ```
 
 
-Follow the example documentation to migrate the CSV data into Grakn.
+Follow the complete [documentation](https://grakn.ai/pages/documentation/examples/CSV-migration.html) to migrate the CSV data into Grakn.
