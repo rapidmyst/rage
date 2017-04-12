@@ -53,8 +53,6 @@ public class OWLResourceMigrator {
      * Prints information about the migrated database
      */
     public static void printInformationAboutWorld(GraknGraph graph){
-        graph.rollback();
-
         // What are the types that were migrated?
         System.out.println("Migrated Types:");
         graph.admin().getMetaEntityType().instances().forEach(System.out::println);

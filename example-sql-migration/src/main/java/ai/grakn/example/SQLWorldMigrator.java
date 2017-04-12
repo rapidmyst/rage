@@ -20,6 +20,7 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
+import ai.grakn.GraknTxType;
 import ai.grakn.exception.GraknValidationException;
 import ai.grakn.graql.Graql;
 import ai.grakn.migration.sql.SQLMigrator;
@@ -68,7 +69,7 @@ public class SQLWorldMigrator {
      * Prints information about the migrated database
      */
     public static void printInformationAboutWorld(String keyspace){
-        GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, keyspace).getGraph();
+        GraknGraph graph = Grakn.session(Grakn.DEFAULT_URI, keyspace).open(GraknTxType.WRITE);
 
         // What are the types that were migrated?
         System.out.println("Migrated Types:");
@@ -95,7 +96,7 @@ public class SQLWorldMigrator {
         String ontology = get(ontologyFile);
 
         System.out.println("Loading " + ontologyFile);
-        GraknGraph graph = Grakn.factory(Grakn.DEFAULT_URI, keyspace).getGraph();
+        GraknGraph graph = Grakn.session(Grakn.DEFAULT_URI, keyspace).open(GraknTxType.WRITE);
         graph.graql().parse(ontology).execute();
         try {
             graph.commit();

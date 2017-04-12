@@ -2,21 +2,20 @@ package ai.grakn.example;
 
 import ai.grakn.Grakn;
 import ai.grakn.GraknGraph;
-import ai.grakn.GraknGraphFactory;
+import ai.grakn.GraknSession;
+import ai.grakn.GraknTxType;
 import ai.grakn.client.Client;
 import ai.grakn.concept.Concept;
 import ai.grakn.concept.Entity;
 import ai.grakn.concept.EntityType;
 import ai.grakn.concept.Instance;
-import ai.grakn.concept.RelationType;
 import ai.grakn.concept.Relation;
+import ai.grakn.concept.RelationType;
 import ai.grakn.concept.Resource;
 import ai.grakn.concept.ResourceType;
 import ai.grakn.concept.RoleType;
-import ai.grakn.graql.QueryBuilder;
 import ai.grakn.exception.GraknValidationException;
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
+import ai.grakn.graql.QueryBuilder;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,8 +25,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static ai.grakn.graql.Graql.contains;
 import static ai.grakn.graql.Graql.var;
-import static ai.grakn.graql.Graql.*;
 
 /**
  * The purpose of this example is to show you how to build the ontology outlined in:
@@ -68,9 +67,6 @@ public class Main {
     private static EntityType person;
 
     public static void main(String [] args){
-        //Disable internal logging
-        ((Logger) org.slf4j.LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)).setLevel(Level.OFF);
-
         if(!Client.serverIsRunning(SERVER_ADDRESS)) {
             System.out.println("Please start Grakn Engine");
             System.out.println("You can get more information on how to do so using our setup guide: https://grakn.ai/pages/documentation/get-started/setup-guide.html");
@@ -82,11 +78,11 @@ public class Main {
         System.out.println("=================================================================================================");
 
         System.out.println("Creating graph . . .");
-        GraknGraphFactory factory = Grakn.factory(Grakn.DEFAULT_URI, keyspace);
+        GraknSession session = Grakn.session(Grakn.DEFAULT_URI, keyspace);
 
         //Simple example of working with a graph in a single thread.
         System.out.println("\n-------------------- Running Simple Example --------------------");
-        try(GraknGraph graph = factory.getGraph()){
+        try(GraknGraph graph = session.open(GraknTxType.WRITE)){
             System.out.println("Writing ontology . . .");
             writeOntology(graph);
             System.out.println("Writing sample marriage . . .");
@@ -100,16 +96,15 @@ public class Main {
             e.printStackTrace();
         }
 
-        /*
+
         System.out.println("\n-------------------- Running Multithreaded Example --------------------");
         //This section demonstrates simple how to work with multiple transactions
         //Lets say we want to add 100 people each with their own name
-        transactionHandlingSample_WritingManyPeople(factory);
+        transactionHandlingSample_WritingManyPeople(session);
 
-        try(GraknGraph graph = factory.getGraph()){
+        try(GraknGraph graph = session.open(GraknTxType.WRITE)){
             runSampleQuery_People(graph);
         }
-*/
 
         System.out.println("Done");
     }
@@ -138,21 +133,21 @@ public class Main {
 
         //Relation Types
         marriage = graph.putRelationType("marriage");
-        marriage.hasRole(spouse1).hasRole(spouse2);
-        marriage.hasResource(date);
+        marriage.relates(spouse1).relates(spouse2);
+        marriage.resource(date);
         parentship = graph.putRelationType("parentship");
-        parentship.hasRole(parent).hasRole(child);
+        parentship.relates(parent).relates(child);
 
         //Entity Types
         person = graph.putEntityType("person");
-        person.playsRole(spouse1).playsRole(spouse2).playsRole(parent).playsRole(child);
-        person.hasResource(gender);
-        person.hasResource(birthDate);
-        person.hasResource(deathDate);
-        person.hasResource(identifier);
-        person.hasResource(firstname);
-        person.hasResource(middlename);
-        person.hasResource(surname);
+        person.plays(spouse1).plays(spouse2).plays(parent).plays(child);
+        person.resource(gender);
+        person.resource(birthDate);
+        person.resource(deathDate);
+        person.resource(identifier);
+        person.resource(firstname);
+        person.resource(middlename);
+        person.resource(surname);
     }
 
     /**
@@ -169,10 +164,10 @@ public class Main {
 
         //Now we can create the actual husband entity
         Entity homer = person.addEntity();
-        homer.hasResource(homerFirstName);
-        homer.hasResource(jMiddleName);
-        homer.hasResource(simpsonSurname);
-        homer.hasResource(male);
+        homer.resource(homerFirstName);
+        homer.resource(jMiddleName);
+        homer.resource(simpsonSurname);
+        homer.resource(male);
 
         //Now lets create the wife
         //Again we need to define a few extra resources exclusive to the wife
@@ -181,16 +176,16 @@ public class Main {
 
         //Turns out we can use some of our existing resources to create the wife
         Entity marge = person.addEntity();
-        marge.hasResource(margeFirstName);
-        marge.hasResource(jMiddleName);
-        marge.hasResource(simpsonSurname);
-        marge.hasResource(female);
+        marge.resource(margeFirstName);
+        marge.resource(jMiddleName);
+        marge.resource(simpsonSurname);
+        marge.resource(female);
 
         //I now pronounce you husband and wife:
-        Relation homerAndMargeMarriage = marriage.addRelation().putRolePlayer(spouse1, homer).putRolePlayer(spouse2, marge);
+        Relation homerAndMargeMarriage = marriage.addRelation().addRolePlayer(spouse1, homer).addRolePlayer(spouse2, marge);
 
         Resource marriageDate = date.putResource("12/08/1980");
-        homerAndMargeMarriage.hasResource(marriageDate);
+        homerAndMargeMarriage.resource(marriageDate);
     }
 
     /**
@@ -206,10 +201,10 @@ public class Main {
 
         //Let's create Bart
         Entity bart = person.addEntity();
-        bart.hasResource(bartFirstName);
-        bart.hasResource(jMiddleName);
-        bart.hasResource(simpsonSurname);
-        bart.hasResource(male);
+        bart.resource(bartFirstName);
+        bart.resource(jMiddleName);
+        bart.resource(simpsonSurname);
+        bart.resource(male);
 
         //Let's get the parents back
         //We know they have unique first name so we will use those to get them
@@ -217,8 +212,8 @@ public class Main {
         Instance marge = firstname.putResource("Marge").owner();
 
         //Congratulations! You have a son
-        parentship.addRelation().putRolePlayer(parent, homer).putRolePlayer(child, bart);
-        parentship.addRelation().putRolePlayer(parent, marge).putRolePlayer(child, bart);
+        parentship.addRelation().addRolePlayer(parent, homer).addRolePlayer(child, bart);
+        parentship.addRelation().addRolePlayer(parent, marge).addRolePlayer(child, bart);
     }
 
     /**
@@ -262,7 +257,7 @@ public class Main {
      *
      * @param factory The factory bound to a specific keyspace
      */
-    private static void transactionHandlingSample_WritingManyPeople(GraknGraphFactory factory){
+    private static void transactionHandlingSample_WritingManyPeople(GraknSession factory){
         ExecutorService pool = Executors.newCachedThreadPool();
         HashSet<Future> futures = new HashSet<>();
 
@@ -279,11 +274,11 @@ public class Main {
             }
         }
     }
-    private static void writeRandomPerson(GraknGraphFactory factory, int personNumber){
-        try(GraknGraph graph = factory.getGraph()) {//Each thread gets it's own thread bound transaction
+    private static void writeRandomPerson(GraknSession factory, int personNumber){
+        try(GraknGraph graph = factory.open(GraknTxType.WRITE)) {//Each thread gets it's own thread bound transaction
             Entity randomPerson = graph.getEntityType("person").addEntity();
             Resource<Object> randomPersonName = graph.getResourceType("firstname").putResource("Name " + personNumber);
-            randomPerson.hasResource(randomPersonName);
+            randomPerson.resource(randomPersonName);
             graph.commit();
         } catch (GraknValidationException e) {
             e.printStackTrace();
