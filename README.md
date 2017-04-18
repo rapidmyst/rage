@@ -1,13 +1,15 @@
 # Sample Projects for GRAKN.AI
 
-This repo contains sample projects that are used to illustrate features of Grakn. Additional documentation about each can be found as described below.
+This repo contains sample projects that are used to illustrate features of Grakn. Some projects use Java, while others use Graql.
+
+Additional information about each can be found as described below, and within each folder.
 
 
 ### [example-analytics-MTCars](https://github.com/graknlabs/sample-projects/tree/master/example-analytics-mtcars)
 
 A simple Graql-based example that takes the MTCars dataset, familiar to users of R, and illustrates how to use GRAKN.AI to perform basic analytics. The documentation for this example can be found [here](https://grakn.ai/pages/documentation/examples/analytics.html).
 
-### [CSV Migration]
+### CSV Migration
 
 We provide several examples of [CSV migration](https://grakn.ai/pages/documentation/migration/CSV-migration.html): 
    

@@ -1,6 +1,8 @@
 ## Analytics Example
 
-See the [example documentation](https://grakn.ai/pages/documentation/examples/analytics.html) for further information about this example.  Start Grakn and you should simply be able to load in the ontology and data into a keyspace to get up and running.
+See the [example documentation](https://grakn.ai/pages/documentation/examples/analytics.html) for further information about this example.  
+
+Start Grakn and you should simply be able to load in the ontology and data into a keyspace to get up and running.
 
 ```
 <relative-path-to-Grakn>/bin/grakn.sh clean

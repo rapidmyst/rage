@@ -1,5 +1,4 @@
-CSV Migration Example
----
+## CSV Migration Example
 
 We will be loading this example into the `pets` graph. It contains 9 pets, 4 people and a variety of `owns` relationships.
 
