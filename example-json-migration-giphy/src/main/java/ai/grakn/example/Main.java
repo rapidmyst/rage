@@ -65,17 +65,13 @@ public class Main {
 
             System.out.println("Beginning migration");
 
-            // create a migrator with your macro
-            Migrator migrator = new JsonMigrator(template, jsonData)
-                    .registerMacro(new GiphyMacro());
-
             // load data in directory
-            migrator.load(SERVER_ADDRESS, KEYSPACE);
+            Migrator.to(SERVER_ADDRESS, KEYSPACE)
+                    .registerMacro(new GiphyMacro())
+                    .load(template, new JsonMigrator(jsonData).convert());
 
             graph.commit();
             graph.close();
-
-            migrator.close();
 
             System.out.println("Migration complete");
         } catch (Exception e){

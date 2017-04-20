@@ -23,6 +23,7 @@ import ai.grakn.GraknGraph;
 import ai.grakn.GraknTxType;
 import ai.grakn.exception.GraknValidationException;
 import ai.grakn.graql.Graql;
+import ai.grakn.migration.base.Migrator;
 import ai.grakn.migration.sql.SQLMigrator;
 
 import java.io.IOException;
@@ -60,9 +61,8 @@ public class SQLWorldMigrator {
         String template = get(toMigrateDir + "/template.gql");
 
         System.out.println("Migrating " + toMigrateDir);
-        try(SQLMigrator migrator = new SQLMigrator(query, template, connection)){
-            migrator.load(SERVER_ADDRESS, keyspace);
-        }
+
+        Migrator.to(SERVER_ADDRESS, keyspace).load(template, new SQLMigrator(query, connection).convert());
     }
 
     /**
