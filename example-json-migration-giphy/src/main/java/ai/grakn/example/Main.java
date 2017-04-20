@@ -65,13 +65,13 @@ public class Main {
 
             System.out.println("Beginning migration");
 
+            graph.commit();
+            graph.close();
+
             // load data in directory
             Migrator.to(SERVER_ADDRESS, KEYSPACE)
                     .registerMacro(new GiphyMacro())
                     .load(template, new JsonMigrator(jsonData).convert());
-
-            graph.commit();
-            graph.close();
 
             System.out.println("Migration complete");
         } catch (Exception e){
