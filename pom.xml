@@ -31,6 +31,7 @@
         <module>example-sql-migration</module>
         <module>example-json-migration-giphy</module>
         <module>example-graph-api-genealogy</module>
+        <module>example-analytics-genealogy</module>
     </modules>
 
     <properties>
