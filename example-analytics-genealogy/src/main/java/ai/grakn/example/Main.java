@@ -194,6 +194,7 @@ public class Main {
         }
     }
 
+    //TODO: remove this method when updating to 0.13.0 and load from examples directory in distribution
     private static void loadBasicGenealogy() {
         ClassLoader classLoader = Main.class.getClassLoader();
         try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
