@@ -13,7 +13,9 @@ import ai.grakn.graql.MatchQuery;
 import ai.grakn.graql.Var;
 import ai.grakn.graql.analytics.ClusterQuery;
 import ai.grakn.graql.analytics.DegreeQuery;
+import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,7 @@ import static ai.grakn.graql.Graql.var;
 public class Main {
 
     public static void main(String[] args) {
+        loadBasicGenealogy();
         testConnection();
         Map<String, Set<String>> results = computeClusters();
         mutateOntology();
@@ -187,6 +190,21 @@ public class Main {
 
                 // write the results to the console
                 result.forEach(System.out::println);
+            }
+        }
+    }
+
+    //TODO: remove this method when updating to 0.13.0 and load from examples directory in distribution
+    private static void loadBasicGenealogy() {
+        ClassLoader classLoader = Main.class.getClassLoader();
+        try (GraknSession session = Grakn.session(Grakn.DEFAULT_URI, "genealogy")) {
+            try (GraknGraph graph = session.open(GraknTxType.WRITE)) {
+                try {
+                    graph.graql().parse(IOUtils.toString(classLoader.getResourceAsStream("basic-genealogy.gql"))).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                graph.commit();
             }
         }
     }
