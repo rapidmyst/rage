@@ -15,10 +15,10 @@ import ai.grakn.concept.Resource;
 import ai.grakn.concept.ResourceType;
 import ai.grakn.concept.RoleType;
 import ai.grakn.exception.GraknValidationException;
+import ai.grakn.graql.MatchQuery;
 import ai.grakn.graql.QueryBuilder;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -220,30 +220,44 @@ public class Main {
 
         System.out.println("    Using Graql QueryBuilder: ");
         QueryBuilder qb = graph.graql();
-        qb.match(var("x").isa("person")).execute().stream().
-                map(Map::entrySet).forEach(p-> System.out.println("    " + p));
+        MatchQuery query = qb.match(var("x").isa("person"));
+        query.stream().map(Map::entrySet).forEach(p-> System.out.println("    " + p));
         System.out.println();
 
         System.out.println("Who is married to John Niesz?");
         //This query is too complex to be solved via a simple lookup. In this case we must query with Graql.
         System.out.println("    Using Graql QueryBuilder: ");
 
-        List<Map<String, Concept>> results = qb.match(
+        query = qb.match(
                 var("x").has("firstname", "John").isa("person"),
                 var("y").has("firstname", var("y_name")).isa("person"),
                 var().isa("marriage").
                         rel("spouse1", "x").
-                        rel("spouse2", "y")).execute();
-        for (Map<String, Concept> result : results) {
+                        rel("spouse2", "y"));
+        for (Map<String, Concept> result : query) {
             System.out.println("    " + result.get("y_name"));
         }
 
-        // Some more queries using QueryBuilder. Find everyone with the surname Niesz
-   
-        qb.match(var("x").has("surname", contains("Niesz"))).execute().stream().
-                map(Map::entrySet).forEach(p-> System.out.println("    " + p));
+        // Some more queries using QueryBuilder:
+
+        // Find everyone with the surname Niesz
+        query = qb.match(var("x").has("surname", contains("Niesz")));
+        query.stream().map(Map::entrySet).forEach(p-> System.out.println("    " + p));
         System.out.println();
 
+        // Find all resources attached to John Niesz, by parsing a query string:
+        query = qb.parse("match $john has firstname 'John', has resource $x;");
+
+        query.get("x").forEach(p -> {
+            System.out.println("    " + p);
+        });
+
+        // Do the same in Java:
+        query = qb.match(var("john").has("firstname", "John").has("resource", var("x")));
+
+        query.get("x").forEach(p -> {
+            System.out.println("    " + p);
+        });
     }
 
     /**
