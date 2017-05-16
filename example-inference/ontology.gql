@@ -1,0 +1,71 @@
+insert
+
+country sub entity
+    has name
+    has countrycode
+    has continent
+    has world-region
+    has inf-local-district
+    plays contains-city;
+
+city sub entity
+    has name
+    has local-district
+    has inf-continent
+    has inf-world-region
+    plays in-country;
+
+name sub resource datatype string;
+countrycode sub resource datatype string;
+continent sub resource datatype string;
+world-region sub resource datatype string;
+local-district sub resource datatype string;
+inf-local-district sub resource datatype string;
+inf-continent sub resource datatype string;
+inf-world-region sub resource datatype string;
+
+has-city sub relation
+    relates contains-city
+    relates in-country;
+
+contains-city sub role;
+in-country sub role;
+
+####################
+# INFERRENCE RULES #
+####################
+
+$city-in-region isa inference-rule
+lhs
+{
+    (contains-city: $country1, in-country: $city1) isa has-city;
+    $country1 has world-region $region1;
+}
+rhs
+{
+    $city1 has inf-world-region $region1;
+};
+
+$city-in-continent isa inference-rule
+lhs
+{
+    (contains-city: $country1, in-country: $city1) isa has-city;
+    $country1 has continent $continent1;
+}
+rhs
+{
+    $city1 has inf-continent $continent1;
+};
+
+$country-in-district isa inference-rule
+lhs
+{
+    (contains-city: $country1, in-country: $city1) isa has-city;
+    $city1 has local-district $district1;
+}
+rhs
+{
+    $country1 has inf-local-district $district1;
+};
+
+

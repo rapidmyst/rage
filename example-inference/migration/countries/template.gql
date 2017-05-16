@@ -1,0 +1,5 @@
+insert $country isa country
+    has name <Name>
+    has countrycode <Code>
+    if(<Continent> != null) do { has continent <Continent> }
+    if(<Region> != null) do { has world-region <Region> };
