@@ -1,0 +1,14 @@
+- query: SELECT * FROM city;
+  template: templates/cities-template.gql
+
+- query: SELECT * FROM country;
+  template: templates/countries-template.gql
+
+- query: SELECT code, capital FROM country;
+  template: templates/capitals-template.gql
+ 
+- query: SELECT DISTINCT language FROM countrylanguage;
+  template: templates/languages-template.gql
+
+- query: SELECT * from countrylanguage;
+  template: templates/languages-spoken-template.gql
